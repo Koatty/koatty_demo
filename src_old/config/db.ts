@@ -1,9 +1,10 @@
 /**
- * @ author: xxx
- * @ copyright: Copyright (c)
- * @ license: Apache License 2.0
- * @ version: 2019-10-17 11:46:27
+ * @ author: richen
+ * @ copyright: Copyright (c) - <richenlin(at)gmail.com>
+ * @ license: MIT
+ * @ version: 2019-10-16 16:41:19
  */
+
 export default {
     /*database config*/
     database: {
@@ -27,4 +28,4 @@ export default {
     //     redis_db: '0',
     //     redis_timeout: 5000, //try connection timeout
     // }
-};
+}

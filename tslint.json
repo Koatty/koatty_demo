@@ -8,7 +8,7 @@
         ]
     },
     "rules": {
-        "class-name": false,
+        "class-name": true,
         "comment-format": [
             false,
             "check-space"
