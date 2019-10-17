@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-17 10:42:52
+ * @ version: 2019-10-17 13:46:39
  */
 import * as Koa from "koa";
 import { Middleware, helper, logger } from "koatty";
@@ -16,7 +16,7 @@ const defaultOpt = {
     "username": "test",
     "password": "test",
     "database": "test",
-    "synchronize": false, //true 每次运行应用程序时实体都将与数据库同步
+    "synchronize": true, //true 每次运行应用程序时实体都将与数据库同步
     "logging": true,
     "entities": [`${process.env.APP_PATH}/model/*`]
 };
