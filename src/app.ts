@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-16 18:31:53
+ * @ version: 2019-10-18 16:57:33
  */
 import { Koatty, Bootstrap } from "koatty";
 // import * as path from "path";

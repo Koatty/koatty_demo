@@ -2,16 +2,17 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-18 10:54:14
+ * @ version: 2019-10-18 17:31:35
  */
-import * as Koa from "Koa";
-import { App } from "../App";
-import { Controller, BaseController, Autowired, GetMaping, RequestBody, PathVariable, PostMaping } from "koatty";
+import { Controller, BaseController, Autowired, GetMaping, RequestBody, PathVariable, PostMaping, BaseApp, RequestMapping, RequestMethod } from "koatty";
 import { TestService } from "../service/TestService";
+
+interface App extends BaseApp {
+    cache: any;
+}
 
 @Controller()
 export class IndexController extends BaseController {
-    ctx: Koa.BaseContext;
     app: App;
 
     @Autowired()
@@ -19,9 +20,11 @@ export class IndexController extends BaseController {
 
     init() {
         //...
+        this.app.cache = {};
+        console.log('IndexController.init()', this.app.cache);
     }
 
-    @GetMaping("/")
+    @RequestMapping("/", RequestMethod.ALL)
     async default(@PathVariable("test") test: string) {
         const info = await this.testService.sayHello();
         return this.ok(test, info);
@@ -29,6 +32,7 @@ export class IndexController extends BaseController {
 
     @PostMaping("/test")
     test(@RequestBody() body: any) {
+        // return this.default('aaa');
         return this.ok("test", body);
     }
 }

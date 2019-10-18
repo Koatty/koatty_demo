@@ -2,9 +2,8 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-16 20:15:30
+ * @ version: 2019-10-18 16:13:43
  */
-import * as Koa from "koa";
 import { Middleware, helper, logger } from "koatty";
 const defaultOpt = {
     //默认配置项
@@ -18,7 +17,7 @@ export class TestMid {
         //应用启动执行一次
         // app.once('appReady', () => { });
 
-        return function (ctx: Koa.Context, next: any) {
+        return function (ctx: any, next: any) {
             logger.info('test middleware');
             return next();
         };

@@ -2,17 +2,20 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-17 18:53:38
+ * @ version: 2019-10-18 16:58:20
  */
-import { App } from "../App";
-import { Service, Autowired, logger } from "koatty";
+import { Service, Autowired, logger, Base, BaseApp } from "koatty";
 import { UserModel } from "../model/UserModel";
 import { TestModel } from "../model/TestModel";
 import { Connection } from "typeorm";
 
+interface App extends BaseApp {
+    connection: any;
+}
+
 @Service()
-export class TestService {
-    public app: App;
+export class TestService extends Base {
+    app: App;
     private connection: Connection;
     @Autowired()
     private userModel: UserModel;
@@ -55,5 +58,16 @@ export class TestService {
         console.log('aaa');
 
         return testRepository.findOne();
+    }
+
+    /**
+     * 使用typeorm QueryBuilder查询
+     *
+     * @returns
+     * @memberof TestService
+     */
+    async sayHello4() {
+        const testRepository = this.connection.getRepository(TestModel);
+        return testRepository.createQueryBuilder().addOrderBy("id", "ASC").andWhere(" id = '1' ");
     }
 }

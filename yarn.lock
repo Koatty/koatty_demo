@@ -1916,10 +1916,10 @@ koa@^2.10.x:
     type-is "^1.6.16"
     vary "^1.1.2"
 
-koatty@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.npm.taobao.org/koatty/download/koatty-1.2.1.tgz?cache=0&sync_timestamp=1571367137956&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkoatty%2Fdownload%2Fkoatty-1.2.1.tgz#998a9790b2b1e91ae6742975de126bbbc59cf5b0"
-  integrity sha1-mYqXkLKx6RrmdCl13hJru8Wc9bA=
+koatty@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npm.taobao.org/koatty/download/koatty-1.2.3.tgz?cache=0&sync_timestamp=1571386357295&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkoatty%2Fdownload%2Fkoatty-1.2.3.tgz#6d1e4342c7c86ceb948f80cc419806fd532be3d8"
+  integrity sha1-bR5DQsfIbOuUj4DMQZgG/VMr49g=
   dependencies:
     globby "^10.0.x"
     koa "^2.10.x"

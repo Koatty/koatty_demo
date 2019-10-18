@@ -2,9 +2,8 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-17 13:46:39
+ * @ version: 2019-10-18 16:13:54
  */
-import * as Koa from "koa";
 import { Middleware, helper, logger } from "koatty";
 import { createConnection, Connection } from "typeorm";
 
@@ -37,7 +36,7 @@ export class TypeormMid {
         app.once('appReady', () => {
             conn();
         });
-        return async function (ctx: Koa.Context, next: any) {
+        return async function (ctx: any, next: any) {
             if (!app.connection) {
                 await conn();
             }
