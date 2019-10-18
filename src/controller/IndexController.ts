@@ -2,11 +2,11 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-17 18:51:31
+ * @ version: 2019-10-18 10:37:56
  */
 import * as Koa from "Koa";
 import { App } from "../App";
-import { Controller, BaseController, Autowired, Get, Post, Param, All, Body } from "koatty";
+import { Controller, BaseController, Autowired, GetMaping, RequestBody, PathVariable, PostMaping } from "koatty";
 import { TestService } from "../service/TestService";
 
 @Controller()
@@ -21,14 +21,14 @@ export class IndexController extends BaseController {
         //...
     }
 
-    @Get("/")
-    async default() {
+    @GetMaping("/")
+    async default(@PathVariable("test") test: string) {
         const info = await this.testService.sayHello();
         return this.ok('Hello, Koatty!', info);
     }
 
-    @Post("/test")
-    test(@Body() body: any) {
-        return this.ok("test", this.param());
+    @PostMaping("/test")
+    test(@RequestBody() body: any) {
+        return this.ok("test", body);
     }
 }
