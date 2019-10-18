@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-16 18:55:16
+ * @ version: 2019-10-18 10:56:20
  */
 import { BaseModel } from "thinkorm";
 import { Component, Value } from 'koatty';
@@ -26,4 +26,6 @@ export class UserModel extends BaseModel {
             }
         };
     }
+
+
 }

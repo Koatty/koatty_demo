@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-18 10:50:54
+ * @ version: 2019-10-18 10:54:14
  */
 import * as Koa from "Koa";
 import { App } from "../App";
@@ -11,8 +11,8 @@ import { TestService } from "../service/TestService";
 
 @Controller()
 export class IndexController extends BaseController {
-    public ctx: Koa.BaseContext;
-    public app: App;
+    ctx: Koa.BaseContext;
+    app: App;
 
     @Autowired()
     private testService: TestService;
