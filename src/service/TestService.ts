@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-17 14:27:13
+ * @ version: 2019-10-17 18:53:38
  */
 import { App } from "../App";
 import { Service, Autowired, logger } from "koatty";
@@ -52,6 +52,8 @@ export class TestService {
      */
     async sayHello3() {
         const testRepository = this.connection.getRepository(TestModel);
+        console.log('aaa');
+
         return testRepository.findOne();
     }
 }

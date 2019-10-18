@@ -2,11 +2,11 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-17 14:08:38
+ * @ version: 2019-10-17 18:51:31
  */
 import * as Koa from "Koa";
 import { App } from "../App";
-import { Controller, BaseController, Autowired, Get, Post, Param } from "koatty";
+import { Controller, BaseController, Autowired, Get, Post, Param, All, Body } from "koatty";
 import { TestService } from "../service/TestService";
 
 @Controller()
@@ -28,7 +28,7 @@ export class IndexController extends BaseController {
     }
 
     @Post("/test")
-    test() {
+    test(@Body() body: any) {
         return this.ok("test", this.param());
     }
 }
