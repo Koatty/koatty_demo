@@ -1,6 +1,6 @@
 [![ThinkKoa](http://thinkkoa.org/img/logo.png)](http://thinkkoa.org/koatty)
 
-application created by [Koatty]
+# Application created by [Koatty](https://github.com/thinkkoa/koatty)
 
 ## install dependencies
 

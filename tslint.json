@@ -63,7 +63,7 @@
         "no-trailing-whitespace": false,
         "no-null-keyword": true,
         "prefer-const": true,
-        "jsdoc-format": true,
+        "jsdoc-format": false,
         "no-redundant-jsdoc": false,
         "ordered-imports": false,
         "no-empty": false,
