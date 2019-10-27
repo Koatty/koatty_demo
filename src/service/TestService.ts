@@ -2,15 +2,17 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-18 16:58:20
+ * @ version: 2019-10-23 21:09:15
  */
 import { Service, Autowired, logger, Base, BaseApp } from "koatty";
 import { UserModel } from "../model/UserModel";
 import { TestModel } from "../model/TestModel";
 import { Connection } from "typeorm";
+import { helper } from 'thinkorm';
 
 interface App extends BaseApp {
     connection: any;
+    store: any;
 }
 
 @Service()
@@ -19,9 +21,11 @@ export class TestService extends Base {
     private connection: Connection;
     @Autowired()
     private userModel: UserModel;
+    private cache: any;
 
     init() {
         this.connection = this.app.connection;
+        this.cache = this.app.store;
     }
 
 
@@ -31,8 +35,16 @@ export class TestService extends Base {
      * @returns
      * @memberof TestService
      */
-    public sayHello() {
-        return this.userModel.find();
+    async sayHello() {
+        // this.cache = this.app.store;
+        let res = await this.app.store.get("sayHello");
+        if (helper.isEmpty(res)) {
+            res = await this.userModel.find();
+            if (!helper.isEmpty(res)) {
+                this.app.store.set("sayHello", JSON.stringify(res));
+            }
+        }
+        return res;
     }
 
     /**
