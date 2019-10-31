@@ -2,18 +2,14 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-23 21:09:15
+ * @ version: 2019-10-31 09:44:00
  */
-import { Service, Autowired, logger, Base, BaseApp } from "koatty";
+import { Service, Autowired, logger, Base } from "koatty";
 import { UserModel } from "../model/UserModel";
 import { TestModel } from "../model/TestModel";
 import { Connection } from "typeorm";
 import { helper } from 'thinkorm';
-
-interface App extends BaseApp {
-    connection: any;
-    store: any;
-}
+import { App } from '../App';
 
 @Service()
 export class TestService extends Base {
@@ -81,5 +77,16 @@ export class TestService extends Base {
     async sayHello4() {
         const testRepository = this.connection.getRepository(TestModel);
         return testRepository.createQueryBuilder().addOrderBy("id", "ASC").andWhere(" id = '1' ");
+    }
+
+    /**
+     *
+     *
+     * @param {string} info
+     * @returns
+     * @memberof TestService
+     */
+    sayHello5(info: string) {
+        return `info: ${info}; app.root_path: ${this.app.root_path}`;
     }
 }
