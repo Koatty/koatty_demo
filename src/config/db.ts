@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-23 09:49:12
+ * @ version: 2019-11-02 12:00:32
  */
 export default {
     /*database config*/
@@ -15,6 +15,18 @@ export default {
         db_pwd: 'test',
         db_prefix: '',
         db_charset: 'utf8'
+    },
+
+    typeorm: {
+        "type": "mysql", //mysql, mariadb, postgres, sqlite, mssql, oracle, mongodb, cordova
+        "host": "192.168.0.150",
+        "port": 3306,
+        "username": "test",
+        "password": "test",
+        "database": "test",
+        "synchronize": false, //true 每次运行应用程序时实体都将与数据库同步
+        "logging": true,
+        "entities": [`${process.env.APP_PATH}/model/*`]
     },
 
     redis: {

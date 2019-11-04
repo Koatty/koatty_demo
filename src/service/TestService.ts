@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-31 09:44:00
+ * @ version: 2019-11-03 00:14:47
  */
 import { Service, Autowired, logger, Base } from "koatty";
 import { UserModel } from "../model/UserModel";
@@ -80,13 +80,14 @@ export class TestService extends Base {
     }
 
     /**
-     *
+     * redis
      *
      * @param {string} info
      * @returns
      * @memberof TestService
      */
-    sayHello5(info: string) {
-        return `info: ${info}; app.root_path: ${this.app.root_path}`;
+    async sayHello5(info: string) {
+        const cacheInfo = await this.cache.hget('test', info);
+        return cacheInfo;
     }
 }

@@ -2320,10 +2320,10 @@ koa@^2.11.0:
     type-is "^1.6.16"
     vary "^1.1.2"
 
-koatty@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/koatty/-/koatty-1.5.0.tgz#83a3373442cc6a777530f10e06f4af9f56b8151d"
-  integrity sha512-qKlp3GHWxnH3wkHsEjVhHaTtty3Kk5oNuqYSftQwOo4nd50V+Wo9R9+QSsiRlu/Wem39L/vUIY2xnTUHnI/ekA==
+koatty@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.npm.taobao.org/koatty/download/koatty-1.6.1.tgz?cache=0&sync_timestamp=1572857757029&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkoatty%2Fdownload%2Fkoatty-1.6.1.tgz#1d8f9feeee55838e31398a926fc08beab67fca4d"
+  integrity sha1-HY+f7u5Vg44xOYqSb8CL6rZ/yk0=
   dependencies:
     globby "^10.0.1"
     koa "^2.11.0"

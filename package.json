@@ -13,7 +13,7 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "koatty": "^1.5.0",
+    "koatty": "^1.6.1",
     "mysql": "^2.17.1",
     "think_store": "^2.3.0",
     "think_view": "^2.2.1",

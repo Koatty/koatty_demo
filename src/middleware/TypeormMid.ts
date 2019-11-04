@@ -2,9 +2,9 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-18 16:13:54
+ * @ version: 2019-11-02 12:01:33
  */
-import { Middleware, helper, logger } from "koatty";
+import { Middleware, helper, logger, Value } from "koatty";
 import { createConnection, Connection } from "typeorm";
 
 const defaultOpt = {
@@ -23,8 +23,11 @@ const defaultOpt = {
 
 @Middleware()
 export class TypeormMid {
+    @Value("typeorm", "db")
+    private options: any;
+
     run(options: any, app: any) {
-        options = helper.extend(defaultOpt, options);
+        options = { ...defaultOpt, ...this.options };
         const conn = function () {
             createConnection(options).then((connection: Connection) => {
                 helper.define(app, 'connection', connection);
