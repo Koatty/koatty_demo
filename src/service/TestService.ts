@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-03 00:14:47
+ * @ version: 2019-11-04 19:44:57
  */
 import { Service, Autowired, logger, Base } from "koatty";
 import { UserModel } from "../model/UserModel";
@@ -32,12 +32,11 @@ export class TestService extends Base {
      * @memberof TestService
      */
     async sayHello() {
-        // this.cache = this.app.store;
-        let res = await this.app.store.get("sayHello");
+        let res = await this.cache.get("sayHello");
         if (helper.isEmpty(res)) {
             res = await this.userModel.find();
             if (!helper.isEmpty(res)) {
-                this.app.store.set("sayHello", JSON.stringify(res));
+                this.cache.set("sayHello", JSON.stringify(res));
             }
         }
         return res;
@@ -63,8 +62,6 @@ export class TestService extends Base {
      */
     async sayHello3() {
         const testRepository = this.connection.getRepository(TestModel);
-        console.log('aaa');
-
         return testRepository.findOne();
     }
 

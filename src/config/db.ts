@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-02 12:00:32
+ * @ version: 2019-11-04 19:55:05
  */
 export default {
     /*database config*/
@@ -32,11 +32,12 @@ export default {
     redis: {
         type: 'redis', //数据缓存类型 file,redis,memcache
         key_prefix: '', //缓存key前置
+        // tslint:disable-next-line: no-null-keyword
         timeout: null, //数据缓存有效期，单位: 秒
         redis_host: '192.168.0.150',
         redis_port: 6379,
         redis_password: '',
         redis_db: '0',
-        redis_timeout: 5000, //try connection timeout
+        redis_timeout: 5000 //try connection timeout
     }
 };

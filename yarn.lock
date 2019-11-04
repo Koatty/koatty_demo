@@ -2320,10 +2320,10 @@ koa@^2.11.0:
     type-is "^1.6.16"
     vary "^1.1.2"
 
-koatty@^1.6.1:
-  version "1.6.1"
-  resolved "https://registry.npm.taobao.org/koatty/download/koatty-1.6.1.tgz?cache=0&sync_timestamp=1572857757029&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkoatty%2Fdownload%2Fkoatty-1.6.1.tgz#1d8f9feeee55838e31398a926fc08beab67fca4d"
-  integrity sha1-HY+f7u5Vg44xOYqSb8CL6rZ/yk0=
+koatty@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/koatty/-/koatty-1.6.2.tgz#72fa619896817187d30979841c8d1ebccb1e0f61"
+  integrity sha512-6MAGNc8GJ14fH19cdOO5U7atkbv+G7wVFe/lkevPOuTJzW4yQNb9+SU+9HL9uJQafctGoiI6HKHtD2KzRVhf2g==
   dependencies:
     globby "^10.0.1"
     koa "^2.11.0"
@@ -3814,10 +3814,10 @@ think_static@^2.1.2:
     mime-types "^2.1.24"
     think_lib "^2.x.x"
 
-think_store@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.npm.taobao.org/think_store/download/think_store-2.3.0.tgz#f3d4a76b054568b0a8c3b426f20b9358af898e07"
-  integrity sha1-89SnawVFaLCow7Qm8guTWK+Jjgc=
+think_store@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/think_store/-/think_store-2.4.0.tgz#ec4e11fe7c4d4e3fc6fc2e5b89fb34e08effc470"
+  integrity sha512-KzLMMoBzLBSV1MADoCs+J3tfehmYn3pZqtU5O1s5rRUjG01zkFM6sozGfm/Q88O81T3amEqubI5Gk+OiRlR+DA==
   dependencies:
     generic-pool "^3.7.1"
     ioredis "^4.14.1"

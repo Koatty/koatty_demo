@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-02 12:01:33
+ * @ version: 2019-11-04 19:45:42
  */
 import { Middleware, helper, logger, Value } from "koatty";
 import { createConnection, Connection } from "typeorm";
@@ -40,9 +40,9 @@ export class TypeormMid {
             conn();
         });
         return async function (ctx: any, next: any) {
-            if (!app.connection) {
-                await conn();
-            }
+            // if (!app.connection) {
+            //     await conn();
+            // }
             return next();
         };
     }
