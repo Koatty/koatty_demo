@@ -2,9 +2,9 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-04 19:45:42
+ * @ version: 2019-11-14 19:21:06
  */
-import { Middleware, helper, logger, Value } from "koatty";
+import { Middleware, Helper, Logger, Value } from "koatty";
 import { createConnection, Connection } from "typeorm";
 
 const defaultOpt = {
@@ -30,9 +30,9 @@ export class TypeormMid {
         options = { ...defaultOpt, ...this.options };
         const conn = function () {
             createConnection(options).then((connection: Connection) => {
-                helper.define(app, 'connection', connection);
+                Helper.define(app, 'connection', connection);
             }).catch((err) => {
-                logger.error(err);
+                Logger.error(err);
             });
         };
         //应用启动执行一次

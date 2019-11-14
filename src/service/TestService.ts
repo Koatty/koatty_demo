@@ -2,9 +2,9 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-04 19:44:57
+ * @ version: 2019-11-14 19:20:08
  */
-import { Service, Autowired, logger, Base } from "koatty";
+import { Service, Autowired, Logger, Base } from "koatty";
 import { UserModel } from "../model/UserModel";
 import { TestModel } from "../model/TestModel";
 import { Connection } from "typeorm";
@@ -50,7 +50,7 @@ export class TestService extends Base {
      * @memberof TestService
      */
     async sayHello2(param: string) {
-        logger.info('TestService.sayHello2', param);
+        Logger.info('TestService.sayHello2', param);
         return TestModel.findOne();
     }
 

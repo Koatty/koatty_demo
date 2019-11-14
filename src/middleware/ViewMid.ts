@@ -2,9 +2,9 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-23 12:46:27
+ * @ version: 2019-11-14 19:21:27
  */
-import { Middleware, helper } from "koatty";
+import { Middleware } from "koatty";
 const view = require('think_view');
 
 @Middleware()
