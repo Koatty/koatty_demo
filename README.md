@@ -20,7 +20,7 @@ used [apidoc](https://www.npmjs.com/package/apidoc) module.
 ```
 npm run doc
 ```
-[API doc](http://localhost:3000/doc/index.html)
+The local project API documentation：http://localhost:3000/doc/index.html
 
 
 ## deploy with pm2
