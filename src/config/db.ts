@@ -9,11 +9,11 @@ export default {
     database: {
         db_type: 'mysql', //support  postgresql,mysql...
         // db_host: '127.0.0.1',
-        db_host: 'alpha.yunhe.mobi',
+        db_host: '127.0.0.1',
         db_port: 3306,
         db_name: 'dsp',
         db_user: 'root',
-        db_pwd: 'richenlin',
+        db_pwd: '',
         db_prefix: 'think_',
         db_charset: 'utf8'
     },
@@ -23,7 +23,7 @@ export default {
         key_prefix: 'DSP:', //缓存key前置
         timeout: null, //数据缓存有效期，单位: 秒
         // redis_host: '127.0.0.1',
-        redis_host: 'alpha.yunhe.mobi',
+        redis_host: '127.0.0.1',
         redis_port: 6379,
         redis_password: '',
         redis_db: '0',
