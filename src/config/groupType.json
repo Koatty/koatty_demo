@@ -1,0 +1,26 @@
+[
+    {
+        "group_code": 1,
+        "group_name": "公司"
+    },
+    {
+        "group_code": 2,
+        "group_name": "电商"
+    },
+    {
+        "group_code": 3,
+        "group_name": "呼叫中心"
+    },
+    {
+        "group_code": 4,
+        "group_name": "房地产"
+    },
+    {
+        "group_code": 5,
+        "group_name": "汽车行业"
+    },
+    {
+        "group_code": 6,
+        "group_name": "其他"
+    }
+]

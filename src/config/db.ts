@@ -2,39 +2,28 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-04 19:55:05
+ * @ version: 2019-11-12 13:37:17
  */
 export default {
     /*database config*/
     database: {
         db_type: 'mysql', //support  postgresql,mysql...
-        db_host: '192.168.0.150',
+        // db_host: '127.0.0.1',
+        db_host: 'alpha.yunhe.mobi',
         db_port: 3306,
-        db_name: 'test',
-        db_user: 'test',
-        db_pwd: 'test',
-        db_prefix: '',
+        db_name: 'dsp',
+        db_user: 'root',
+        db_pwd: 'richenlin',
+        db_prefix: 'think_',
         db_charset: 'utf8'
-    },
-
-    typeorm: {
-        "type": "mysql", //mysql, mariadb, postgres, sqlite, mssql, oracle, mongodb, cordova
-        "host": "192.168.0.150",
-        "port": 3306,
-        "username": "test",
-        "password": "test",
-        "database": "test",
-        "synchronize": false, //true 每次运行应用程序时实体都将与数据库同步
-        "logging": true,
-        "entities": [`${process.env.APP_PATH}/model/*`]
     },
 
     redis: {
         type: 'redis', //数据缓存类型 file,redis,memcache
-        key_prefix: '', //缓存key前置
-        // tslint:disable-next-line: no-null-keyword
+        key_prefix: 'DSP:', //缓存key前置
         timeout: null, //数据缓存有效期，单位: 秒
-        redis_host: '192.168.0.150',
+        // redis_host: '127.0.0.1',
+        redis_host: 'alpha.yunhe.mobi',
         redis_port: 6379,
         redis_password: '',
         redis_db: '0',

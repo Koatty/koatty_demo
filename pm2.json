@@ -3,7 +3,7 @@
 {
     "apps": [
         {
-            "name": "koatty_demo",
+            "name": "DSP_ts",
             "script": "index.js",
             "cwd": "./dist",
             "max_memory_restart": "300M",

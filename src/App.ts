@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-10-30 14:46:03
+ * @ version: 2019-11-05 21:27:35
  */
 import { Koatty, Bootstrap } from "koatty";
 // import * as path from "path";
@@ -11,9 +11,7 @@ import { Koatty, Bootstrap } from "koatty";
 // @ComponentScan('./')
 // @ConfiguationScan('./config')
 export class App extends Koatty {
-    test: string;
-    connection: any;
-    store: any;
+    cacheStore: any;
 
     public init() {
         // this.root_path = path.dirname(__dirname);
