@@ -2268,10 +2268,10 @@ koa@^2.11.0:
     type-is "^1.6.16"
     vary "^1.1.2"
 
-koatty@^1.7.3:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/koatty/-/koatty-1.7.3.tgz#86c9be095017318694454ca1fb1d1d08cee647d8"
-  integrity sha512-QY1J1t+PfdAidaxTbjV5FouN7eirhiyVeS32/iLd574HDpsbnvdLzvJzXkk0ORLJWt5aQkr7l5xrjvJf5Iw9BQ==
+koatty@^1.8.0:
+  version "1.8.0"
+  resolved "http://r.cnpmjs.org/koatty/download/koatty-1.8.0.tgz#f41a8a4d59b02d0ef93854f538d8f8d95ea372d6"
+  integrity sha1-9BqKTVmwLQ75OFT1ONj42V6jctY=
   dependencies:
     globby "^10.0.1"
     koa "^2.11.0"

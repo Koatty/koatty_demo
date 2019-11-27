@@ -14,7 +14,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "jsonwebtoken": "^8.5.1",
-    "koatty": "^1.7.3",
+    "koatty": "^1.8.0",
     "mysql": "^2.17.1",
     "think_store": "^2.4.0",
     "think_view": "^2.2.1",

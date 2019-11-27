@@ -6,6 +6,9 @@
 
 ```
 yarn install
+
+//or
+npm install
 ```
 
 ## start server
