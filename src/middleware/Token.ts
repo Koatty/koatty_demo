@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-28 16:13:23
+ * @ version: 2019-11-28 17:10:14
  */
 import { Middleware, Helper, Value } from "koatty";
 import { App } from '../App';
@@ -17,9 +17,9 @@ const defaultOpt = {
 export class Token {
     @Value("encoding")
     encoding: string;
-
     run(options: any, app: App) {
         options = Helper.extend(defaultOpt, options);
+        const encoding = this.encoding || "utf-8";
         //应用启动执行一次
         // app.once('appReady', () => { });
 
@@ -38,7 +38,7 @@ export class Token {
             const token = ctx.get('x-access-token') || ctx.param('accessToken');
             // tslint:disable-next-line: one-variable-per-declaration
             let userid = '', roleid = '';
-            const encoding = this.encoding || "utf-8";
+
             try {
                 if (Helper.isEmpty(token)) {
                     // return ctx.json

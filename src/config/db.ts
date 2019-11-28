@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-12 13:37:17
+ * @ version: 2019-11-28 17:20:29
  */
 export default {
     /*database config*/
