@@ -2,6 +2,8 @@
 
 # Application created by [Koatty](https://github.com/thinkkoa/koatty)
 
+Project includes JWT + CURD authority authentication function
+
 ## install dependencies
 
 ```
