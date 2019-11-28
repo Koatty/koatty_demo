@@ -2,24 +2,22 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-28 14:14:11
+ * @ version: 2019-11-28 14:26:51
  */
-// tslint:disable-next-line: no-implicit-dependencies
-import * as globby from 'globby';
-import { Controller, GetMaping, Get, Autowired, Post, PostMaping } from "koatty";
+import { Controller, GetMaping, Autowired, Get, PostMaping, Post } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
-import { DataService } from "../../service/DataService";
+import { UserService } from "../../service/UserService";
 
-@Controller("/admin/data")
-export class DataController extends AdminController {
+@Controller("/admin/user")
+export class UserController extends AdminController {
     app: App;
     @Autowired()
-    service: DataService;
+    service: UserService;
 
     /**
-    * @api {get} /admin/data/index 数据权限列表
-    * @apiGroup Data
+    * @api {get} /admin/user/index 用户列表
+    * @apiGroup User
     *
     * @apiHeader {String} x-access-token JWT token
     *
@@ -51,47 +49,29 @@ export class DataController extends AdminController {
     }
 
     /**
-    * @api {get} /admin/data/models 模型名列表
-    * @apiGroup Data
-    * 
-    * @apiHeader {String} x-access-token JWT token
-    * 
-    * 
-    * @apiSuccessExample {json} Success
-    * {"status":1,"code":200,"message":"","data":{modelList: []}}
-    * 
-    * @apiSuccess {array} modelList 模型名列表 {"modelList":[""]}
-    *
-    * @apiErrorExample {json} Error
-    * {"status":0,"code":500,"message":"错误信息","data":{}}
-    */
-    @GetMaping("/models")
-    async getModels() {
-        const fileResults = globby.sync(['**/**.js', '**/**.ts', '!**/**.d.ts'], {
-            cwd: `${this.app.app_path}/model`,
-            ignore: []
-        });
-        const modelList: string[] = [];
-        fileResults.map((item: string) => {
-            modelList.push(item.replace("Model.ts", "").replace("Model.js", ""));
-        });
-        return this.ok("", { modelList });
-    }
-    /**
-    * @api {post} /admin/data/add 数据权限新增
-    * @apiGroup Data
+    * @api {post} /admin/user/add 用户新增
+    * @apiGroup User
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParam {String} name 数据模型类名称
-    * @apiParam {String} desc 数据规则描述
-    * @apiParam {String} [condition] 数据筛选条件
+    * @apiParam {String} [openid] 预留第三方登录ID
+    * @apiParam {String} phonenum 手机号（登录账号）
+    * @apiParam {String} password 登录密码
+    * @apiParam {String} email 用户email（登录账号）
+    * @apiParam {String} [nickname] 用户昵称
+    * @apiParam {String} [realname] 姓名
+    * @apiParam {String} [icon] 用户头像
+    * @apiParam {String} [birthday] 用户生日 2018-01-01
+    * @apiParam {String} [gender] 用户性别0女1男2不确定
+    * @apiParam {String} [website] 用户网站
+    * @apiParam {String} [remark] 用户简介
+    * @apiParam {String} [end_time] 到期时间 2019-01-01
+    * @apiParam {String} roleid 角色ID
+    * @apiParam {String} groupid 组织ID
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"操作成功","data":{}}
-    *
-    * @apiSuccess {json} modelList 编辑页面显示需要的模型名列表 {"modelList":["group","role","role_data","role_rule","user"]}
-    *
+    * 
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
@@ -104,8 +84,46 @@ export class DataController extends AdminController {
     }
 
     /**
-    * @api {post} /admin/data/edit 数据权限编辑
-    * @apiGroup Data
+    * @api {get} /admin/user/groupList 用户组列表
+    * @apiGroup User
+    * 
+    * @apiHeader {String} x-access-token JWT token
+    * 
+    * 
+    * @apiSuccessExample {json} Success
+    * {"status":1,"code":200,"message":"","data":[{}]}
+    * 
+    * @apiErrorExample {json} Error
+    * {"status":0,"code":500,"message":"错误信息","data":[{}]}
+    */
+    @GetMaping("/groupList")
+    async groupList() {
+        const list = await this.service.getGroupList();
+        return this.ok("", list);
+    }
+
+    /**
+    * @api {get} /admin/user/roleList 用户角色列表
+    * @apiGroup User
+    *
+    * @apiHeader {String} x-access-token JWT token
+    *
+    *
+    * @apiSuccessExample {json} Success
+    * {"status":1,"code":200,"message":"","data":[{}]}
+    *
+    * @apiErrorExample {json} Error
+    * {"status":0,"code":500,"message":"错误信息","data":[{}]}
+    */
+    @GetMaping("/roleList")
+    async roleList() {
+        const list = await this.service.getRoleList();
+        return this.ok("", list);
+    }
+
+    /**
+    * @api {post} /admin/user/edit 用户编辑
+    * @apiGroup User
     * 
     * @apiHeader {String} x-access-token JWT token
     * 
@@ -129,8 +147,8 @@ export class DataController extends AdminController {
     }
 
     /**
-    * @api {post} /admin/data/del 数据权限删除
-    * @apiGroup Data
+    * @api {post} /admin/user/del 用户删除
+    * @apiGroup User
     *
     * @apiHeader {String} x-access-token JWT token
     *
@@ -151,8 +169,8 @@ export class DataController extends AdminController {
     }
 
     /**
-    * @api {get} /admin/data/view 数据权限查看
-    * @apiGroup Data
+    * @api {get} /admin/user/view 用户查看
+    * @apiGroup User
     * 
     * @apiHeader {String} x-access-token JWT token
     * 
@@ -171,5 +189,4 @@ export class DataController extends AdminController {
         });
         return this.ok("操作成功", res);
     }
-
 }

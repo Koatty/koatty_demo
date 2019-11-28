@@ -2,12 +2,19 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-05 21:27:35
+ * @ version: 2019-11-25 09:57:10
  */
 import { Koatty, Bootstrap } from "koatty";
 // import * as path from "path";
 
-@Bootstrap()
+@Bootstrap((app: any) => {
+    //调整libuv线程池大小
+    process.env.UV_THREADPOOL_SIZE = "128";
+    //忽略https自签名验证
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+    //运行环境
+    // process.env.RUN_TIME = 'alpha';
+})
 // @ComponentScan('./')
 // @ConfiguationScan('./config')
 export class App extends Koatty {

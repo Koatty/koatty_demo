@@ -5,7 +5,7 @@
 ## install dependencies
 
 ```
-yarn install
+npm install
 ```
 
 ## start server
@@ -13,15 +13,6 @@ yarn install
 ```
 npm start
 ```
-
-## API doc
-
-used [apidoc](https://www.npmjs.com/package/apidoc) module.
-```
-npm run doc
-```
-The local project API documentation：http://localhost:3000/doc/index.html
-
 
 ## deploy with pm2
 

@@ -2,19 +2,19 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-19 09:46:13
+ * @ version: 2019-11-28 14:14:04
  */
 import { Controller, BaseController, GetMaping, Autowired, Get, PostMaping, Post } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import * as groupType from "../../config/groupType.json";
-import { GroupModel } from '../../model/GroupModel';
+import { GroupService } from '../../service/GroupService';
 
 @Controller("/admin/group")
 export class GroupController extends AdminController {
     app: App;
     @Autowired()
-    Model: GroupModel;
+    service: GroupService;
 
     /**
     * @api {get} /admin/group/index 组织列表
@@ -39,12 +39,11 @@ export class GroupController extends AdminController {
     */
     @GetMaping("/")
     @GetMaping("/index")
-    async index(@Get() param: any) {
+    async index(@Get("condition") param: any, @Get("page") page: number) {
         this.Map = param;
-        this.Mo.page = param.page || 1;
-        delete this.Map.page;
+        this.Mo.page = page || 1;
 
-        const pageData = await this.commonService.list(this.Model, this.Map, this.Mo).catch((err: any) => {
+        const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("查询成功", pageData);
@@ -95,7 +94,7 @@ export class GroupController extends AdminController {
     */
     @PostMaping("/add")
     async add(@Post() param: any) {
-        const res = await this.commonService.add(this.Model, param).catch((err: any) => {
+        const res = await this.service.add(param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("操作成功", res);
@@ -127,7 +126,7 @@ export class GroupController extends AdminController {
     */
     @PostMaping("/edit")
     async edit(@Post() param: any) {
-        const res = await this.commonService.edit(this.Model, this.Map, param).catch((err: any) => {
+        const res = await this.service.edit(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("操作成功", res);
@@ -149,7 +148,7 @@ export class GroupController extends AdminController {
     */
     @PostMaping("/del")
     async del(@Post("id") param: number) {
-        const res = await this.commonService.del(this.Model, this.Map, param).catch((err: any) => {
+        const res = await this.service.del(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("操作成功", res);
@@ -171,7 +170,7 @@ export class GroupController extends AdminController {
     */
     @GetMaping("/view")
     async view(@Get("id") param: number) {
-        const res = await this.commonService.info(this.Model, this.Map, param).catch((err: any) => {
+        const res = await this.service.info(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("操作成功", res);

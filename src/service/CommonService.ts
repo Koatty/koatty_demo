@@ -2,14 +2,14 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-14 19:31:34
+ * @ version: 2019-11-25 14:22:41
  */
 import { Service, Base, Value, Autowired, Logger, Helper } from "koatty";
 import { App } from '../App';
 import { RbacService } from "./Admin/RbacService";
 import * as page from "../util/page";
 
-interface MoInterface { rel: false; sortby: any; field: any[]; ispage: boolean; pagesize: number; page: number; }
+export interface MoInterface { rel: boolean; sortby: any; field: any[]; ispage: boolean; pagesize: number; page: number; }
 
 @Service()
 export class CommonService extends Base {
@@ -19,6 +19,8 @@ export class CommonService extends Base {
     private rbacConf: any;
     @Autowired()
     private rbacService: RbacService;
+    protected Model: any;
+
 
     /**
      * 功能及数据权限检查
@@ -48,13 +50,14 @@ export class CommonService extends Base {
     /**
      * 列表查询
      *
-     * @param {*} model
      * @param {*} map
      * @param {MoInterface} mo
+     * @param {*} [model]
      * @returns
      * @memberof CommonService
      */
-    list(model: any, map: any, mo: MoInterface) {
+    list(map: any, mo: MoInterface, model?: any) {
+        model = model || this.Model;
         if (mo.ispage) {
             return page.list(model, map, mo).catch((err) => {
                 Logger.error(err);
@@ -71,13 +74,14 @@ export class CommonService extends Base {
     /**
      * 查询
      *
-     * @param {*} model
      * @param {*} map
      * @param {*} id
+     * @param {*} [model]
      * @returns
      * @memberof CommonService
      */
-    async info(model: any, map: any, id: any) {
+    async info(map: any, id: any, model?: any) {
+        model = model || this.Model;
         const pk = await model.getPk();
         if (Helper.isEmpty(id)) {
             return Promise.reject(`id不能为空`);
@@ -89,25 +93,27 @@ export class CommonService extends Base {
     /**
      * 新增
      *
-     * @param {*} model
      * @param {*} data
+     * @param {*} [model]
      * @returns
      * @memberof CommonService
      */
-    async add(model: any, data: any) {
+    async add(data: any, model?: any) {
+        model = model || this.Model;
         return model.add(data).catch((e: any) => Promise.reject(e.message));
     }
 
     /**
      * 编辑
      *
-     * @param {*} model
      * @param {*} map
      * @param {*} data
+     * @param {*} [model]
      * @returns
      * @memberof CommonService
      */
-    async edit(model: any, map: any, data: any) {
+    async edit(map: any, data: any, model?: any) {
+        model = model || this.Model;
         const pk = await model.getPk();
         if (Helper.isEmpty(data[pk])) {
             return Promise.reject(`${pk}不能为空`);
@@ -119,13 +125,14 @@ export class CommonService extends Base {
     /**
      * 删除
      *
-     * @param {*} model
      * @param {*} map
      * @param {*} id
+     * @param {*} [model]
      * @returns
      * @memberof CommonService
      */
-    async del(model: any, map: any, id: any) {
+    async del(map: any, id: any, model?: any) {
+        model = model || this.Model;
         const pk = await model.getPk();
         if (Helper.isEmpty(id)) {
             return Promise.reject(`id不能为空`);

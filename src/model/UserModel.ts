@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-14 19:31:17
+ * @ version: 2019-11-22 19:52:55
  */
 import { BaseModel } from "thinkorm";
 import { Component, Value, Helper, Logger } from 'koatty';
@@ -17,6 +17,7 @@ export class UserModel extends BaseModel {
     fields: any;
 
     init() {
+
         // 模型名称
         this.modelName = 'User';
         // 数据表字段信息
@@ -309,5 +310,64 @@ export class UserModel extends BaseModel {
     _afterDelete(options: any) {
         this.flashCache("USER_INFO", options.id);
         return Promise.resolve();
+    }
+
+    /**
+     *
+     *
+     * @param {*} result
+     * @param {*} options
+     * @returns
+     * @memberof UserModel
+     */
+    _afterFind(result: any, options: any) {
+        try {
+            if (!Helper.isEmpty(result)) {
+                if (!Helper.isEmpty(result.password)) {
+                    //过滤
+                    // result.password = "";
+                    delete result.password;
+                }
+                if (result.last_login_time && result.last_login_time > 0) {
+                    result.last_login_time_str = Helper.datetime(result.last_login_time, 'yyyy-mm-dd hh:mi:ss');
+                } else {
+                    result.last_login_time_str = "";
+                }
+                if (result.create_time && result.create_time > 0) {
+                    result.create_time_str = Helper.datetime(result.create_time, 'yyyy-mm-dd hh:mi:ss');
+                } else {
+                    result.create_time_str = "";
+                }
+                if (result.update_time && result.update_time > 0) {
+                    result.update_time_str = Helper.datetime(result.update_time, 'yyyy-mm-dd hh:mi:ss');
+                } else {
+                    result.update_time_str = "";
+                }
+                if (result.end_time && result.end_time > 0) {
+                    result.end_time_str = Helper.datetime(result.end_time, 'yyyy-mm-dd hh:mi:ss');
+                } else {
+                    result.end_time_str = "";
+                }
+            }
+            return result;
+        } catch (e) {
+            return result;
+        }
+    }
+
+    /**
+     *
+     *
+     * @param {any[]} result
+     * @param {*} options
+     * @returns
+     * @memberof UserModel
+     */
+    _afterSelect(result: any[], options: any) {
+        const ps: any[] = [];
+        result.map((item) => {
+            ps.push(this._afterFind(item, options));
+        });
+        return Promise.all(ps);
     }
 }

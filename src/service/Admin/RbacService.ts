@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-14 19:31:30
+ * @ version: 2019-11-28 14:36:05
  */
 
 /*
@@ -224,11 +224,11 @@ export class RbacService extends Base {
    *
    *
    * @param {*} userInfo
-   * @param {string} model
+   * @param [string] model
    * @returns
    * @memberof RbacService
    */
-  async getDataList(userInfo: any, model: string) {
+  async getDataList(userInfo: any, model?: string) {
     if (Helper.isEmpty(userInfo) || Helper.isEmpty(userInfo.roleid)) {
       return {};
     }
@@ -239,6 +239,10 @@ export class RbacService extends Base {
     if (Helper.isString(roleInfo.data_ids)) {
       roleInfo.data_ids = (roleInfo.data_ids).split(',');
     }
-    return this.roleDataModel.where({ id: roleInfo.data_ids, status: 1, name: model }).find();
+    const condition: any = { id: roleInfo.data_ids, status: 1 };
+    if (model) {
+      condition.name = model;
+    }
+    return this.roleDataModel.where(condition).find();
   }
 }

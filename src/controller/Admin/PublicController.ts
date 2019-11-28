@@ -2,9 +2,9 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-14 19:30:51
+ * @ version: 2019-11-28 14:38:18
  */
-import { Controller, BaseController, GetMaping, Post, Autowired, Helper, Value, PostMaping, Get } from "koatty";
+import { Controller, BaseController, GetMaping, Post, Autowired, Helper, Value, PostMaping, Get, Valid, PutMaping, RequestBody, PathVariable } from "koatty";
 import { App } from '../../App';
 const jwt = require('jsonwebtoken');
 import { PassportService } from "../../service/Admin/PassportService";
@@ -12,12 +12,13 @@ import { PassportService } from "../../service/Admin/PassportService";
 @Controller("/admin/public")
 export class PublicController extends BaseController {
     app: App;
-    pageInfo: { 'appName': any; 'appVersion': any; 'appKeywords': any; 'appDescription': any };
-    @Value("config.TokenMid", "middleware")
+    pageInfo: { 'appName': string; 'appVersion': string; 'appKeywords': string; 'appDescription': string };
+    @Value("config.Token", "middleware")
     tokenConf: any;
 
     @Autowired()
     private passportService: PassportService;
+
     cache: any;
 
     init() {
@@ -74,15 +75,18 @@ export class PublicController extends BaseController {
 
         //登录标记
         this.cache.set('UUID', userData.id, timeout).catch((err: any) => '');
+        const userInfo = {
+            userid: userData.id,
+            roleid: userData.roleid,
+            openid: userData.openid,
+            nickname: userData.nickname,
+            icon: userData.icon
+        };
+        //用户信息
+        this.cache.hset('UserInfo', userData.id, JSON.stringify(userInfo));
 
         return this.ok("登录成功", {
-            accessToken: token, userInfo: {
-                userid: userData.id,
-                roleid: userData.roleid,
-                openid: userData.openid,
-                nickname: userData.nickname,
-                icon: userData.icon
-            },
+            accessToken: token, userInfo,
             pageInfo: this.pageInfo
         });
     }

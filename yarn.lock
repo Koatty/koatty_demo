@@ -444,7 +444,7 @@ bignumber.js@7.2.1:
   resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-7.2.1.tgz#80c048759d826800807c4bfd521e50edbba57a5f"
   integrity sha512-S4XzBk5sMB+Rcb/LNcpzXr57VRTxgAvaAEDAl1AwRx27j00hT84O6OkteE7u8UB3NuaaygCRrEpqox4uDOrbdQ==
 
-bluebird@^3.5.5, bluebird@^3.7.0:
+bluebird@^3.5.5, bluebird@^3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.1.tgz#df70e302b471d7473489acf26a93d63b53f874de"
   integrity sha512-DdmyoGCleJnkbp3nkbxTLJ18rjDsE4yCggEwKNXkeV123sPNfOCYeDoeuOY+F2FrSjO1YXcTU+dsy96KMy+gcg==
@@ -705,10 +705,10 @@ commander@^2.12.1, commander@^2.19.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
-commander@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-3.0.2.tgz#6837c3fb677ad9933d1cfba42dd14d5117d6b39e"
-  integrity sha512-Gar0ASD4BDyKC4hl4DwHqDrmvjoxWKZigVnAbn5H1owvm4CxCPdb0HQDehwNYMJpla5+M2tPmPARzhtYuwpHow==
+commander@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npm.taobao.org/commander/download/commander-4.0.1.tgz?cache=0&sync_timestamp=1573464098030&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcommander%2Fdownload%2Fcommander-4.0.1.tgz#b67622721785993182e807f4883633e6401ba53c"
+  integrity sha1-tnYicheFmTGC6Af0iDYz5kAbpTw=
 
 component-emitter@^1.2.1:
   version "1.3.0"
@@ -1782,10 +1782,10 @@ inquirer@^7.0.0:
     strip-ansi "^5.1.0"
     through "^2.3.6"
 
-interpret@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
-  integrity sha512-mT34yGKMNceBQUoVn7iCDKDntA7SC6gycMAWzGx1z/CMCTV7b2AAtXlo3nRyHZ1FelRkQbQjprHSYGwzLtkVbw==
+interpret@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/interpret/download/interpret-2.0.0.tgz?cache=0&sync_timestamp=1571708742673&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Finterpret%2Fdownload%2Finterpret-2.0.0.tgz#b783ffac0b8371503e9ab39561df223286aa5433"
+  integrity sha1-t4P/rAuDcVA+mrOVYd8iMoaqVDM=
 
 ioredis@^4.14.1:
   version "4.14.1"
@@ -2185,18 +2185,18 @@ klaw-sync@^2.1.0:
   optionalDependencies:
     graceful-fs "^4.1.11"
 
-knex@^0.19.4:
-  version "0.19.5"
-  resolved "https://registry.yarnpkg.com/knex/-/knex-0.19.5.tgz#3597ebecf88a5942f18c3e6d91af53bda59eeb5d"
-  integrity sha512-Hy258avCVircQq+oj3WBqPzl8jDIte438Qlq+8pt1i/TyLYVA4zPh2uKc7Bx0t+qOpa6D42HJ2jjtl2vagzilw==
+knex@^0.20.2:
+  version "0.20.3"
+  resolved "https://registry.npm.taobao.org/knex/download/knex-0.20.3.tgz#85178cd6873f75827be86d054c4e117bb4d9657b"
+  integrity sha1-hReM1oc/dYJ76G0FTE4Re7TZZXs=
   dependencies:
-    bluebird "^3.7.0"
+    bluebird "^3.7.1"
     colorette "1.1.0"
-    commander "^3.0.2"
+    commander "^4.0.1"
     debug "4.1.1"
     getopts "2.2.5"
     inherits "~2.0.4"
-    interpret "^1.2.0"
+    interpret "^2.0.0"
     liftoff "3.1.0"
     lodash "^4.17.15"
     mkdirp "^0.5.1"
@@ -2268,10 +2268,10 @@ koa@^2.11.0:
     type-is "^1.6.16"
     vary "^1.1.2"
 
-koatty@^1.7.3:
-  version "1.7.3"
-  resolved "https://registry.yarnpkg.com/koatty/-/koatty-1.7.3.tgz#86c9be095017318694454ca1fb1d1d08cee647d8"
-  integrity sha512-QY1J1t+PfdAidaxTbjV5FouN7eirhiyVeS32/iLd574HDpsbnvdLzvJzXkk0ORLJWt5aQkr7l5xrjvJf5Iw9BQ==
+koatty@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/koatty/-/koatty-1.8.0.tgz#f41a8a4d59b02d0ef93854f538d8f8d95ea372d6"
+  integrity sha512-Hzj7HZMZeO+d4KUvr4KpEQUh+XKOedhynCGWqCm8cHTdpoqI3PqwCM09Lpnz3TcyJ/T3IgO17OO1vF3vvreQ6A==
   dependencies:
     globby "^10.0.1"
     koa "^2.11.0"
@@ -2327,13 +2327,13 @@ linkify-it@^2.0.0:
   dependencies:
     uc.micro "^1.0.1"
 
-liteq@^2.x.x:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/liteq/-/liteq-2.1.4.tgz#a618fde5b88384196da7036fa901aec191fb4d11"
-  integrity sha512-PxmFXV3aZ5X6ZmRsOzbNlvbEy0tKDEPlMRagGY5An1ZEL74SQ5wLdejHiGAjRQObkSiGCxxvV+khuGCB+RMEwA==
+liteq@^2.2.x:
+  version "2.2.0"
+  resolved "https://registry.npm.taobao.org/liteq/download/liteq-2.2.0.tgz#426f797b59a3f1971cd21a31a3e43e1951e27a5e"
+  integrity sha1-Qm95e1mj8Zcc0hoxo+Q+GVHiel4=
   dependencies:
     co "^4.6.0"
-    knex "^0.19.4"
+    knex "^0.20.2"
     think_lib "^2.x.x"
     think_logger "^2.x.x"
 
@@ -3741,13 +3741,13 @@ think_view@^2.2.1:
     ejs "^2.7.1"
     think_lib "^2.x.x"
 
-thinkorm@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/thinkorm/-/thinkorm-3.4.0.tgz#bc3c7bb4b2e90fdda711f8d576cae6c2a7cd3542"
-  integrity sha512-N5KQXLod9NYczOpM10lpYwVjxv1mp1PQz3QYQD6m2B4CK3fqMSNQ2vydDj3YdgCi9Ok2WYnRQ3hEUc8AdachWg==
+thinkorm@^3.4.2:
+  version "3.4.2"
+  resolved "https://registry.npm.taobao.org/thinkorm/download/thinkorm-3.4.2.tgz#9457b0d88e07d17a71f9eced080c55ceaee380cd"
+  integrity sha1-lFew2I4H0Xpx+eztCAxVzq7jgM0=
   dependencies:
     co "4.6.0"
-    liteq "^2.x.x"
+    liteq "^2.2.x"
     think_lib "^2.x.x"
     think_logger "^2.x.x"
 
