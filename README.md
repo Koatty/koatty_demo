@@ -4,6 +4,10 @@
 
 Project includes JWT + CURD authority authentication function
 
+## create database
+
+Execute update.sql file to create the database.
+
 ## install dependencies
 
 ```
