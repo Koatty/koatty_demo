@@ -11,7 +11,7 @@ Execute update.sql file to create the database.
 ## install dependencies
 
 ```
-npm install
+yarn install
 ```
 
 ## start server
