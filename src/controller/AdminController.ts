@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-28 14:11:27
+ * @ version: 2019-12-02 11:20:45
  */
 import { Controller, BaseController, Autowired, Logger, Helper } from "koatty";
 import { App } from '../App';
@@ -46,7 +46,7 @@ export class AdminController extends BaseController {
         const userid = this.ctx.userid || '';
         const ex = await this.app.cacheStore.get('UUID', userid).catch((err: any) => '');
         if (!ex) {
-            return this.fail('请登录后访问', { needLogin: 1 });
+            return this.fail('请登录后访问', { needLogin: 1 }, 401);
         }
         return Promise.resolve();
     }
