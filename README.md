@@ -31,6 +31,15 @@ use pm2 to deploy app on production envrioment.
 pm2 startOrGracefulReload pm2.json
 ```
 
+## API Document
+
+auto create by apidoc.
+
+```
+npm run doc
+```
+start server and call `http://localhost:3000/doc/index.html`.
+
 ## How to debug
 
 if you use vscode , edit the `.vscode/launch.json` , like this: 
