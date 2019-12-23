@@ -2,14 +2,14 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-28 14:23:15
+ * @ version: 2019-12-23 13:54:04
  */
 import { Service, Base, Autowired, Value, Koatty } from "koatty";
-import { App } from '../App';
-import { CommonService } from "./CommonService";
-import { UserModel } from "../model/UserModel";
-import { GroupModel } from '../model/GroupModel';
-import { RoleModel } from '../model/RoleModel';
+import { App } from '../../App';
+import { CommonService } from "../CommonService";
+import { UserModel } from "../../model/UserModel";
+import { GroupModel } from '../../model/GroupModel';
+import { RoleModel } from '../../model/RoleModel';
 
 @Service()
 export class UserService extends CommonService {

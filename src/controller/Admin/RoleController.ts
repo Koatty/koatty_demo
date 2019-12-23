@@ -2,12 +2,12 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-28 14:40:15
+ * @ version: 2019-12-23 13:59:03
  */
 import { Controller, GetMaping, Get, Autowired, PostMaping, Post, Helper } from "koatty";
 import { App } from '../../App';
 import { AdminController } from '../AdminController';
-import { RoleService } from '../../service/RoleService';
+import { RoleService } from '../../service/Admin/RoleService';
 import { MenuService } from '../../service/Admin/MenuService';
 import { RbacService } from '../../service/Admin/RbacService';
 

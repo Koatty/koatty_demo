@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-22 19:52:55
+ * @ version: 2019-12-04 16:03:20
  */
 import { BaseModel } from "thinkorm";
 import { Component, Value, Helper, Logger } from 'koatty';

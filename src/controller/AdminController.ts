@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-02 11:20:45
+ * @ version: 2019-12-12 09:48:17
  */
 import { Controller, BaseController, Autowired, Logger, Helper } from "koatty";
 import { App } from '../App';
@@ -11,7 +11,7 @@ import { CommonService } from '../service/CommonService';
 @Controller()
 export class AdminController extends BaseController {
     app: App;
-    Mo = { rel: false, sortby: {}, field: <any>[], ispage: true, pagesize: 20, page: 1 };
+    Mo = { rel: false, sortby: {}, field: <any>[], ispage: true, pagesize: 20, page: 1, model: "" };
     Map: any = {}; //保存查询条件
     Model: any = null; //定义模型类,用于判断数据权限
 

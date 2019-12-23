@@ -2,13 +2,13 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-28 14:14:04
+ * @ version: 2019-12-23 13:59:25
  */
 import { Controller, BaseController, GetMaping, Autowired, Get, PostMaping, Post } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import * as groupType from "../../config/groupType.json";
-import { GroupService } from '../../service/GroupService';
+import { GroupService } from '../../service/Admin/GroupService';
 
 @Controller("/admin/group")
 export class GroupController extends AdminController {

@@ -13,16 +13,24 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
+    "ali-oss": "^6.3.1",
+    "bluebird-retry": "^0.11.0",
+    "file-type": "^12.4.0",
     "jsonwebtoken": "^8.5.1",
-    "koatty": "^1.9.0",
+    "koatty": "^1.10.0",
+    "mime-types": "^2.1.25",
     "mysql2": "^2.0.1",
+    "read-chunk": "^3.2.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
     "think_store": "^2.4.0",
     "think_view": "^2.2.2",
-    "thinkorm": "^3.4.2"
+    "thinkorm": "^3.5.2",
+    "xlsx": "^0.15.3"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.29",
     "@types/koa": "^2.x.x",
-    "@types/koa-router": "^7.x.x",
     "@types/lodash": "^4.x.x",
     "@types/node": "^12.x.x",
     "@typescript-eslint/eslint-plugin": "^2.x.x",
@@ -35,6 +43,6 @@
     "ts-node": "^8.5.0",
     "tslint": "^5.20.0",
     "tslint-config-alloy": "^0.2.1",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.3"
   }
 }

@@ -2,12 +2,6 @@
 
 # Application created by [Koatty](https://github.com/thinkkoa/koatty)
 
-Project includes JWT + CURD authority authentication function
-
-## create database
-
-Execute update.sql file to create the database.
-
 ## install dependencies
 
 ```
@@ -19,6 +13,15 @@ yarn install
 ```
 npm start
 ```
+
+## API doc
+
+used [apidoc](https://www.npmjs.com/package/apidoc) module.
+```
+npm run doc
+```
+The local project API documentation：http://localhost:3000/doc/index.html
+
 
 ## deploy with pm2
 

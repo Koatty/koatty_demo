@@ -2,12 +2,12 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-29 14:32:59
+ * @ version: 2019-12-23 13:59:14
  */
 import { Controller, GetMaping, Autowired, Get, PostMaping, Post } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
-import { UserService } from "../../service/UserService";
+import { UserService } from "../../service/Admin/UserService";
 
 @Controller("/admin/user")
 export class UserController extends AdminController {

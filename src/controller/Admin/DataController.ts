@@ -2,14 +2,14 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-28 14:14:11
+ * @ version: 2019-12-23 13:45:56
  */
 // tslint:disable-next-line: no-implicit-dependencies
 import * as globby from 'globby';
-import { Controller, GetMaping, Get, Autowired, Post, PostMaping } from "koatty";
+import { Controller, GetMaping, Get, Autowired, Post, PostMaping, Valid } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
-import { DataService } from "../../service/DataService";
+import { DataService } from "../../service/Admin/DataService";
 
 @Controller("/admin/data")
 export class DataController extends AdminController {
@@ -96,8 +96,8 @@ export class DataController extends AdminController {
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
     @PostMaping("/add")
-    async add(@Post() param: any) {
-        const res = await this.service.add(param).catch((err: any) => {
+    async add(@Post("name") @Valid("notEmpty", "数据模型类名称不能为空") name: string, @Post("desc") @Valid("notEmpty", "数据规则描述不能为空") desc: string, @Post("condition") condition: any) {
+        const res = await this.service.add({ name, desc, condition }).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("操作成功", res);
@@ -121,8 +121,11 @@ export class DataController extends AdminController {
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
     @PostMaping("/edit")
-    async edit(@Post() param: any) {
-        const res = await this.service.edit(this.Map, param).catch((err: any) => {
+    async edit(@Post("id") @Valid("notEmpty", "规则ID不能为空") id: number,
+        @Post("name") @Valid("notEmpty", "规则模型类名称不能为空") name: string,
+        @Post("desc") @Valid("notEmpty", "数据规则描述不能为空") desc: string,
+        @Post("condition") condition: any) {
+        const res = await this.service.edit(this.Map, { id, name, desc, condition }).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("操作成功", res);
