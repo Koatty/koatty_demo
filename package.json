@@ -31,6 +31,7 @@
   "devDependencies": {
     "@types/bluebird": "^3.5.29",
     "@types/koa": "^2.x.x",
+    "@types/koa__router": "^8.0.2",
     "@types/lodash": "^4.x.x",
     "@types/node": "^12.x.x",
     "@typescript-eslint/eslint-plugin": "^2.x.x",
