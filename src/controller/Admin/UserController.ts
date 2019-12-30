@@ -2,23 +2,22 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-23 13:59:25
+ * @ version: 2019-12-23 13:59:14
  */
-import { Controller, BaseController, GetMaping, Autowired, Get, PostMaping, Post } from "koatty";
+import { Controller, GetMaping, Autowired, Get, PostMaping, Post } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
-import * as groupType from "../../config/groupType.json";
-import { GroupService } from '../../service/Admin/GroupService';
+import { UserService } from "../../service/Admin/UserService";
 
-@Controller("/admin/group")
-export class GroupController extends AdminController {
+@Controller("/admin/user")
+export class UserController extends AdminController {
     app: App;
     @Autowired()
-    service: GroupService;
+    service: UserService;
 
     /**
-    * @api {get} /admin/group/index 组织列表
-    * @apiGroup Group
+    * @api {get} /admin/user/index 用户列表
+    * @apiGroup User
     *
     * @apiHeader {String} x-access-token JWT token
     *
@@ -26,7 +25,7 @@ export class GroupController extends AdminController {
     * @apiParam {String} [condition]  检索条件.
     *
     * @apiSuccessExample {json} Success
-    * {"status":1,"code":200,"message":"操作成功","data":{"count":1,"total":1,"page":1,"num":20,"data":[{"id":1,"name":"公司","icon":"","desc":"公司","address":"","phone":"","email":"","attribute":"","type":0,"create_time":1111,"update_time":1111,"status":1}]}}
+    * {"status":1,"code":200,"message":"操作成功","data":{"count":0,"total":0,"page":0,"num":20,"data":[]}}
     *
     * @apiSuccess {Number} count 总条数
     * @apiSuccess {Number} total 总页数
@@ -50,45 +49,29 @@ export class GroupController extends AdminController {
     }
 
     /**
-    * @api {get} /admin/data/groups 组织类型列表
-    * @apiGroup Group
-    * 
-    * @apiHeader {String} x-access-token JWT token
-    * 
-    * 
-    * @apiSuccessExample {json} Success
-    * {"status":1,"code":200,"message":"","data":{groupType: []}}
-    * 
-    * @apiSuccess {array} groupType 组织类型列表 {"groupType":[""]}
-    *
-    * @apiErrorExample {json} Error
-    * {"status":0,"code":500,"message":"错误信息","data":{}}
-    */
-    @GetMaping("/groups")
-    async getGroups() {
-        return this.ok("", { groupType });
-    }
-
-    /**
-    * @api {post} /admin/group/add 组织新增
-    * @apiGroup Group
+    * @api {post} /admin/user/add 用户新增
+    * @apiGroup User
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParam {String} name 组织名称
-    * @apiParam {String} desc 组织描述
-    * @apiParam {String} type 组织类型
-    * @apiParam {String} [icon] 组织图标
-    * @apiParam {String} [address] 组织地址
-    * @apiParam {String} [phone] 组织电话
-    * @apiParam {String} [email] 组织email
-    * @apiParam {String} [attribute] 组织标签
+    * @apiParam {String} [openid] 预留第三方登录ID
+    * @apiParam {String} phonenum 手机号（登录账号）
+    * @apiParam {String} password 登录密码
+    * @apiParam {String} email 用户email（登录账号）
+    * @apiParam {String} [nickname] 用户昵称
+    * @apiParam {String} [realname] 姓名
+    * @apiParam {String} [icon] 用户头像
+    * @apiParam {String} [birthday] 用户生日 2018-01-01
+    * @apiParam {String} [gender] 用户性别0女1男2不确定
+    * @apiParam {String} [website] 用户网站
+    * @apiParam {String} [remark] 用户简介
+    * @apiParam {String} [end_time] 到期时间 2019-01-01
+    * @apiParam {String} roleid 角色ID
+    * @apiParam {String} groupid 组织ID
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"操作成功","data":{}}
-    *
-    * @apiSuccess {json} groupTypes 新增页面组织类型列表 {"groupTypes":[{"group_code":1,"group_name":"公司"}]}
-    *
+    * 
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
@@ -101,28 +84,59 @@ export class GroupController extends AdminController {
     }
 
     /**
-    * @api {post} /admin/group/edit 组织编辑
-    * @apiGroup Group
+    * @api {get} /admin/user/groupList 用户组列表
+    * @apiGroup User
+    * 
+    * @apiHeader {String} x-access-token JWT token
+    * 
+    * 
+    * @apiSuccessExample {json} Success
+    * {"status":1,"code":200,"message":"","data":[{}]}
+    * 
+    * @apiErrorExample {json} Error
+    * {"status":0,"code":500,"message":"错误信息","data":[{}]}
+    */
+    @GetMaping("/groupList")
+    async groupList() {
+        const list = await this.service.getGroupList();
+        return this.ok("", list);
+    }
+
+    /**
+    * @api {get} /admin/user/roleList 用户角色列表
+    * @apiGroup User
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParam {String} id  组织ID.
-    * @apiParam {String} [name] 组织名称
-    * @apiParam {String} [desc] 组织描述
-    * @apiParam {String} [type] 组织类型
-    * @apiParam {String} [icon] 组织图标
-    * @apiParam {String} [address] 组织地址
-    * @apiParam {String} [phone] 组织电话
-    * @apiParam {String} [email] 组织email
-    * @apiParam {String} [attribute] 组织标签
     *
     * @apiSuccessExample {json} Success
-    * {"status":1,"code":200,"message":"操作成功","data":{}}
-    *
-    * @apiSuccess {json} groupTypes 新增页面组织类型列表 {"groupTypes":[{"group_code":1,"group_name":"公司"}]}
+    * {"status":1,"code":200,"message":"","data":[{}]}
     *
     * @apiErrorExample {json} Error
-    * {"status":0,"code":500,"message":"操作失败","data":{}}
+    * {"status":0,"code":500,"message":"错误信息","data":[{}]}
+    */
+    @GetMaping("/roleList")
+    async roleList() {
+        const list = await this.service.getRoleList();
+        return this.ok("", list);
+    }
+
+    /**
+    * @api {post} /admin/user/edit 用户编辑
+    * @apiGroup User
+    * 
+    * @apiHeader {String} x-access-token JWT token
+    * 
+    * @apiParam {String} id 规则ID.
+    * @apiParam {String} [name] 数据模型类名称
+    * @apiParam {String} [desc] 数据规则描述
+    * @apiParam {String} [condition] 数据筛选条件
+    * 
+    * @apiSuccessExample {json} Success
+    * {"status":1,"code":200,"message":"","data":{}}
+    * 
+    * @apiErrorExample {json} Error
+    * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
     @PostMaping("/edit")
     async edit(@Post() param: any) {
@@ -133,12 +147,12 @@ export class GroupController extends AdminController {
     }
 
     /**
-    * @api {post} /admin/group/del 组织删除
-    * @apiGroup Group
+    * @api {post} /admin/user/del 用户删除
+    * @apiGroup User
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParam {String} id  组织ID.
+    * @apiParam {String} id  权限ID，可以为多个: 1,2,3.
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"操作成功","data":{}}
@@ -155,8 +169,8 @@ export class GroupController extends AdminController {
     }
 
     /**
-    * @api {get} /admin/data/view 数据权限查看
-    * @apiGroup Data
+    * @api {get} /admin/user/view 用户查看
+    * @apiGroup User
     * 
     * @apiHeader {String} x-access-token JWT token
     * 

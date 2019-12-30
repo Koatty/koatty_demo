@@ -1,12 +1,11 @@
-import { Helper } from 'koatty';
-
 /**
  * @ author: richen
  * @ copyright: Copyright (c) - <richenlin(at)gmail.com>
  * @ license: MIT
- * @ version: 2019-11-12 09:51:33
+ * @ version: 2019-12-12 16:17:06
  */
 
+import { Helper } from 'koatty';
 // tslint:disable-next-line: no-empty-interface
 interface MapInterface {
 

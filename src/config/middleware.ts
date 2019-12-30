@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-20 15:18:40
+ * @ version: 2019-12-23 14:00:54
  */
 export default {
     list: ["Cache", "Token", "View"], //加载的中间件列表

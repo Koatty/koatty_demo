@@ -3,7 +3,7 @@
 {
     "apps": [
         {
-            "name": "DSP_ts",
+            "name": "CSS",
             "script": "index.js",
             "cwd": "./dist",
             "max_memory_restart": "300M",

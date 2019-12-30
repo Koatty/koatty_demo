@@ -6,9 +6,6 @@
 
 ```
 yarn install
-
-//or
-npm install
 ```
 
 ## start server
@@ -33,6 +30,15 @@ use pm2 to deploy app on production envrioment.
 ```
 pm2 startOrGracefulReload pm2.json
 ```
+
+## API Document
+
+auto create by apidoc.
+
+```
+npm run doc
+```
+start server and call `http://localhost:3000/doc/index.html`.
 
 ## How to debug
 

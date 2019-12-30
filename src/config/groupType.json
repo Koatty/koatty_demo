@@ -1,5 +1,9 @@
 [
     {
+        "group_code": 0,
+        "group_name": "其他"
+    },
+    {
         "group_code": 1,
         "group_name": "公司"
     },
@@ -21,6 +25,6 @@
     },
     {
         "group_code": 6,
-        "group_name": "其他"
+        "group_name": "教育"
     }
 ]

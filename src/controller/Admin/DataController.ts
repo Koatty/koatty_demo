@@ -2,20 +2,20 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-14 19:49:50
+ * @ version: 2019-12-23 13:45:56
  */
 // tslint:disable-next-line: no-implicit-dependencies
 import * as globby from 'globby';
-import { Controller, GetMaping, Get, Autowired, Post, PostMaping } from "koatty";
+import { Controller, GetMaping, Get, Autowired, Post, PostMaping, Valid } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
-import { RoleDataModel } from "../../model/RoleDataModel";
+import { DataService } from "../../service/Admin/DataService";
 
 @Controller("/admin/data")
 export class DataController extends AdminController {
     app: App;
     @Autowired()
-    Model: RoleDataModel;
+    service: DataService;
 
     /**
     * @api {get} /admin/data/index 数据权限列表
@@ -40,12 +40,11 @@ export class DataController extends AdminController {
     */
     @GetMaping("/")
     @GetMaping("/index")
-    async index(@Get() param: any) {
+    async index(@Get("condition") param: any, @Get("page") page: number) {
         this.Map = param;
-        this.Mo.page = param.page || 1;
-        delete this.Map.page;
+        this.Mo.page = page || 1;
 
-        const pageData = await this.commonService.list(this.Model, this.Map, this.Mo).catch((err: any) => {
+        const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("查询成功", pageData);
@@ -97,8 +96,8 @@ export class DataController extends AdminController {
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
     @PostMaping("/add")
-    async add(@Post() param: any) {
-        const res = await this.commonService.add(this.Model, param).catch((err: any) => {
+    async add(@Post("name") @Valid("notEmpty", "数据模型类名称不能为空") name: string, @Post("desc") @Valid("notEmpty", "数据规则描述不能为空") desc: string, @Post("condition") condition: any) {
+        const res = await this.service.add({ name, desc, condition }).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("操作成功", res);
@@ -122,8 +121,11 @@ export class DataController extends AdminController {
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
     @PostMaping("/edit")
-    async edit(@Post() param: any) {
-        const res = await this.commonService.edit(this.Model, this.Map, param).catch((err: any) => {
+    async edit(@Post("id") @Valid("notEmpty", "规则ID不能为空") id: number,
+        @Post("name") @Valid("notEmpty", "规则模型类名称不能为空") name: string,
+        @Post("desc") @Valid("notEmpty", "数据规则描述不能为空") desc: string,
+        @Post("condition") condition: any) {
+        const res = await this.service.edit(this.Map, { id, name, desc, condition }).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("操作成功", res);
@@ -145,7 +147,7 @@ export class DataController extends AdminController {
     */
     @PostMaping("/del")
     async del(@Post("id") param: number) {
-        const res = await this.commonService.del(this.Model, this.Map, param).catch((err: any) => {
+        const res = await this.service.del(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("操作成功", res);
@@ -167,7 +169,7 @@ export class DataController extends AdminController {
     */
     @GetMaping("/view")
     async view(@Get("id") param: number) {
-        const res = await this.commonService.info(this.Model, this.Map, param).catch((err: any) => {
+        const res = await this.service.info(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
         return this.ok("操作成功", res);
