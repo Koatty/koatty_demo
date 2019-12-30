@@ -13,9 +13,9 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "ali-oss": "^6.3.1",
+    "ali-oss": "^6.4.0",
     "bluebird-retry": "^0.11.0",
-    "file-type": "^12.4.0",
+    "file-type": "^12.4.2",
     "jsonwebtoken": "^8.5.1",
     "koatty": "^1.12.2",
     "think_store": "^2.4.0",
