@@ -18,6 +18,8 @@
     "file-type": "^12.4.2",
     "jsonwebtoken": "^8.5.1",
     "koatty": "^1.12.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
     "think_store": "^2.4.0",
     "think_view": "^2.2.2",
     "thinkorm": "^3.5.2"

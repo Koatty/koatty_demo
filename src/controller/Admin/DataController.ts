@@ -96,7 +96,7 @@ export class DataController extends AdminController {
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
     @PostMaping("/add")
-    async add(@Post("name") @Valid("notEmpty", "数据模型类名称不能为空") name: string, @Post("desc") @Valid("notEmpty", "数据规则描述不能为空") desc: string, @Post("condition") condition: any) {
+    async add(@Post("name") @Valid("IsNotEmpty", "数据模型类名称不能为空") name: string, @Post("desc") @Valid("IsNotEmpty", "数据规则描述不能为空") desc: string, @Post("condition") condition: any) {
         const res = await this.service.add({ name, desc, condition }).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
@@ -121,9 +121,9 @@ export class DataController extends AdminController {
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
     @PostMaping("/edit")
-    async edit(@Post("id") @Valid("notEmpty", "规则ID不能为空") id: number,
-        @Post("name") @Valid("notEmpty", "规则模型类名称不能为空") name: string,
-        @Post("desc") @Valid("notEmpty", "数据规则描述不能为空") desc: string,
+    async edit(@Post("id") @Valid("IsNotEmpty", "规则ID不能为空") id: number,
+        @Post("name") @Valid("IsNotEmpty", "规则模型类名称不能为空") name: string,
+        @Post("desc") @Valid("IsNotEmpty", "数据规则描述不能为空") desc: string,
         @Post("condition") condition: any) {
         const res = await this.service.edit(this.Map, { id, name, desc, condition }).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
