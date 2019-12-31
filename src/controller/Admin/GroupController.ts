@@ -2,13 +2,14 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-23 13:59:25
+ * @ version: 2019-12-31 11:27:40
  */
-import { Controller, BaseController, GetMaping, Autowired, Get, PostMaping, Post } from "koatty";
+import { Controller, BaseController, GetMaping, Autowired, Get, PostMaping, Post, Helper, Validated } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import * as groupType from "../../config/groupType.json";
 import { GroupService } from '../../service/Admin/GroupService';
+import { GroupDTO } from "../../model/dto/GroupDTO";
 
 @Controller("/admin/group")
 export class GroupController extends AdminController {
@@ -22,8 +23,7 @@ export class GroupController extends AdminController {
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParam {String} [page]  当前页码.
-    * @apiParam {String} [condition]  检索条件.
+    * @apiParamClass (src/model/dto/GroupDTO.ts) {GroupDTO}
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"操作成功","data":{"count":1,"total":1,"page":1,"num":20,"data":[{"id":1,"name":"公司","icon":"","desc":"公司","address":"","phone":"","email":"","attribute":"","type":0,"create_time":1111,"update_time":1111,"status":1}]}}
@@ -39,9 +39,12 @@ export class GroupController extends AdminController {
     */
     @GetMaping("/")
     @GetMaping("/index")
-    async index(@Get("condition") param: any, @Get("page") page: number) {
-        this.Map = param;
-        this.Mo.page = page || 1;
+    @Validated()
+    async index(@Get() param: GroupDTO) {
+        this.Mo.page = param.page || 1;
+        this.Map = { ...this.Map, ...param };
+        // tslint:disable-next-line: no-unused-expression
+        this.Map.page && (delete this.Map.page);
 
         const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);

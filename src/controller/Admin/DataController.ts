@@ -2,14 +2,15 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-23 13:45:56
+ * @ version: 2019-12-31 11:26:58
  */
 // tslint:disable-next-line: no-implicit-dependencies
 import * as globby from 'globby';
-import { Controller, GetMaping, Get, Autowired, Post, PostMaping, Valid } from "koatty";
+import { Controller, GetMaping, Get, Autowired, Post, PostMaping, Valid, Helper, Validated } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import { DataService } from "../../service/Admin/DataService";
+import { DataDTO } from '../../model/dto/DataDTO';
 
 @Controller("/admin/data")
 export class DataController extends AdminController {
@@ -23,8 +24,7 @@ export class DataController extends AdminController {
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParam {String} [page]  当前页码.
-    * @apiParam {String} [condition]  检索条件.
+    * @apiParamClass (src/model/dto/DataDTO.ts) {DataDTO}
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"操作成功","data":{"count":0,"total":0,"page":0,"num":20,"data":[]}}
@@ -40,9 +40,12 @@ export class DataController extends AdminController {
     */
     @GetMaping("/")
     @GetMaping("/index")
-    async index(@Get("condition") param: any, @Get("page") page: number) {
-        this.Map = param;
-        this.Mo.page = page || 1;
+    @Validated()
+    async index(@Get() param: DataDTO) {
+        this.Mo.page = param.page || 1;
+        this.Map = { ...this.Map, ...param };
+        // tslint:disable-next-line: no-unused-expression
+        this.Map.page && (delete this.Map.page);
 
         const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
@@ -96,7 +99,11 @@ export class DataController extends AdminController {
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
     @PostMaping("/add")
-    async add(@Post("name") @Valid("notEmpty", "数据模型类名称不能为空") name: string, @Post("desc") @Valid("notEmpty", "数据规则描述不能为空") desc: string, @Post("condition") condition: any) {
+    async add(
+        @Post("name") @Valid("IsNotEmpty", "数据模型类名称不能为空") name: string,
+        @Post("desc") @Valid("IsNotEmpty", "数据规则描述不能为空") desc: string,
+        @Post("condition") condition: string
+    ) {
         const res = await this.service.add({ name, desc, condition }).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
@@ -121,10 +128,11 @@ export class DataController extends AdminController {
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
     @PostMaping("/edit")
-    async edit(@Post("id") @Valid("notEmpty", "规则ID不能为空") id: number,
-        @Post("name") @Valid("notEmpty", "规则模型类名称不能为空") name: string,
-        @Post("desc") @Valid("notEmpty", "数据规则描述不能为空") desc: string,
-        @Post("condition") condition: any) {
+    async edit(@Post("id") @Valid("IsNotEmpty", "规则ID不能为空") id: number,
+        @Post("name") @Valid("IsNotEmpty", "规则模型类名称不能为空") name: string,
+        @Post("desc") @Valid("IsNotEmpty", "数据规则描述不能为空") desc: string,
+        @Post("condition") condition: string
+    ) {
         const res = await this.service.edit(this.Map, { id, name, desc, condition }).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
@@ -146,7 +154,7 @@ export class DataController extends AdminController {
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
     @PostMaping("/del")
-    async del(@Post("id") param: number) {
+    async del(@Post("id") @Valid("IsNotEmpty", "规则ID不能为空") param: number) {
         const res = await this.service.del(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });
@@ -168,7 +176,7 @@ export class DataController extends AdminController {
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
     @GetMaping("/view")
-    async view(@Get("id") param: number) {
+    async view(@Get("id") @Valid("IsNotEmpty", "规则ID不能为空") param: number) {
         const res = await this.service.info(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });

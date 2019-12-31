@@ -2,12 +2,13 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-23 13:59:14
+ * @ version: 2019-12-31 12:00:23
  */
-import { Controller, GetMaping, Autowired, Get, PostMaping, Post } from "koatty";
+import { Controller, GetMaping, Autowired, Get, PostMaping, Post, Helper, Validated } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import { UserService } from "../../service/Admin/UserService";
+import { UserDTO } from "../../model/dto/UserDTO";
 
 @Controller("/admin/user")
 export class UserController extends AdminController {
@@ -21,8 +22,7 @@ export class UserController extends AdminController {
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParam {String} [page]  当前页码.
-    * @apiParam {String} [condition]  检索条件.
+    * @apiParamClass (src/model/dto/UserDTO.ts) {UserDTO}
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"操作成功","data":{"count":0,"total":0,"page":0,"num":20,"data":[]}}
@@ -38,9 +38,12 @@ export class UserController extends AdminController {
     */
     @GetMaping("/")
     @GetMaping("/index")
-    async index(@Get("condition") param: any, @Get("page") page: number) {
-        this.Map = param;
-        this.Mo.page = page || 1;
+    @Validated()
+    async index(@Get() param: UserDTO) {
+        this.Mo.page = param.page || 1;
+        this.Map = { ...this.Map, ...param };
+        // tslint:disable-next-line: no-unused-expression
+        this.Map.page && (delete this.Map.page);
 
         const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
@@ -54,20 +57,7 @@ export class UserController extends AdminController {
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParam {String} [openid] 预留第三方登录ID
-    * @apiParam {String} phonenum 手机号（登录账号）
-    * @apiParam {String} password 登录密码
-    * @apiParam {String} email 用户email（登录账号）
-    * @apiParam {String} [nickname] 用户昵称
-    * @apiParam {String} [realname] 姓名
-    * @apiParam {String} [icon] 用户头像
-    * @apiParam {String} [birthday] 用户生日 2018-01-01
-    * @apiParam {String} [gender] 用户性别0女1男2不确定
-    * @apiParam {String} [website] 用户网站
-    * @apiParam {String} [remark] 用户简介
-    * @apiParam {String} [end_time] 到期时间 2019-01-01
-    * @apiParam {String} roleid 角色ID
-    * @apiParam {String} groupid 组织ID
+    * @apiParamClass (src/model/dto/UserDTO.ts) {UserDTO}
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"操作成功","data":{}}
@@ -76,7 +66,8 @@ export class UserController extends AdminController {
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
     @PostMaping("/add")
-    async add(@Post() param: any) {
+    @Validated()
+    async add(@Post() param: UserDTO) {
         const res = await this.service.add(param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
         });

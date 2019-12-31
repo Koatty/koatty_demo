@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-04 16:03:20
+ * @ version: 2019-12-27 19:43:25
  */
 import { BaseModel } from "thinkorm";
 import { Component, Value, Helper, Logger } from 'koatty';
@@ -225,14 +225,14 @@ export class UserModel extends BaseModel {
      * @returns
      */
     async getInfo(id: string) {
-        let data = this.getCache("USER_INFO", id);
+        let data = await this.getCache("USER_INFO", id);
         if (Helper.isEmpty(data)) {
             data = await this.join([
                 { from: 'Role', field: ['rule_ids', 'data_ids', 'status as role_status', 'name as role_name'], on: { 'roleid': 'id' } }
             ]).field(['id', 'openid', 'phonenum', 'email', 'nickname', 'realname', 'icon', 'birthday', 'gender', 'website', 'remark', 'roleid', 'groupid', 'end_time'])
                 .where({ id }).find();
             // tslint:disable-next-line: no-unused-expression
-            data || this.flashCache("USER_INFO", id, data);
+            await this.flashCache("USER_INFO", id, data);
         }
         return data || {};
     }

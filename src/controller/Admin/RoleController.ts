@@ -2,14 +2,15 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-23 13:59:03
+ * @ version: 2019-12-31 12:00:34
  */
-import { Controller, GetMaping, Get, Autowired, PostMaping, Post, Helper } from "koatty";
+import { Controller, GetMaping, Get, Autowired, PostMaping, Post, Helper, Validated } from "koatty";
 import { App } from '../../App';
 import { AdminController } from '../AdminController';
 import { RoleService } from '../../service/Admin/RoleService';
 import { MenuService } from '../../service/Admin/MenuService';
 import { RbacService } from '../../service/Admin/RbacService';
+import { RoleDTO } from '../../model/dto/RoleDTO';
 
 @Controller("/admin/role")
 export class RoleController extends AdminController {
@@ -33,8 +34,7 @@ export class RoleController extends AdminController {
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParam {String} [page]  当前页码.
-    * @apiParam {String} [condition]  检索条件.
+    * @apiParamClass (src/model/dto/RoleDTO.ts) {RoleDTO}
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"","data":{}}
@@ -44,9 +44,12 @@ export class RoleController extends AdminController {
     */
     @GetMaping("/")
     @GetMaping("/index")
-    async index(@Get("condition") param: any, @Get("page") page: number) {
-        this.Map = param;
-        this.Mo.page = page || 1;
+    @Validated()
+    async index(@Get() param: RoleDTO) {
+        this.Mo.page = param.page || 1;
+        this.Map = { ...this.Map, ...param };
+        // tslint:disable-next-line: no-unused-expression
+        this.Map.page && (delete this.Map.page);
 
         const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
