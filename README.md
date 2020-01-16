@@ -4,20 +4,31 @@
 
 ## install dependencies
 
-```
+```shell
 yarn install
+```
+
+## Migrate data
+
+Edit the project src / db.ts data source configuration and run:
+
+```shell
+//macOS used sudo
+npm i -g koatty_cli
+
+npm run build && koatty migrate all
 ```
 
 ## start server
 
-```
+```shell
 npm start
 ```
 
 ## API doc
 
 used [apidoc](https://www.npmjs.com/package/apidoc) module.
-```
+```shell
 npm run doc
 ```
 The local project API documentation：http://localhost:3000/doc/index.html
@@ -27,7 +38,7 @@ The local project API documentation：http://localhost:3000/doc/index.html
 
 use pm2 to deploy app on production envrioment.
 
-```
+```shell
 pm2 startOrGracefulReload pm2.json
 ```
 
@@ -35,7 +46,7 @@ pm2 startOrGracefulReload pm2.json
 
 auto create by apidoc.
 
-```
+```shell
 npm run doc
 ```
 start server and call `http://localhost:3000/doc/index.html`.
@@ -43,7 +54,7 @@ start server and call `http://localhost:3000/doc/index.html`.
 ## How to debug
 
 if you use vscode , edit the `.vscode/launch.json` , like this: 
-```
+```js
 {
     "version": "0.2.0",
     "configurations": [
