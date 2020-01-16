@@ -18,10 +18,6 @@ export class AdminController extends BaseController {
     @Autowired()
     protected commonService: CommonService;
 
-    __empty() {
-        return this.fail('没有权限访问', {}, 404);
-    }
-
     async __before() {
         //管理后台登录检查
         await this.checkLogin();
