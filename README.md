@@ -1,4 +1,4 @@
-[![ThinkKoa](http://thinkkoa.org/img/logo.png)](http://thinkkoa.org/koatty)
+[![ThinkKoa](http://thinkkoa.org/img/logo.png)](https://github.com/thinkkoa/koatty)
 
 # Application created by [Koatty](https://github.com/thinkkoa/koatty)
 
