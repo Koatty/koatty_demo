@@ -13,6 +13,9 @@ yarn install
 Edit the project src / db.ts data source configuration and run:
 
 ```shell
+//macOS used sudo
+npm i -g koatty_cli
+
 npm run build && koatty migrate all
 ```
 
