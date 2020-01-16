@@ -2,75 +2,80 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-14 19:31:09
+ * @ version: 2020-01-16 19:21:10
  */
-import { BaseModel } from "thinkorm";
+import { BaseModel, Entity, PrimaryColumn, Column } from "thinkorm";
 import { Component, Value, Helper, Logger } from 'koatty';
 
 @Component()
+@Entity("Role")
 export class RoleModel extends BaseModel {
     @Value("database", "db")
     config: any;
-    modelName: string;
-    fields: any;
 
-    init() {
-        // 模型名称
-        this.modelName = 'Role';
-        // 数据表字段信息
-        this.fields = {
-            id: { //用户ID
-                type: 'integer',
-                pk: true,
-                size: 11
-            },
-            name: { //角色名称
-                type: 'string',
-                size: 100,
-                index: true,
-                defaults: ''
-            },
-            desc: { //角色描述
-                type: 'string',
-                size: 200,
-                defaults: ''
-            },
-            rule_ids: { //角色功能权限1,2,3
-                type: 'text',
-                defaults: ''
-            },
-            data_ids: { //角色数据权限1,2,3
-                type: 'text',
-                defaults: ''
-            },
-            ext: { //角色扩展
-                type: 'text',
-                defaults: ''
-            },
-            status: { //角色状态
-                type: 'integer',
-                size: 11,
-                index: true
-            }
-        };
-    }
 
-    _beforeAdd(data: any, options: any) {
-        const now = Helper.datetime();
-        data.create_time = now;
-        data.update_time = now;
-        data.status = 1;
-        return data;
-    }
+    /**
+     *
+     *
+     * @type {number}
+     * @memberof RoleModel
+     */
+    @PrimaryColumn()
+    id: number;
 
-    _beforeUpdate(data: any, options: any) {
-        const now = Helper.datetime();
-        data.update_time = now;
-        if (!Helper.isEmpty(data.status)) {
-            data.status = Helper.toInt(data.status);
-        }
-        return data;
-    }
+    /**
+     * 角色名称
+     *
+     * @type {string}
+     * @memberof RoleModel
+     */
+    @Column(100, "", true)
+    name: string;
+
+    /**
+     * 角色描述
+     *
+     * @type {string}
+     * @memberof RoleModel
+     */
+    @Column(256, "")
+    desc: string;
+
+    /**
+     * 角色功能权限1,2,3
+     *
+     * @type {string}
+     * @memberof RoleModel
+     */
+    @Column(256, "")
+    rule_ids: string;
+
+    /**
+     * 角色数据权限1,2,3
+     *
+     * @type {string}
+     * @memberof RoleModel
+     */
+    @Column(256, "")
+    data_ids: string;
+
+    /**
+     * 角色扩展
+     *
+     * @type {string}
+     * @memberof RoleModel
+     */
+    @Column(256, "")
+    ext: string;
+
+    /**
+     * 角色状态
+     *
+     * @type {number}
+     * @memberof RoleModel
+     */
+    @Column(11, 1, true)
+    status: number;
 
 
     /**

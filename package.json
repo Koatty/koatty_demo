@@ -13,19 +13,19 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "ali-oss": "^6.3.1",
+    "ali-oss": "^6.4.0",
     "bluebird-retry": "^0.11.0",
     "file-type": "^12.4.0",
     "jsonwebtoken": "^8.5.1",
-    "koatty": "^1.12.4",
+    "koatty": "^1.13.3",
     "mime-types": "^2.1.25",
-    "mysql2": "^2.0.1",
+    "mysql2": "^2.1.0",
     "read-chunk": "^3.2.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "think_store": "^2.4.0",
     "think_view": "^2.2.2",
-    "thinkorm": "^3.5.2",
+    "thinkorm": "^4.2.5",
     "xlsx": "^0.15.3"
   },
   "devDependencies": {

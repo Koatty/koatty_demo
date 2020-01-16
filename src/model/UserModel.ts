@@ -2,133 +2,228 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-27 19:43:25
+ * @ version: 2020-01-16 19:38:15
  */
-import { BaseModel } from "thinkorm";
-import { Component, Value, Helper, Logger } from 'koatty';
+import { BaseModel, Entity, PrimaryColumn, Column, TimestampColumn } from "thinkorm";
+import { Component, Value, Helper, Logger, IsIn } from 'koatty';
 import { App } from '../App';
 
 @Component()
+@Entity("User")
 export class UserModel extends BaseModel {
     app: App;
     @Value("database", "db")
     config: any;
-    modelName: string;
-    fields: any;
 
-    init() {
+    @PrimaryColumn(32, false)
+    id: string;
 
-        // 模型名称
-        this.modelName = 'User';
-        // 数据表字段信息
-        this.fields = {
-            id: { //用户ID
-                type: 'string',
-                pk: true,
-                size: 32
-            },
-            openid: { //预留第三方登录
-                type: 'string',
-                unique: true,
-                size: 50,
-                defaults: ''
-            },
-            phonenum: { //手机号（登录账号）
-                type: 'string',
-                index: true,
-                size: 30,
-                defaults: ''
-            },
-            password: { //登录密码
-                type: 'string',
-                size: 32,
-                defaults: ''
-            },
-            email: { //用户email（登录账号）
-                type: 'string',
-                index: true,
-                size: 50,
-                defaults: ''
-            },
-            nickname: { //用户昵称
-                type: 'string',
-                unique: true,
-                size: 50,
-                defaults: ''
-            },
-            realname: { //用户真实名称
-                type: 'string',
-                size: 50,
-                defaults: ''
-            },
-            icon: { //用户头像
-                type: 'text',
-                defaults: ''
-            },
-            last_login_time: { //用户最后登录时间
-                type: 'integer',
-                defaults: 0
-            },
-            last_login_ip: { //用户最后登录ip
-                type: 'string',
-                defaults: ''
-            },
-            birthday: { //用户生日
-                type: 'integer',
-                defaults: 0
-            },
-            gender: { //用户性别0女1男2不确定
-                type: 'integer',
-                defaults: 2
-            },
-            website: { //用户网站
-                type: 'string',
-                size: 100,
-                defaults: ''
-            },
-            remark: { //用户简介
-                type: 'string',
-                size: 255,
-                defaults: ''
-            },
-            create_time: { //创建时间
-                type: 'integer',
-                defaults: 0
-            },
-            update_time: { //更新时间
-                type: 'integer',
-                defaults: 0
-            },
-            end_time: { //到期时间
-                type: 'integer',
-                defaults: 0
-            },
-            roleid: { //角色ID
-                type: 'integer',
-                index: true,
-                defaults: 0
-            },
-            groupid: { //组织ID
-                type: 'integer',
-                index: true,
-                defaults: 0
-            },
-            status: { //用户状态
-                type: 'integer',
-                index: true,
-                defaults: 0
-            }
-        };
-    }
+    /**
+     * 第三方绑定登录账号
+     *
+     * @type {string}
+     * @memberof UserModel
+     */
+    @Column(50, "", true)
+    openid: string;
 
+    /**
+     * 手机号（登录账号）
+     *
+     * @type {string}
+     * @memberof UserModel
+     */
+    @Column(30, "", true, true)
+    phonenum: string;
+
+    /**
+     * 用户email（登录账号）
+     *
+     * @type {string}
+     * @memberof UserModel
+     */
+    @Column(50, "", true, true)
+    email: string;
+
+    /**
+     * 登录密码
+     *
+     * @type {string}
+     * @memberof UserModel
+     */
+    @Column(32, "")
+    password: string;
+
+    /**
+     * 用户昵称
+     *
+     * @type {string}
+     * @memberof UserModel
+     */
+    @Column(50, "")
+    nickname: string;
+
+    /**
+     * 姓名
+     *
+     * @type {string}
+     * @memberof UserModel
+     */
+    @Column(50, "")
+    realname: string;
+
+    /**
+     * 用户头像
+     *
+     * @type {string}
+     * @memberof UserModel
+     */
+    @Column(256, "")
+    icon: string;
+
+    /**
+     * 用户最后登录时间
+     *
+     * @type {number}
+     * @memberof UserModel
+     */
+    @Column(11, 0)
+    last_login_time: number;
+
+    /**
+     * 用户最后登录ip
+     *
+     * @type {string}
+     * @memberof UserModel
+     */
+    @Column(50, "")
+    last_login_ip: string;
+
+    /**
+     * 用户生日
+     *
+     * @type {string}
+     * @memberof UserModel
+     */
+    @Column(11, 0)
+    birthday: number;
+
+    /**
+     * 用户性别0女1男2不确定
+     *
+     * @type {number}
+     * @memberof UserModel
+     */
+    @IsIn([0, 1, 2])
+    @Column(11, 2, true)
+    gender: number;
+
+    /**
+     * 用户网站
+     *
+     * @type {string}
+     * @memberof UserModel
+     */
+    @Column(100, "")
+    website: string;
+
+    /**
+     * 用户简介
+     *
+     * @type {string}
+     * @memberof UserModel
+     */
+    @Column(256, "")
+    remark: string;
+
+    /**
+     * 创建时间
+     *
+     * @type {number}
+     * @memberof UserModel
+     */
+    @TimestampColumn("_beforeAdd")
+    create_time: number;
+
+    /**
+     * 更新时间
+     *
+     * @type {number}
+     * @memberof UserModel
+     */
+    @TimestampColumn()
+    update_time: number;
+
+    /**
+     * 状态
+     *
+     * @type {number}
+     * @memberof UserModel
+     */
+    @Column(11, 1, true)
+    status: number;
+
+    /**
+     * 到期时间
+     *
+     * @type {number}
+     * @memberof UserModel
+     */
+    @Column(11, 0)
+    end_time: number;
+
+    /**
+     * 角色ID
+     *
+     * @type {number}
+     * @memberof UserModel
+     */
+    @Column(11, 0, true)
+    roleid: number;
+
+    /**
+     * 组织ID
+     *
+     * @type {number}
+     * @memberof UserModel
+     */
+    @Column(11, 0, true)
+    groupid: number;
+
+
+
+    /**
+     *
+     *
+     * @param {*} data
+     * @returns
+     * @memberof UserModel
+     */
     autoPassword(data: any) {
         return Helper.md5(data.password);
     }
 
+
+    /**
+     *
+     *
+     * @param {*} data
+     * @returns
+     * @memberof UserModel
+     */
     autoBirthday(data: any) {
         return Helper.datetime(data.birthday);
     }
 
+
+    /**
+     *
+     *
+     * @param {*} data
+     * @param {*} options
+     * @returns
+     * @memberof UserModel
+     */
     _beforeAdd(data: any, options: any) {
         const now = Helper.datetime();
         data.update_time = now;
@@ -164,6 +259,15 @@ export class UserModel extends BaseModel {
         return Promise.resolve(data);
     }
 
+
+    /**
+     *
+     *
+     * @param {*} data
+     * @param {*} options
+     * @returns
+     * @memberof UserModel
+     */
     _beforeUpdate(data: any, options: any) {
         data.update_time = Helper.datetime();
         if (!Helper.isEmpty(data.create_time) && Helper.isString(data.create_time)) {
