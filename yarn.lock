@@ -2846,10 +2846,10 @@ koa@^2.11.0:
     type-is "^1.6.16"
     vary "^1.1.2"
 
-koatty@^1.13.3:
-  version "1.13.3"
-  resolved "https://registry.yarnpkg.com/koatty/-/koatty-1.13.3.tgz#64f1b2c8ee3eda6280c8c8a5c8d10b8c876868b1"
-  integrity sha512-LqGF/eOess0dGvc53+glDPSiz2uG51pCwZScIhLrwl4E2CDu5lI2yRPCgs0mW94hGkjoDlN/53cWc4IPp8/IaQ==
+koatty@^1.14.1:
+  version "1.14.1"
+  resolved "https://registry.yarnpkg.com/koatty/-/koatty-1.14.1.tgz#f09d4f805d9199e7b7a606b9237ae7cb7d39430a"
+  integrity sha512-wFhtY0lPwXfV6FJPkuG/ulwh0kndwGL8v4+g6hy3iZmBKx3+EwKZ6zrtpg7oJrSH5oE4kWWkP5lswkTBol9+GA==
   dependencies:
     "@koa/router" "^8.0.5"
     cron "^1.7.2"
@@ -2860,6 +2860,7 @@ koatty@^1.13.3:
     think_logger "^2.2.0"
     think_payload "^2.1.1"
     think_static "^2.1.2"
+    think_store "^2.4.2"
     think_trace "^2.1.2"
     think_validtion "^1.2.3"
     tslib "^1.10.0"
@@ -4635,10 +4636,10 @@ think_static@^2.1.2:
     mime-types "^2.1.24"
     think_lib "^2.x.x"
 
-think_store@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.npm.taobao.org/think_store/download/think_store-2.4.0.tgz#ec4e11fe7c4d4e3fc6fc2e5b89fb34e08effc470"
-  integrity sha1-7E4R/nxNTj/G/C5bifs04I7/xHA=
+think_store@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/think_store/-/think_store-2.4.2.tgz#32ccbb51638ce4228d803f7b709ec4d0947aac39"
+  integrity sha512-KB7EqI7h4zGEAfbHTHZMwLrMlVHpxhcZW1gHps5BeM+OCmceqjYXQ/0BNrpxFxvAc+CWZi+yNctLTIBwy/kgGQ==
   dependencies:
     generic-pool "^3.7.1"
     ioredis "^4.14.1"

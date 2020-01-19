@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-28 14:38:18
+ * @ version: 2020-01-19 13:25:11
  */
 import { Controller, BaseController, GetMaping, Post, Autowired, Helper, Value, PostMaping, Get, Valid, PutMaping, RequestBody, PathVariable } from "koatty";
 import { App } from '../../App';
@@ -36,7 +36,7 @@ export class PublicController extends BaseController {
     }
 
     /**
-    * @api {get} /admin/public/login 登录
+    * @api {post} /admin/public/login 登录
     * @apiGroup Admin
     * 
     * @apiParam {String} username  用户名，手机号或email.
