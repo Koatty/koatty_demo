@@ -1,4 +1,4 @@
-[![ThinkKoa](http://thinkkoa.org/img/logo.png)](http://thinkkoa.org/koatty)
+[![ThinkKoa](http://thinkkoa.org/img/logo.png)](https://github.com/thinkkoa/koatty)
 
 # Application created by [Koatty](https://github.com/thinkkoa/koatty)
 
@@ -25,14 +25,6 @@ npm run build && koatty migrate all
 npm start
 ```
 
-## API doc
-
-used [apidoc](https://www.npmjs.com/package/apidoc) module.
-```shell
-npm run doc
-```
-The local project API documentation：http://localhost:3000/doc/index.html
-
 
 ## deploy with pm2
 
@@ -44,7 +36,7 @@ pm2 startOrGracefulReload pm2.json
 
 ## API Document
 
-auto create by apidoc.
+auto create by [apidoc](https://www.npmjs.com/package/apidoc) module.
 
 ```shell
 npm run doc
