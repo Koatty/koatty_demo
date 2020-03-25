@@ -4,7 +4,7 @@
  * @ license: Apache License 2.0
  * @ version: 2020-01-19 13:25:11
  */
-import { Controller, BaseController, GetMaping, Post, Autowired, Helper, Value, PostMaping, Get, Valid, PutMaping, RequestBody, PathVariable } from "koatty";
+import { Controller, BaseController, GetMapping, Post, Autowired, Helper, Value, PostMapping, Get, Valid, PutMapping, RequestBody, PathVariable } from "koatty";
 import { App } from '../../App';
 const jwt = require('jsonwebtoken');
 import { PassportService } from "../../service/Admin/PassportService";
@@ -54,7 +54,7 @@ export class PublicController extends BaseController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @PostMaping("/login")
+    @PostMapping("/login")
     async login(@Post() info: any) {
         if (Helper.isEmpty(info) || Helper.isEmpty(info.username)) {
             return this.fail("用户名或密码错误");
@@ -104,7 +104,7 @@ export class PublicController extends BaseController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @GetMaping("/logout")
+    @GetMapping("/logout")
     async logout() {
         if (Helper.isEmpty(this.ctx.userid) || Helper.isEmpty(this.ctx.roleid)) {
             return this.fail('请重新登陆', { needLogin: 1 }, 403);

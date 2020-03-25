@@ -4,7 +4,7 @@
  * @ license: Apache License 2.0
  * @ version: 2019-12-31 11:27:40
  */
-import { Controller, BaseController, GetMaping, Autowired, Get, PostMaping, Post, Helper, Validated } from "koatty";
+import { Controller, BaseController, GetMapping, Autowired, Get, PostMapping, Post, Helper, Validated } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import * as groupType from "../../config/groupType.json";
@@ -37,8 +37,8 @@ export class GroupController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @GetMaping("/")
-    @GetMaping("/index")
+    @GetMapping("/")
+    @GetMapping("/index")
     @Validated()
     async index(@Get() param: GroupDTO) {
         this.Mo.page = param.page || 1;
@@ -67,7 +67,7 @@ export class GroupController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @GetMaping("/groups")
+    @GetMapping("/groups")
     async getGroups() {
         return this.ok("", { groupType });
     }
@@ -95,7 +95,7 @@ export class GroupController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
-    @PostMaping("/add")
+    @PostMapping("/add")
     async add(@Post() param: any) {
         const res = await this.service.add(param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
@@ -127,7 +127,7 @@ export class GroupController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
-    @PostMaping("/edit")
+    @PostMapping("/edit")
     async edit(@Post() param: any) {
         const res = await this.service.edit(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
@@ -149,7 +149,7 @@ export class GroupController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
-    @PostMaping("/del")
+    @PostMapping("/del")
     async del(@Post("id") param: number) {
         const res = await this.service.del(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
@@ -171,7 +171,7 @@ export class GroupController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @GetMaping("/view")
+    @GetMapping("/view")
     async view(@Get("id") param: number) {
         const res = await this.service.info(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);

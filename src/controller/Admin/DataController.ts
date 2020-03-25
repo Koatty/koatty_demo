@@ -6,7 +6,7 @@
  */
 // tslint:disable-next-line: no-implicit-dependencies
 import * as globby from 'globby';
-import { Controller, GetMaping, Get, Autowired, Post, PostMaping, Valid, Helper, Validated } from "koatty";
+import { Controller, GetMapping, Get, Autowired, Post, PostMapping, Valid, Helper, Validated } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import { DataService } from "../../service/Admin/DataService";
@@ -38,8 +38,8 @@ export class DataController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @GetMaping("/")
-    @GetMaping("/index")
+    @GetMapping("/")
+    @GetMapping("/index")
     @Validated()
     async index(@Get() param: DataDTO) {
         this.Mo.page = param.page || 1;
@@ -68,7 +68,7 @@ export class DataController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @GetMaping("/models")
+    @GetMapping("/models")
     async getModels() {
         const fileResults = globby.sync(['**/**.js', '**/**.ts', '!**/**.d.ts'], {
             cwd: `${this.app.app_path}/model`,
@@ -98,7 +98,7 @@ export class DataController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
-    @PostMaping("/add")
+    @PostMapping("/add")
     async add(
         @Post("name") @Valid("IsNotEmpty", "数据模型类名称不能为空") name: string,
         @Post("desc") @Valid("IsNotEmpty", "数据规则描述不能为空") desc: string,
@@ -127,7 +127,7 @@ export class DataController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @PostMaping("/edit")
+    @PostMapping("/edit")
     async edit(@Post("id") @Valid("IsNotEmpty", "规则ID不能为空") id: number,
         @Post("name") @Valid("IsNotEmpty", "规则模型类名称不能为空") name: string,
         @Post("desc") @Valid("IsNotEmpty", "数据规则描述不能为空") desc: string,
@@ -153,7 +153,7 @@ export class DataController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
-    @PostMaping("/del")
+    @PostMapping("/del")
     async del(@Post("id") @Valid("IsNotEmpty", "规则ID不能为空") param: number) {
         const res = await this.service.del(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
@@ -175,7 +175,7 @@ export class DataController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @GetMaping("/view")
+    @GetMapping("/view")
     async view(@Get("id") @Valid("IsNotEmpty", "规则ID不能为空") param: number) {
         const res = await this.service.info(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);

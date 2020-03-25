@@ -13,20 +13,15 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "ali-oss": "^6.4.0",
     "bluebird-retry": "^0.11.0",
-    "file-type": "^12.4.0",
     "jsonwebtoken": "^8.5.1",
-    "koatty": "^1.14.4",
-    "mime-types": "^2.1.25",
+    "koatty": "^1.19.3",
     "mysql2": "^2.1.0",
-    "read-chunk": "^3.2.0",
-    "request": "^2.88.0",
+    "request": "^2.88.2",
     "request-promise": "^4.2.5",
-    "think_store": "^2.4.2",
-    "think_view": "^2.2.2",
-    "thinkorm": "^4.3.2",
-    "xlsx": "^0.15.3"
+    "think_store": "^4.0.5",
+    "think_view": "^2.2.4",
+    "thinkorm": "^4.4.20"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.29",

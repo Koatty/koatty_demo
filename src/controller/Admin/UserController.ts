@@ -4,7 +4,7 @@
  * @ license: Apache License 2.0
  * @ version: 2019-12-31 12:00:23
  */
-import { Controller, GetMaping, Autowired, Get, PostMaping, Post, Helper, Validated } from "koatty";
+import { Controller, GetMapping, Autowired, Get, PostMapping, Post, Helper, Validated } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import { UserService } from "../../service/Admin/UserService";
@@ -36,8 +36,8 @@ export class UserController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @GetMaping("/")
-    @GetMaping("/index")
+    @GetMapping("/")
+    @GetMapping("/index")
     @Validated()
     async index(@Get() param: UserDTO) {
         this.Mo.page = param.page || 1;
@@ -65,7 +65,7 @@ export class UserController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
-    @PostMaping("/add")
+    @PostMapping("/add")
     @Validated()
     async add(@Post() param: UserDTO) {
         const res = await this.service.add(param).catch((err: any) => {
@@ -87,7 +87,7 @@ export class UserController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":[{}]}
     */
-    @GetMaping("/groupList")
+    @GetMapping("/groupList")
     async groupList() {
         const list = await this.service.getGroupList();
         return this.ok("", list);
@@ -106,7 +106,7 @@ export class UserController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":[{}]}
     */
-    @GetMaping("/roleList")
+    @GetMapping("/roleList")
     async roleList() {
         const list = await this.service.getRoleList();
         return this.ok("", list);
@@ -129,7 +129,7 @@ export class UserController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @PostMaping("/edit")
+    @PostMapping("/edit")
     async edit(@Post() param: any) {
         const res = await this.service.edit(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
@@ -151,7 +151,7 @@ export class UserController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"操作失败","data":{}}
     */
-    @PostMaping("/del")
+    @PostMapping("/del")
     async del(@Post("id") param: number) {
         const res = await this.service.del(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);
@@ -173,7 +173,7 @@ export class UserController extends AdminController {
     * @apiErrorExample {json} Error
     * {"status":0,"code":500,"message":"错误信息","data":{}}
     */
-    @GetMaping("/view")
+    @GetMapping("/view")
     async view(@Get("id") param: number) {
         const res = await this.service.info(this.Map, param).catch((err: any) => {
             return this.fail(`操作失败! ${err.message || err}`);

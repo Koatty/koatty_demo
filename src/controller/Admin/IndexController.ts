@@ -4,7 +4,7 @@
  * @ license: Apache License 2.0
  * @ version: 2019-11-20 15:10:59
  */
-import { Controller, GetMaping } from "koatty";
+import { Controller, GetMapping } from "koatty";
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 
@@ -13,8 +13,8 @@ export class IndexController extends AdminController {
     app: App;
     pageInfo: { 'appName': string; 'appVersion': string; 'appKeywords': string; 'appDescription': string; };
 
-    @GetMaping("/")
-    @GetMaping("/index")
+    @GetMapping("/")
+    @GetMapping("/index")
     index() {
         this.pageInfo = {
             'appName': this.app.config('app_title'),
