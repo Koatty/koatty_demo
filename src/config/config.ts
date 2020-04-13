@@ -34,7 +34,7 @@ export default {
     oss: {
         max_file_size: 31 * 1024, //上传文件大小限制，默认30k以内
         file_allow_type: 'jpg|jpeg|png|gif|xlsx|xls|csv|doc|ppt|mp3|rar|zip', //允许上传的文件类型
-        ali_access_key: 'LTAIj3mYP1DFNLI1', //阿里云OSS access_key
+        ali_access_key: '', //阿里云OSS access_key
         ali_access_secret: '', //阿里云OSS access_secret
         ali_bucket: '', //阿里云OSS bucket
         ali_region: '',
