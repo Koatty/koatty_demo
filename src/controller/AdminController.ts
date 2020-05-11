@@ -2,9 +2,9 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-12 09:48:17
+ * @ version: 2020-05-12 00:03:30
  */
-import { Controller, BaseController, Autowired, Logger, Helper } from "koatty";
+import { Controller, BaseController, Autowired, Logger, Helper, RequestParam } from "koatty";
 import { App } from '../App';
 import { CommonService } from '../service/CommonService';
 
@@ -13,6 +13,7 @@ export class AdminController extends BaseController {
     app: App;
     Mo = { rel: false, sortby: {}, field: <any>[], ispage: true, pagesize: 20, page: 1, model: "" };
     Map: any = {}; //保存查询条件
+    // tslint:disable-next-line: no-null-keyword
     Model: any = null; //定义模型类,用于判断数据权限
 
     @Autowired()
@@ -39,8 +40,12 @@ export class AdminController extends BaseController {
      * @memberof AdminController
      */
     async checkLogin() {
-        const userid = this.ctx.userid || '';
-        const ex = await this.app.cacheStore.get('UUID', userid).catch((err: any) => '');
+        const token = this.ctx.get('x-access-token');
+        const uuid = await this.ctx.jwtDecode(token).catch((err: any) => {
+            return this.fail(err.message, { needLogin: 1 }, 401);
+        });
+        this.ctx.userid = uuid;
+        const ex = await this.app.cacheStore.get('UUID', uuid).catch((err: any) => '');
         if (!ex) {
             return this.fail('请登录后访问', { needLogin: 1 }, 401);
         }

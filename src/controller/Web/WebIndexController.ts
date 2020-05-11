@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-28 14:41:12
+ * @ version: 2020-05-10 15:02:26
  */
 import { Controller, BaseController, GetMapping } from "koatty";
 import { App } from '../../App';
@@ -17,6 +17,6 @@ export class WebIndexController extends BaseController {
 
     @GetMapping("/")
     index() {
-        return this.render('./html/index.html');
+        return this.ctx.render('./html/index.html');
     }
 }

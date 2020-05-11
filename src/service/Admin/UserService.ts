@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-25 16:19:24
+ * @ version: 2020-05-10 14:55:44
  */
 import { Service, Base, Autowired, Value, Koatty, Helper } from "koatty";
 import { App } from '../../App';
@@ -55,17 +55,17 @@ export class UserService extends CommonService {
      */
     async changeProfile(userid: string, profile: any) {
         if (Helper.isEmpty(userid)) {
-            return Promise.reject("userid丢失，必须先登录");
+            throw Error("userid丢失，必须先登录");
         }
         //修改手机号码,不能为已经存在的
         const mex = await this.Model.where({ id: { "!=": userid }, phonenum: profile.phonenum }).count().catch(() => 0);
         if (mex > 0) {
-            return Promise.reject("手机号码已经存在");
+            throw Error("手机号码已经存在");
         }
         //修改email,不能为已经存在的
         const eex = await this.Model.where({ id: { "!=": userid }, email: profile.email }).count().catch(() => 0);
         if (eex > 0) {
-            return Promise.reject("手机号码已经存在");
+            throw Error("手机号码已经存在");
         }
         return this.Model.where({ id: userid }).update(profile);
     }
@@ -83,7 +83,7 @@ export class UserService extends CommonService {
         //判断原密码是否正确
         const mex = await this.Model.where({ id: userid, password: Helper.md5(password) }).count().catch(() => 0);
         if (mex < 1) {
-            return Promise.reject("原密码不正确");
+            throw Error("原密码不正确");
         }
 
         return this.Model.where({ id: userid }).update({ password: newPassword });

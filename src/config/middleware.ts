@@ -2,22 +2,32 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-23 14:00:54
+ * @ version: 2020-05-12 00:07:26
  */
 export default {
-    list: ["Cache", "Token", "View"], //加载的中间件列表
+    list: ["StaticMiddleware", "CacheMiddleware", "JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
     config: { //中间件配置
-        // Static: {
+        // StaticMiddleware: {
         //     cache: false
         // },
-        Token: {
-            alg: 'HS256', //算法
-            sub: 'token', //主题
-            exp: 864000, //过期时间 1天
-            key: 'DSP', //Secret,签名密码,请务必根据实际情况修改
-            url: ['^\/doc\/.*', '^\/admin\/public\/login', '^\/admin\/index/index'] //无需检查的路由 , '^\/activity\/'
+        CacheMiddleware: {
+            type: 'redis', //数据缓存类型 file,redis,memcache
+            key_prefix: 'Koatty:', //缓存key前置
+            timeout: 6 * 3600, //数据缓存有效期，单位: 秒
+            host: '192.168.0.150',
+            port: 6379,
+            password: '',
+            db: '0',
+            poolsize: 10, //pool size
+            conn_timeout: 5000 //try connection timeout
         },
-        View: {
+        JwtMiddleware: {
+            alg: 'HS256', //算法
+            sub: 'jwt', //主题
+            exp: 86400, //过期时间, now() + 86400
+            key: 'Koatty'
+        },
+        ViewMiddleware: {
             view_path: process.env.ROOT_PATH + '/static', //模板目录
             engine_type: 'ejs', //模版引擎名称 ejs, pug
             engine_config: { cache: true }, //模版引擎配置

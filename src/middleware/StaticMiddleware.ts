@@ -2,11 +2,12 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-20 15:15:08
+ * @ version: 2020-05-11 23:37:17
  */
 import { Middleware, Helper } from "koatty";
 import { App } from '../App';
-const views = require("think_view");
+const statics = require("think_static");
+
 
 const defaultOpt = {
     //默认配置项
@@ -14,8 +15,8 @@ const defaultOpt = {
 
 
 @Middleware()
-export class View {
+export class StaticMiddleware {
     run(options: any, app: App) {
-        return views(options, app);
+        return statics(options, app);
     }
 }

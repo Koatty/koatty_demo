@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-25 14:22:41
+ * @ version: 2020-05-10 14:55:18
  */
 import { Service, Base, Value, Autowired, Logger, Helper } from "koatty";
 import { App } from '../App';
@@ -37,7 +37,7 @@ export class CommonService extends Base {
         if (this.rbacConf.enable_rule) {
             const flag = await this.rbacService.ruleAuth(path, userid);
             if (!flag) {
-                return Promise.reject("无权限访问");
+                throw Error("无权限访问");
             }
         }
         //获取数据权限
@@ -84,7 +84,7 @@ export class CommonService extends Base {
         model = model || this.Model;
         const pk = await model.getPk();
         if (Helper.isEmpty(id)) {
-            return Promise.reject(`id不能为空`);
+            throw Error(`id不能为空`);
         }
         map[pk] = id;
         return model.where(map).find();
@@ -116,7 +116,7 @@ export class CommonService extends Base {
         model = model || this.Model;
         const pk = await model.getPk();
         if (Helper.isEmpty(data[pk])) {
-            return Promise.reject(`${pk}不能为空`);
+            throw Error(`${pk}不能为空`);
         }
         map[pk] = data[pk];
         return model.where(map).update(data);
@@ -135,7 +135,7 @@ export class CommonService extends Base {
         model = model || this.Model;
         const pk = await model.getPk();
         if (Helper.isEmpty(id)) {
-            return Promise.reject(`id不能为空`);
+            throw Error(`id不能为空`);
         }
         map[pk] = id;
         return model.where(map).delete();

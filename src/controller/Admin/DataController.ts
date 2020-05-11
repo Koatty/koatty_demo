@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-31 11:26:58
+ * @ version: 2020-05-11 23:55:37
  */
 // tslint:disable-next-line: no-implicit-dependencies
 import * as globby from 'globby';

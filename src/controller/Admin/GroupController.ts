@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-12-31 11:27:40
+ * @ version: 2020-05-11 23:55:30
  */
 import { Controller, BaseController, GetMapping, Autowired, Get, PostMapping, Post, Helper, Validated } from "koatty";
 import { App } from '../../App';
