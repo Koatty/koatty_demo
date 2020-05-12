@@ -2,7 +2,7 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2020-01-19 13:25:11
+ * @ version: 2020-05-12 17:23:30
  */
 import { Controller, BaseController, GetMapping, Post, Autowired, Helper, Value, PostMapping, Get, Valid, PutMapping, RequestBody, PathVariable } from "koatty";
 import { App } from '../../App';
@@ -13,7 +13,7 @@ import { PassportService } from "../../service/Admin/PassportService";
 export class PublicController extends BaseController {
     app: App;
     pageInfo: { 'appName': string; 'appVersion': string; 'appKeywords': string; 'appDescription': string };
-    @Value("config.Token", "middleware")
+    @Value("config.JwtMiddleware", "middleware")
     tokenConf: any;
 
     @Autowired()
@@ -59,7 +59,7 @@ export class PublicController extends BaseController {
         if (Helper.isEmpty(info) || Helper.isEmpty(info.username)) {
             return this.fail("用户名或密码错误");
         }
-        const userData = await this.passportService.getAdminUser(info.username || '', info.password || '').catch((err) => {
+        const userData = await this.passportService.getAdminUser(info.username || '', Helper.toString(info.password) || '').catch((err) => {
             return this.fail(err.message);
         });
         if (Helper.isEmpty(userData) || Helper.isEmpty(userData.id)) {
