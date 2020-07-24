@@ -4,7 +4,7 @@
  * @ license: Apache License 2.0
  * @ version: 2020-05-10 14:55:18
  */
-import { Service, Base, Value, Autowired, Logger, Helper } from "koatty";
+import { Service, Value, Autowired, Logger, Helper, BaseService } from "koatty";
 import { App } from '../App';
 import { RbacService } from "./Admin/RbacService";
 import * as page from "../util/page";
@@ -12,7 +12,7 @@ import * as page from "../util/page";
 export interface MoInterface { rel: boolean; sortby: any; field: any[]; ispage: boolean; pagesize: number; page: number; }
 
 @Service()
-export class CommonService extends Base {
+export class CommonService extends BaseService {
     app: App;
 
     @Value("rbac")

@@ -14,10 +14,10 @@
   "dependencies": {
     "bluebird-retry": "^0.11.0",
     "jsonwebtoken": "^8.5.1",
-    "koatty": "^2.1.0",
+    "koatty": "^2.5.2",
     "mysql2": "^2.1.0",
     "request": "^2.88.2",
-    "request-promise": "^4.2.5",
+    "request-promise": "^4.2.6",
     "think_cache": "^2.4.0",
     "think_jwt": "^2.0.1",
     "think_static": "^2.2.0",
@@ -27,20 +27,17 @@
   "devDependencies": {
     "@types/bluebird": "^3.5.29",
     "@types/koa": "^2.x.x",
-    "@types/koa__router": "^8.0.2",
-    "@types/lodash": "^4.x.x",
+    "@types/koa__router": "^8.x.x",
     "@types/node": "^12.x.x",
-    "@typescript-eslint/eslint-plugin": "^2.x.x",
-    "@typescript-eslint/parser": "^2.x.x",
-    "apidoc": "^0.22.1",
+    "apidoc": "^0.24.0",
     "apidoc-plugin-class-validator": "^0.0.3",
-    "del-cli": "^3.0.0",
-    "eslint": "^7.0.0",
+    "del-cli": "^3.0.1",
+    "eslint": "^7.5.0",
     "reflect-metadata": "^0.1.13",
     "supervisor": "^0.12.0",
-    "ts-node": "^8.10.1",
+    "ts-node": "^8.10.2",
     "tslint": "^6.1.2",
     "tslint-config-alloy": "^0.2.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.7"
   }
 }

@@ -71,7 +71,7 @@ export class DataController extends AdminController {
     @GetMapping("/models")
     async getModels() {
         const fileResults = globby.sync(['**/**.js', '**/**.ts', '!**/**.d.ts'], {
-            cwd: `${this.app.app_path}/model`,
+            cwd: `${this.app.appPath}/model`,
             ignore: []
         });
         const modelList: string[] = [];

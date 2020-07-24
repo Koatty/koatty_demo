@@ -1,16 +1,23 @@
+/*
+ * @Author: richen
+ * @Date: 2019-12-31 12:03:58
+ * @LastEditTime: 2020-07-24 16:16:21
+ * @Description: 
+ * @Copyright (c) - <richenlin(at)gmail.com>
+ */
 /**
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
  * @ version: 2020-05-10 14:55:37
  */
-import { Service, Base, Autowired, Helper, Value, Logger } from "koatty";
+import { Service, Autowired, Helper, Value, Logger, BaseService } from "koatty";
 import { App } from '../../App';
 import { UserModel } from '../../model/UserModel';
 import * as tool from "../../util/tool";
 
 @Service()
-export class PassportService extends Base {
+export class PassportService extends BaseService {
     app: App;
     @Value("rbac.auth_superrole")
     private superRole: number;

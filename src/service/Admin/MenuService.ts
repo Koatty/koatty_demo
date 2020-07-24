@@ -2,9 +2,9 @@
  * @ author: xxx
  * @ copyright: Copyright (c)
  * @ license: Apache License 2.0
- * @ version: 2019-11-14 19:31:23
+ * @ version: 2020-05-14 11:23:18
  */
-import { Service, Base, Helper, Autowired, Value } from "koatty";
+import { Service, Helper, Autowired, Value, BaseService } from "koatty";
 import { App } from '../../App';
 import { UserModel } from "../../model/UserModel";
 import { RoleRuleModel } from "../../model/RoleRuleModel";
@@ -29,7 +29,7 @@ const loopSet = function (arr: any[]) {
 };
 
 @Service()
-export class MenuService extends Base {
+export class MenuService extends BaseService {
     app: App;
     @Autowired()
     private roleRuleModel: RoleRuleModel;
@@ -62,6 +62,7 @@ export class MenuService extends Base {
             const cacheList = await this.cache.hget('ROLE_MENUS', userInfo.roleid);
             list = JSON.parse(cacheList);
         }
+
         if (Helper.isEmpty(list)) {
             const ps: any[] = [];
             const menuList = await this.getFirstMenu(userInfo).catch((e) => []);

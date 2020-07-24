@@ -120,7 +120,7 @@ CREATE TABLE `think_role_data` (
 
 
 */
-import { Service, Base, Value, Helper, Autowired } from "koatty";
+import { Service, Value, Helper, Autowired, BaseService } from "koatty";
 import { App } from '../../App';
 import { UserModel } from '../../model/UserModel';
 import { RoleModel } from '../../model/RoleModel';
@@ -128,7 +128,7 @@ import { RoleRuleModel } from '../../model/RoleRuleModel';
 import { RoleDataModel } from '../../model/RoleDataModel';
 
 @Service()
-export class RbacService extends Base {
+export class RbacService extends BaseService {
   app: App;
   @Value("rbac.auth_superrole")
   private supeRole: string;

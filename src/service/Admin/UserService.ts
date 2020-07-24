@@ -4,7 +4,7 @@
  * @ license: Apache License 2.0
  * @ version: 2020-05-10 14:55:44
  */
-import { Service, Base, Autowired, Value, Koatty, Helper } from "koatty";
+import { Service, Autowired, Value, Koatty, Helper } from "koatty";
 import { App } from '../../App';
 import { CommonService } from "../CommonService";
 import { UserModel } from "../../model/UserModel";
