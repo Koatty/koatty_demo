@@ -1,7 +1,7 @@
 /*
  * @Author: richen
  * @Date: 2019-12-31 12:03:58
- * @LastEditTime: 2020-07-24 16:16:21
+ * @LastEditTime: 2020-07-28 10:15:53
  * @Description: 
  * @Copyright (c) - <richenlin(at)gmail.com>
  */
@@ -60,7 +60,9 @@ export class PassportService extends BaseService {
      * @memberof PassportService
      */
     async getAdminUser(username: string, password: string, check = false) {
-        const userData = await this.userModel.getUserInfoByName(username, password);
+        const userData = await this.userModel.getUserInfoByName(username, password).catch((err: Error) => {
+            throw Error("查询错误");
+        });
         if (check) {
             if (Helper.isEmpty(userData)) {
                 throw Error("用户名或密码错误");
