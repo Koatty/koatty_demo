@@ -2535,10 +2535,10 @@ koa@^2.13.0:
     type-is "^1.6.16"
     vary "^1.1.2"
 
-koatty@^2.5.4:
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/koatty/-/koatty-2.5.4.tgz#a9bbbfc48480c8d81a3398e4d8d5fc7618c17bc4"
-  integrity sha512-KKyYU6fL/uJZlKzCW9gJAMIfU0vrb1aVGcXEIMjZNTTqk57jppYt+aATG2dsP0kdylnDapA/2tzLnjLHZMtBJw==
+koatty@^2.5.5:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/koatty/-/koatty-2.5.5.tgz#05972db998ba57d3b21a2e9f812b7d25fab5a1dd"
+  integrity sha512-E4J7jj1FR3APQ4r//eayPZkMXk8Gs7dV6iv6hOHffb5Pfbp+F/acpRSM6z2mIyao3POB6ibps8qn+Rb7HRNM9A==
   dependencies:
     "@koa/router" "^9.3.1"
     globby "^11.0.1"
@@ -3538,7 +3538,7 @@ request-promise-core@1.1.4:
   dependencies:
     lodash "^4.17.19"
 
-request-promise@^4.2.6:
+request-promise@^4.2.5, request-promise@^4.2.6:
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/request-promise/-/request-promise-4.2.6.tgz#7e7e5b9578630e6f598e3813c0f8eb342a27f0a2"
   integrity sha512-HCHI3DJJUakkOr8fNoCc73E5nU5bqITjOYFMDrKHYOXWXrgD/SBaC7LjwuPymUprRyuF06UK7hd/lMHkmUXglQ==
@@ -4075,6 +4075,17 @@ think_payload@^3.1.0:
     think_lib "^2.x.x"
     think_logger "^2.x.x"
     xml2js "^0.4.23"
+
+think_request@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/think_request/-/think_request-1.0.0.tgz#7237e3b38039ec96cc1c1f37c9340012c99eb0d0"
+  integrity sha512-ucgfD+Zp8N+EUCYrAMK1SIKEXuOVYLL8qInrPlpmzfmxALq0EVmSl117ErR7B+OibqShdv+BSuM7UWJV7zDaiw==
+  dependencies:
+    bluebird-retry "^0.11.0"
+    request "^2.88.2"
+    request-promise "^4.2.5"
+    think_lib "^2.x.x"
+    think_logger "^2.x.x"
 
 think_static@^2.2.0:
   version "2.2.0"
