@@ -22,6 +22,9 @@ npm run build && koatty migrate all
 ## start server
 
 ```shell
+npm run dev
+
+//production mod
 npm start
 ```
 
