@@ -5,7 +5,8 @@
  * @ version: 2020-05-12 00:07:26
  */
 export default {
-    list: ["ApolloPlugin"], //加载的插件列表,执行顺序按照数组元素顺序
+    // list: ["ApolloPlugin"], //加载的插件列表,执行顺序按照数组元素顺序
+    list: [], //
     config: { //插件配置
         "ApolloPlugin": {
             host: 'http://127.0.0.1:8080', //your-config-server-url

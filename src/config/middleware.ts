@@ -5,7 +5,8 @@
  * @ version: 2020-05-12 00:07:26
  */
 export default {
-    list: ["StaticMiddleware", "CacheMiddleware", "JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
+    // list: ["StaticMiddleware", "CacheMiddleware", "JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
+    list: ["StaticMiddleware", "JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
     config: { //中间件配置
         // StaticMiddleware: {
         //     cache: false
