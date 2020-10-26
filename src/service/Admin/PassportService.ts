@@ -1,7 +1,7 @@
 /*
  * @Author: richen
  * @Date: 2019-12-31 12:03:58
- * @LastEditTime: 2020-07-28 10:15:53
+ * @LastEditTime: 2020-10-26 20:23:37
  * @Description: 
  * @Copyright (c) - <richenlin(at)gmail.com>
  */
@@ -44,7 +44,7 @@ export class PassportService extends BaseService {
             this.updateAdminUser({
                 id: userData.id, last_login_time: Helper.datetime()
             }).catch((err) => {
-                Logger.error(err);
+                Logger.Error(err);
             });
         }
         return userData;

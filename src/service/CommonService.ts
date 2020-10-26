@@ -60,12 +60,12 @@ export class CommonService extends BaseService {
         model = model || this.Model;
         if (mo.ispage) {
             return page.list(model, map, mo).catch((err) => {
-                Logger.error(err);
+                Logger.Error(err);
                 return {};
             });
         } else {
             return page.list(model, map, mo).catch((err) => {
-                Logger.error(err);
+                Logger.Error(err);
                 return [];
             });
         }

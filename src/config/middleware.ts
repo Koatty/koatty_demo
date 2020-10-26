@@ -5,23 +5,12 @@
  * @ version: 2020-05-12 00:07:26
  */
 export default {
-    // list: ["StaticMiddleware", "CacheMiddleware", "JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
+    // list: ["StaticMiddleware", "JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
     list: ["StaticMiddleware", "JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
     config: { //中间件配置
         // StaticMiddleware: {
         //     cache: false
         // },
-        CacheMiddleware: {
-            type: 'redis', //数据缓存类型 file,redis,memcache
-            key_prefix: 'Koatty:', //缓存key前置
-            timeout: 6 * 3600, //数据缓存有效期，单位: 秒
-            host: '192.168.0.150',
-            port: 6379,
-            password: '',
-            db: '0',
-            poolsize: 10, //pool size
-            conn_timeout: 5000 //try connection timeout
-        },
         JwtMiddleware: {
             alg: 'HS256', //算法
             sub: 'jwt', //主题

@@ -125,11 +125,11 @@ export class RoleModel extends BaseModel {
      */
     async flashCache(name: string, key: string, value?: any) {
         await this.app.cacheStore.hdel(name, key).catch((err: any) => {
-            Logger.error(err);
+            Logger.Error(err);
         });
         if (value) {
             return this.app.cacheStore.hset(name, key, JSON.stringify(value)).catch((err: any) => {
-                Logger.error(err);
+                Logger.Error(err);
             });
         }
         return Promise.resolve();

@@ -23,7 +23,7 @@ export class AdminController extends BaseController {
         //管理后台登录检查
         await this.checkLogin();
         const map = await this.commonService.authCheck(this.ctx.userid, this.ctx.path, this.Model ? this.Model.modelName : "", this.Map).catch((err) => {
-            Logger.error(err);
+            Logger.Error(err);
             return this.fail("无权限访问", "", 403);
         });
         //定义只读属性,属性不能被覆盖删除
