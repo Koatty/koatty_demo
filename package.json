@@ -13,9 +13,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "bluebird-retry": "^0.11.0",
-    "jsonwebtoken": "^8.5.1",
-    "koatty": "^2.5.5",
-    "mysql2": "^2.1.0",
+    "koatty": "^2.5.7",
+    "mysql2": "^2.2.5",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "think_apollo": "^2.0.3",
