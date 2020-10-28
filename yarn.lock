@@ -371,7 +371,7 @@ ansi-styles@^4.1.0:
     "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
 
-any-promise@^1.1.0:
+any-promise@^1.0.0, any-promise@^1.1.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/any-promise/-/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
   integrity sha1-q8av7tzqUugJzcA3au0845Y10X8=
@@ -898,7 +898,7 @@ component-emitter@^1.2.1:
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.3.0.tgz#16e4070fba8ae29b679f2215853ee181ab2eabc0"
   integrity sha512-Rd3se6QB+sO1TwqZjscQrurpEPIfO0/yYnSin6Q/rD3mOutHvUrCAhJub3r90uNb+SESBuE0QYoB90YdfatsRg==
 
-compressible@^2.0.18:
+compressible@^2.0.6:
   version "2.0.18"
   resolved "https://registry.yarnpkg.com/compressible/-/compressible-2.0.18.tgz#af53cca6b070d4c3c0750fbd77286a6d7cc46fba"
   integrity sha512-AF3r7P5dWxL8MxyITRMlORQNaOA2IkAFaTr4k7BUumjPtRpGDTZpl0Pb1XCO6JeDCBdp126Cgs9sMxqSjgYyRg==
@@ -1005,7 +1005,7 @@ debug@^2.2.0, debug@^2.3.3:
   dependencies:
     ms "2.0.0"
 
-debug@^3.2.6:
+debug@^3.1.0, debug@^3.2.6:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
   integrity sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==
@@ -1687,6 +1687,11 @@ fs-extra@^9.0.1:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
     universalify "^1.0.0"
+
+fs-readdir-recursive@^1.0.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/fs-readdir-recursive/-/fs-readdir-recursive-1.1.0.tgz#e32fc030a2ccee44a6b5371308da54be0b397d27"
+  integrity sha512-GNanXlVr2pf02+sPN40XN8HG+ePaNcvM0q5mZBd668Obwb0yD5GiUbZOFgwn8kGMY6I3mdyDJzieUy3PTYyTRA==
 
 fs.realpath@^1.0.0:
   version "1.0.0"
@@ -2554,6 +2559,17 @@ koa-convert@^1.2.0:
     co "^4.6.0"
     koa-compose "^3.0.0"
 
+koa-static-cache@^5.1.4:
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/koa-static-cache/-/koa-static-cache-5.1.4.tgz#bb24bbae4845316d101da2f8a1d89088e1916afe"
+  integrity sha512-abVWOHY6z6qSTvNtapWMAnvHS9SUiUCaQQQubClSAT9ybQPsZ6ioKcRarnownS4fMD0sXQgQ5ey8CYEuwoa1Yg==
+  dependencies:
+    compressible "^2.0.6"
+    debug "^3.1.0"
+    fs-readdir-recursive "^1.0.0"
+    mime-types "^2.1.8"
+    mz "^2.7.0"
+
 koa@^2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/koa/-/koa-2.13.0.tgz#25217e05efd3358a7e5ddec00f0a380c9b71b501"
@@ -2583,10 +2599,10 @@ koa@^2.13.0:
     type-is "^1.6.16"
     vary "^1.1.2"
 
-koatty@^2.5.8:
-  version "2.5.8"
-  resolved "http://mirrors.tencent.com/npm/koatty/-/koatty-2.5.8.tgz#16f0c6844ad2df9c1db2d98ef72104f36a7813ed"
-  integrity sha512-2XNx5t0UwFLidK91C+4KZ1fKLFgcYhvAV8GSLejNVBF6I8eU83MYkpq1lk/HX8Iv6CpvDXq3K/D9xXCFMLcyVA==
+koatty@^2.5.11:
+  version "2.5.11"
+  resolved "https://registry.yarnpkg.com/koatty/-/koatty-2.5.11.tgz#362868683b394cdd31ea2686a3127252f2a2659a"
+  integrity sha512-Y9n0S7JJZ1sV1bLOhIxycK2JlYAFXzbwQSuPxXECJ2ripHza64T3x8o+cllkjPSSAzQttlYXtl6oC/EkhvTd9Q==
   dependencies:
     "@koa/router" "^9.4.0"
     globby "^11.0.1"
@@ -2599,7 +2615,7 @@ koatty@^2.5.8:
     think_lib "^2.6.3"
     think_logger "^2.4.0"
     think_payload "^3.1.0"
-    think_trace "^3.2.0"
+    think_trace "^3.3.1"
     tslib "^2.0.3"
 
 koatty_cacheable@^1.0.0:
@@ -2928,7 +2944,7 @@ mime-db@1.44.0, "mime-db@>= 1.43.0 < 2":
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.44.0.tgz#fa11c5eb0aca1334b4233cb4d52f10c5a6272f92"
   integrity sha512-/NOTfLrsPBVeH7YtFPgsVWveuL+4SjjYxaQ1xtM1KMFj7HdxlBlxeyNLzhyJVx7r4rZGJAZ/6lkKCitSc/Nmpg==
 
-mime-types@^2.1.12, mime-types@^2.1.18, mime-types@^2.1.26, mime-types@~2.1.19, mime-types@~2.1.24:
+mime-types@^2.1.12, mime-types@^2.1.18, mime-types@^2.1.8, mime-types@~2.1.19, mime-types@~2.1.24:
   version "2.1.27"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.27.tgz#47949f98e279ea53119f5722e0f34e529bec009f"
   integrity sha512-JIhqnCasI9yD+SsmkquHBxTSEuZdQX5BuQnS2Vc7puQQQ+8yiP5AY5uWhpdv4YL4VM5c6iliiYWPgJ/nJQLp7w==
@@ -3042,6 +3058,15 @@ mysql2@^2.2.5:
     seq-queue "^0.0.5"
     sqlstring "^2.3.2"
 
+mz@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/mz/-/mz-2.7.0.tgz#95008057a56cafadc2bc63dde7f9ff6955948e32"
+  integrity sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==
+  dependencies:
+    any-promise "^1.0.0"
+    object-assign "^4.0.1"
+    thenify-all "^1.0.0"
+
 named-placeholders@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/named-placeholders/-/named-placeholders-1.1.2.tgz#ceb1fbff50b6b33492b5cf214ccf5e39cef3d0e8"
@@ -3128,6 +3153,11 @@ oauth-sign@~0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
   integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
+
+object-assign@^4.0.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
+  integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
 
 object-copy@^0.1.0:
   version "0.1.0"
@@ -4059,6 +4089,20 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
+thenify-all@^1.0.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/thenify-all/-/thenify-all-1.6.0.tgz#1a1918d402d8fc3f98fbf234db0bcc8cc10e9726"
+  integrity sha1-GhkY1ALY/D+Y+/I02wvMjMEOlyY=
+  dependencies:
+    thenify ">= 3.1.0 < 4"
+
+"thenify@>= 3.1.0 < 4":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/thenify/-/thenify-3.3.1.tgz#8932e686a4066038a016dd9e2ca46add9838a95f"
+  integrity sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==
+  dependencies:
+    any-promise "^1.0.0"
+
 think_apollo@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/think_apollo/-/think_apollo-2.0.3.tgz#6bc194c71066ec1a47d0372d1f98ef3fa2b62786"
@@ -4128,13 +4172,13 @@ think_request@^1.0.0:
     think_lib "^2.x.x"
     think_logger "^2.x.x"
 
-think_static@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/think_static/-/think_static-2.2.0.tgz#c7432e6555974e343a0ba4b88a758e186ae1a0f0"
-  integrity sha512-Ddc7U6dHLK8JrsPivU9Z6jn6WhZTLZGxAbmdaxGDz4OuhKml8OvYhjzTTITiBqpbGfljRL9pSVUZYgU2szlNnQ==
+think_static@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/think_static/-/think_static-3.0.1.tgz#6b0de299673d3170636fb88196e15d78bc714c38"
+  integrity sha512-gEH8b15LM4iWy6bfj/vlaC1FRs0+KktKwEgpAadIiVHzatlIuqllK8HyZOQJQBRKFXouiWoYhxnJ1NUxecSJJQ==
   dependencies:
-    compressible "^2.0.18"
-    mime-types "^2.1.26"
+    koa-static-cache "^5.1.4"
+    lru-cache "^6.0.0"
     think_lib "^2.x.x"
 
 think_store@^3.4.0:
@@ -4147,10 +4191,10 @@ think_store@^3.4.0:
     think_lib "^2.x.x"
     think_logger "^2.x.x"
 
-think_trace@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/think_trace/-/think_trace-3.2.0.tgz#3e1eafa083ff5a073a8ed29226e5edb8e7af4aa9"
-  integrity sha512-ICBzPe8/W10UEXWzpqSnGNZcv2mhuc0vDuAJn8YTqKV9c0nKWL2UtYM5jqfLrcVpuPIwoVxKmjiRAMxPhbKD3w==
+think_trace@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/think_trace/-/think_trace-3.3.1.tgz#961b935f2b417d0e30ae023671effda96e55c4bc"
+  integrity sha512-LW1/8rJcuhpevE3nrWwVEUFcU7meObinPajm2ckvYb7AfLZYH/QqymKTifnMHUQVsgWMXQkM+5oI3aDJxPEslw==
   dependencies:
     think_lib "^2.x.x"
     think_logger "^2.x.x"

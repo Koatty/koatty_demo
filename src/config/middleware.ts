@@ -8,9 +8,9 @@ export default {
     // list: ["StaticMiddleware", "JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
     list: ["StaticMiddleware", "JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
     config: { //中间件配置
-        // StaticMiddleware: {
-        //     cache: false
-        // },
+        StaticMiddleware: {
+            cache: true
+        },
         JwtMiddleware: {
             alg: 'HS256', //算法
             sub: 'jwt', //主题
