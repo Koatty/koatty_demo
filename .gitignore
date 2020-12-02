@@ -1,2 +1,9 @@
-logs/
-node_modules/
+.idea
+.DS_Store
+node_modules
+coverage
+logs
+dist
+npm-debug.log
+yarn-error.log
+static/doc
