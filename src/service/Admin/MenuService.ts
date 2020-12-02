@@ -103,7 +103,7 @@ export class MenuService extends BaseService {
         }
         const list = await this.roleRuleModel.field('id,desc,name,icon,level,pid').where(condition).order(option).select();
         if (!Helper.isEmpty(menuid)) {
-            return list.filter((x: any) => x.id === Helper.toInt(menuid));
+            return list.filter((x: any) => x.id === Helper.toInteger(menuid));
         } else {
             return list;
         }

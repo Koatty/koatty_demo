@@ -5,7 +5,7 @@
  * @ version: 2019-11-11 18:34:38
  */
 
-const cryptor = require("crypto");
+const crypto = require("crypto");
 
 /**
  * 是否MD5串
@@ -103,6 +103,6 @@ export function url(value: string): boolean {
  * @returns
  */
 export function uuid(len: number) {
-    const str = cryptor.randomBytes(Math.ceil(len * 0.75)).toString('base64').slice(0, len);
+    const str = crypto.randomBytes(Math.ceil(len * 0.75)).toString('base64').slice(0, len);
     return str.replace(/[\+\/]/g, '_');
 }

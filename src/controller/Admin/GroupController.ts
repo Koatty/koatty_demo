@@ -9,7 +9,7 @@ import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import * as groupType from "../../config/groupType.json";
 import { GroupService } from '../../service/Admin/GroupService';
-import { GroupDTO } from "../../model/dto/GroupDTO";
+import { GroupDTO } from "../../dto/GroupDTO";
 
 @Controller("/admin/group")
 export class GroupController extends AdminController {
@@ -23,7 +23,7 @@ export class GroupController extends AdminController {
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParamClass (src/model/dto/GroupDTO.ts) {GroupDTO}
+    * @apiParamClass (src/dto/GroupDTO.ts) {GroupDTO}
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"操作成功","data":{"count":1,"total":1,"page":1,"num":20,"data":[{"id":1,"name":"公司","icon":"","desc":"公司","address":"","phone":"","email":"","attribute":"","type":0,"create_time":1111,"update_time":1111,"status":1}]}}
@@ -47,7 +47,8 @@ export class GroupController extends AdminController {
         this.Map.page && (delete this.Map.page);
 
         const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("查询成功", pageData);
     }
@@ -98,7 +99,8 @@ export class GroupController extends AdminController {
     @PostMapping("/add")
     async add(@Post() param: any) {
         const res = await this.service.add(param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -130,7 +132,8 @@ export class GroupController extends AdminController {
     @PostMapping("/edit")
     async edit(@Post() param: any) {
         const res = await this.service.edit(this.Map, param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -152,7 +155,8 @@ export class GroupController extends AdminController {
     @PostMapping("/del")
     async del(@Post("id") param: number) {
         const res = await this.service.del(this.Map, param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -174,7 +178,8 @@ export class GroupController extends AdminController {
     @GetMapping("/view")
     async view(@Get("id") param: number) {
         const res = await this.service.info(this.Map, param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }

@@ -10,7 +10,7 @@ import { AdminController } from '../AdminController';
 import { RoleService } from '../../service/Admin/RoleService';
 import { MenuService } from '../../service/Admin/MenuService';
 import { RbacService } from '../../service/Admin/RbacService';
-import { RoleDTO } from '../../model/dto/RoleDTO';
+import { RoleDTO } from '../../dto/RoleDTO';
 
 @Controller("/admin/role")
 export class RoleController extends AdminController {
@@ -34,7 +34,7 @@ export class RoleController extends AdminController {
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParamClass (src/model/dto/RoleDTO.ts) {RoleDTO}
+    * @apiParamClass (src/dto/RoleDTO.ts) {RoleDTO}
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"","data":{}}
@@ -52,7 +52,8 @@ export class RoleController extends AdminController {
         this.Map.page && (delete this.Map.page);
 
         const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("查询成功", pageData);
     }
@@ -76,7 +77,8 @@ export class RoleController extends AdminController {
     @PostMapping("/add")
     async add(@Post() param: any) {
         const res = await this.service.add(param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -103,7 +105,8 @@ export class RoleController extends AdminController {
     @PostMapping("/edit")
     async edit(@Post() param: any) {
         const res = await this.service.edit(this.Map, param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -125,7 +128,8 @@ export class RoleController extends AdminController {
     @PostMapping("/del")
     async del(@Post("id") param: number) {
         const res = await this.service.del(this.Map, param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }

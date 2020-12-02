@@ -24,7 +24,8 @@ export class AdminController extends BaseController {
         await this.checkLogin();
         const map = await this.commonService.authCheck(this.ctx.userid, this.ctx.path, this.Model ? this.Model.modelName : "", this.Map).catch((err) => {
             Logger.Error(err);
-            return this.fail("无权限访问", "", 403);
+            this.fail("无权限访问", "", 403);
+            return this.prevent();
         });
         //定义只读属性,属性不能被覆盖删除
         // tslint:disable-next-line: forin
@@ -42,13 +43,17 @@ export class AdminController extends BaseController {
     async checkLogin() {
         const token = this.ctx.get('x-access-token');
         const uuid = await this.ctx.jwtDecode(token).catch((err: any) => {
-            return this.fail(err.message, { needLogin: 1 }, 401);
+            this.fail(err.message, { needLogin: 1 }, 401);
+            return this.prevent();
         });
         this.ctx.userid = uuid;
-        const ex = await this.app.cacheStore.get('UUID', uuid).catch((err: any) => '');
-        if (!ex) {
-            return this.fail('请登录后访问', { needLogin: 1 }, 401);
+        if (this.app.cacheStore) {
+            const ex = await this.app.cacheStore.get('UUID', uuid).catch((err: any) => '');
+            if (!ex) {
+                return this.fail('请登录后访问', { needLogin: 1 }, 401);
+            }
         }
+
         return Promise.resolve();
     }
 

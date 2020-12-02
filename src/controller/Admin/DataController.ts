@@ -10,7 +10,7 @@ import { Controller, GetMapping, Get, Autowired, Post, PostMapping, Valid, Helpe
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import { DataService } from "../../service/Admin/DataService";
-import { DataDTO } from '../../model/dto/DataDTO';
+import { DataDTO } from '../../dto/DataDTO';
 
 @Controller("/admin/data")
 export class DataController extends AdminController {
@@ -24,7 +24,7 @@ export class DataController extends AdminController {
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParamClass (src/model/dto/DataDTO.ts) {DataDTO}
+    * @apiParamClass (src/dto/DataDTO.ts) {DataDTO}
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"操作成功","data":{"count":0,"total":0,"page":0,"num":20,"data":[]}}
@@ -48,7 +48,8 @@ export class DataController extends AdminController {
         this.Map.page && (delete this.Map.page);
 
         const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("查询成功", pageData);
     }
@@ -105,7 +106,8 @@ export class DataController extends AdminController {
         @Post("condition") condition: string
     ) {
         const res = await this.service.add({ name, desc, condition }).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -134,7 +136,8 @@ export class DataController extends AdminController {
         @Post("condition") condition: string
     ) {
         const res = await this.service.edit(this.Map, { id, name, desc, condition }).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -156,7 +159,8 @@ export class DataController extends AdminController {
     @PostMapping("/del")
     async del(@Post("id") @Valid("IsNotEmpty", "规则ID不能为空") param: number) {
         const res = await this.service.del(this.Map, param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -178,7 +182,8 @@ export class DataController extends AdminController {
     @GetMapping("/view")
     async view(@Get("id") @Valid("IsNotEmpty", "规则ID不能为空") param: number) {
         const res = await this.service.info(this.Map, param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }

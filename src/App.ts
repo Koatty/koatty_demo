@@ -15,7 +15,7 @@ import { Koatty, Bootstrap } from "koatty";
         //忽略https自签名验证
         process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
         //运行环境
-        process.env.RUN_TIME = 'development';
+        // process.env.KOATTY_ENV = 'development';
     }
 )
 // @ComponentScan('./')

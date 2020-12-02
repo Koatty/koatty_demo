@@ -89,9 +89,9 @@ export async function dataList(data: any[], page: number, pagesize = 20) {
 
     defaultData.count = data.length || 0;
     if (defaultData.count % pagesize === 0) {
-        defaultData.total = Helper.toInt(defaultData.count / pagesize);
+        defaultData.total = Helper.toInteger(defaultData.count / pagesize);
     } else {
-        defaultData.total = Helper.toInt(defaultData.count / pagesize) + 1;
+        defaultData.total = Helper.toInteger(defaultData.count / pagesize) + 1;
     }
 
     if (page > defaultData.total) {
@@ -144,9 +144,9 @@ export async function sqlList(model: any, sql = "", mo: MoInterface = { field: [
         defaultData.count = resData[0] && resData[0][0] && resData[0][0].totalcount ? resData[0][0].totalcount : 0;
         defaultData.data = resData[1] || [];
         if (defaultData.count % mo.pagesize === 0) {
-            defaultData.total = Helper.toInt(defaultData.count / mo.pagesize);
+            defaultData.total = Helper.toInteger(defaultData.count / mo.pagesize);
         } else {
-            defaultData.total = Helper.toInt(defaultData.count / mo.pagesize) + 1;
+            defaultData.total = Helper.toInteger(defaultData.count / mo.pagesize) + 1;
         }
 
         if (mo.page > defaultData.total) {

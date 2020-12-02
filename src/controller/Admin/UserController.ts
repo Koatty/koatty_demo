@@ -8,7 +8,7 @@ import { Controller, GetMapping, Autowired, Get, PostMapping, Post, Helper, Vali
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import { UserService } from "../../service/Admin/UserService";
-import { UserDTO } from "../../model/dto/UserDTO";
+import { UserDTO } from "../../dto/UserDTO";
 
 @Controller("/admin/user")
 export class UserController extends AdminController {
@@ -22,7 +22,7 @@ export class UserController extends AdminController {
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParamClass (src/model/dto/UserDTO.ts) {UserDTO}
+    * @apiParamClass (src/dto/UserDTO.ts) {UserDTO}
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"操作成功","data":{"count":0,"total":0,"page":0,"num":20,"data":[]}}
@@ -46,7 +46,8 @@ export class UserController extends AdminController {
         this.Map.page && (delete this.Map.page);
 
         const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("查询成功", pageData);
     }
@@ -57,7 +58,7 @@ export class UserController extends AdminController {
     *
     * @apiHeader {String} x-access-token JWT token
     *
-    * @apiParamClass (src/model/dto/UserDTO.ts) {UserDTO}
+    * @apiParamClass (src/dto/UserDTO.ts) {UserDTO}
     *
     * @apiSuccessExample {json} Success
     * {"status":1,"code":200,"message":"操作成功","data":{}}
@@ -69,7 +70,8 @@ export class UserController extends AdminController {
     @Validated()
     async add(@Post() param: UserDTO) {
         const res = await this.service.add(param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -132,7 +134,8 @@ export class UserController extends AdminController {
     @PostMapping("/edit")
     async edit(@Post() param: any) {
         const res = await this.service.edit(this.Map, param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -154,7 +157,8 @@ export class UserController extends AdminController {
     @PostMapping("/del")
     async del(@Post("id") param: number) {
         const res = await this.service.del(this.Map, param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -176,7 +180,8 @@ export class UserController extends AdminController {
     @GetMapping("/view")
     async view(@Get("id") param: number) {
         const res = await this.service.info(this.Map, param).catch((err: any) => {
-            return this.fail(`操作失败! ${err.message || err}`);
+            this.fail(`操作失败! ${err.message || err}`);
+            return this.prevent();
         });
         return this.ok("操作成功", res);
     }

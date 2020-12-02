@@ -212,7 +212,7 @@ export class UserModel extends BaseModel {
      * @memberof UserModel
      */
     autoBirthday(data: any) {
-        return Helper.datetime(data.birthday);
+        return Helper.dateTime(data.birthday);
     }
 
 
@@ -245,16 +245,16 @@ export class UserModel extends BaseModel {
             data.end_time = Helper.datetime(data.end_time);
         }
         if (!Helper.isEmpty(data.gender)) {
-            data.gender = Helper.toInt(data.gender);
+            data.gender = Helper.toInteger(data.gender);
         }
         if (!Helper.isEmpty(data.roleid)) {
-            data.roleid = Helper.toInt(data.roleid);
+            data.roleid = Helper.toInteger(data.roleid);
         }
         if (!Helper.isEmpty(data.groupid)) {
-            data.groupid = Helper.toInt(data.groupid);
+            data.groupid = Helper.toInteger(data.groupid);
         }
         if (!Helper.isEmpty(data.status)) {
-            data.status = Helper.toInt(data.status);
+            data.status = Helper.toInteger(data.status);
         }
         return Promise.resolve(data);
     }
@@ -287,19 +287,19 @@ export class UserModel extends BaseModel {
             }
         }
         if (!Helper.isEmpty(data.status)) {
-            data.status = Helper.toInt(data.status);
+            data.status = Helper.toInteger(data.status);
         }
         if (!Helper.isEmpty(data.gender)) {
-            data.gender = Helper.toInt(data.gender);
+            data.gender = Helper.toInteger(data.gender);
         }
         if (!Helper.isEmpty(data.roleid)) {
-            data.roleid = Helper.toInt(data.roleid);
+            data.roleid = Helper.toInteger(data.roleid);
         }
         if (!Helper.isEmpty(data.groupid)) {
-            data.groupid = Helper.toInt(data.groupid);
+            data.groupid = Helper.toInteger(data.groupid);
         }
         if (!Helper.isEmpty(data.status)) {
-            data.status = Helper.toInt(data.status);
+            data.status = Helper.toInteger(data.status);
         }
         return Promise.resolve(data);
     }

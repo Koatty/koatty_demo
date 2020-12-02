@@ -60,7 +60,8 @@ export class PublicController extends BaseController {
             return this.fail("用户名或密码错误");
         }
         const userData = await this.passportService.getAdminUser(info.username || '', Helper.toString(info.password) || '').catch((err) => {
-            return this.fail(err.message);
+            this.fail(err.message);
+            return this.prevent();
         });
         if (Helper.isEmpty(userData) || Helper.isEmpty(userData.id)) {
             return this.fail("用户名或密码错误");
@@ -115,7 +116,8 @@ export class PublicController extends BaseController {
             //清除权限缓存
             this.cache.hdel('ROLE_RULES', this.ctx.roleid)
         ]).catch(() => {
-            return this.fail("登出失败", { needLogin: 1 });
+            this.fail("登出失败", { needLogin: 1 });
+            return this.prevent();
         });
         return this.ok("登出成功");
     }
