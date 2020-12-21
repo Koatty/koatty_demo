@@ -21,26 +21,6 @@ export class AdminController extends BaseController {
 
     async __before() {
         //管理后台登录检查
-        await this.checkLogin();
-        const map = await this.commonService.authCheck(this.ctx.userid, this.ctx.path, this.Model ? this.Model.modelName : "", this.Map).catch((err) => {
-            Logger.Error(err);
-            this.fail("无权限访问", "", 403);
-            return this.prevent();
-        });
-        //定义只读属性,属性不能被覆盖删除
-        // tslint:disable-next-line: forin
-        for (const n in map) {
-            Helper.define(this.Map, n, map[n]);
-        }
-    }
-
-    /**
-     * 检查登录
-     *
-     * @returns
-     * @memberof AdminController
-     */
-    async checkLogin() {
         const token = this.ctx.get('x-access-token');
         const uuid = await this.ctx.jwtDecode(token).catch((err: any) => {
             this.fail(err.message, { needLogin: 1 }, 401);
@@ -53,8 +33,17 @@ export class AdminController extends BaseController {
                 return this.fail('请登录后访问', { needLogin: 1 }, 401);
             }
         }
-
-        return Promise.resolve();
+        // 权限检查
+        const map = await this.commonService.authCheck(this.ctx.userid, this.ctx.path, this.Model ? this.Model.modelName : "", this.Map).catch((err) => {
+            Logger.Error(err);
+            this.fail("无权限访问", "", 403);
+            return this.prevent();
+        });
+        //定义只读属性,属性不能被覆盖删除
+        // tslint:disable-next-line: forin
+        for (const n in map) {
+            Helper.define(this.Map, n, map[n]);
+        }
     }
 
 }

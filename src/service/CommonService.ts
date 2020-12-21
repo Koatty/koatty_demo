@@ -21,7 +21,6 @@ export class CommonService extends BaseService {
     private rbacService: RbacService;
     protected Model: any;
 
-
     /**
      * 功能及数据权限检查
      *

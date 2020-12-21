@@ -5,11 +5,19 @@
  * @ version: 2020-05-12 00:07:26
  */
 export default {
-    // list: ["StaticMiddleware", "JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
-    list: ["StaticMiddleware", "JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
+    list: ["JwtMiddleware", "ViewMiddleware"], //加载的中间件列表
     config: { //中间件配置
-        StaticMiddleware: {
-            cache: true
+        "StaticMiddleware": {
+            // dir: '/static', // resource path
+            // prefix: '', // the url prefix you wish to add, default to ''
+            // alias: {}, // object map of aliases. See below
+            // gzip: true, // when request's accept-encoding include gzip, files will compressed by gzip.
+            // usePrecompiledGzip: false, // try use gzip files, loaded from disk, like nginx gzip_static
+            // buffer: false, // store the files in memory instead of streaming from the filesystem on each request
+            // filter: [], // (function | array) - filter files at init dir, for example - skip non build (source) files. If array set - allow only listed files
+            // maxAge: 3600 * 24 * 7, // cache control max age for the files, 0 by default.
+            // preload: false, // caches the assets on initialization or not, default to true. always work together with options.dynamic.
+            // cache: false // dynamic load file which not cached on initialization.
         },
         JwtMiddleware: {
             alg: 'HS256', //算法

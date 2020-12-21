@@ -4,11 +4,13 @@
  * @ license: Apache License 2.0
  * @ version: 2019-11-20 15:10:59
  */
-import { Controller, GetMapping } from "koatty";
+import { BeforeEach, Controller, GetMapping } from "koatty";
 import { App } from '../../App';
+import { TestAspect } from "../../aspect/TestAspect";
 import { AdminController } from "../AdminController";
 
 @Controller("/admin")
+@BeforeEach(TestAspect)
 export class IndexController extends AdminController {
     app: App;
     pageInfo: { 'appName': string; 'appVersion': string; 'appKeywords': string; 'appDescription': string; };

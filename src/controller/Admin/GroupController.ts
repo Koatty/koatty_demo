@@ -162,8 +162,8 @@ export class GroupController extends AdminController {
     }
 
     /**
-    * @api {get} /admin/data/view 数据权限查看
-    * @apiGroup Data
+    * @api {get} /admin/group/view 组织查看
+    * @apiGroup Group
     * 
     * @apiHeader {String} x-access-token JWT token
     * 

@@ -3,8 +3,8 @@
 {
     "apps": [
         {
-            "name": "CSS",
-            "script": "index.js",
+            "name": "app",
+            "script": "App.js",
             "cwd": "./dist",
             "max_memory_restart": "300M",
             "instances": 2,
