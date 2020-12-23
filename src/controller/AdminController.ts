@@ -19,6 +19,12 @@ export class AdminController extends BaseController {
     @Autowired()
     protected commonService: CommonService;
 
+    /**
+     * 登录及权限判断切面方法 
+     *
+     * @returns {*}  
+     * @memberof AdminController
+     */
     async __before() {
         //管理后台登录检查
         const token = this.ctx.get('x-access-token');

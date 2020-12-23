@@ -10,9 +10,9 @@ export default {
     app_hostname: '', // Hostname
     encoding: 'utf-8', //输出数据的编码
 
-    logs: true, //是否存储日志
-    logs_path: process.env.ROOT_PATH + '/logs', //存储日志文件目录
-    logs_level: ['info', 'warn', 'error'], //日志存储级别, 'info', 'warn', 'error', 'success' or custom type
+    logs_write: true, // Whether to store logs
+    logs_path: process.env.ROOT_PATH + "/logs", // Log file directory
+    logs_level: "WARN", // Log storage level, "DEBUG" | "INFO" | "WARN" | "ERROR"
 
     //RBAC权限配置
     rbac: {

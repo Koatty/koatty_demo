@@ -13,7 +13,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "bluebird-retry": "^0.11.0",
-    "koatty": "^3.0.7",
+    "koatty": "^3.0.12",
     "mysql2": "^2.2.5",
     "think_apollo": "^2.0.3",
     "think_jwt": "^2.0.1",

@@ -2649,10 +2649,10 @@ koa@^2.13.0:
     type-is "^1.6.16"
     vary "^1.1.2"
 
-koatty@^3.0.7:
-  version "3.0.7"
-  resolved "https://registry.yarnpkg.com/koatty/-/koatty-3.0.7.tgz#9a55a7e66867961a8872486c896813435bd2913c"
-  integrity sha512-f1JEQzBUFIcxD6tCyTwG/U7hvbSlWx7WDnOhddp+TbKixFRabC+RjRCDpZh1sWutDgvKtrYUSMkC1kn0OjtwgQ==
+koatty@^3.0.12:
+  version "3.0.12"
+  resolved "https://registry.yarnpkg.com/koatty/-/koatty-3.0.12.tgz#6c44e6d3108bb39439375208865e8f7079f54bac"
+  integrity sha512-s4ze8HdrIVxR7qpuQxNLMf+mCoTLJAVCyHBdb+TZ5/dsqjDup7EJ0zv7IXTPAoYenArj0NypyewaUT38KP4Daw==
   dependencies:
     "@koa/router" "^10.0.0"
     cls-hooked "^4.2.2"
@@ -2681,9 +2681,9 @@ koatty_cacheable@^1.x.x:
     tslib "^2.0.3"
 
 koatty_container@^1.x.x:
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/koatty_container/-/koatty_container-1.3.7.tgz#22ab0edaf3e6e03eeba3a5f7949fac68ec835c1b"
-  integrity sha512-MB4/ka1hRzItZaJa6zEyhSKvvMlzqPkvxANOtBOOx14750yYeC5dyrNuqc7i3juTgwN7nMpxG3Amn7AnF4TZ0g==
+  version "1.3.10"
+  resolved "https://registry.yarnpkg.com/koatty_container/-/koatty_container-1.3.10.tgz#372052a11d7df467182416fe6e9851922fc409d0"
+  integrity sha512-ppl5ebnQPQmgG3+hoyV7gjPiJ4u6txLBQH6vAVxHa1fkeWShcIj6LHLLEGRbOJSDMcIlVeJsQv4n1tk4Ybjw7g==
   dependencies:
     koatty_lib "^1.x.x"
     koatty_logger "^1.x.x"
