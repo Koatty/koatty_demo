@@ -4,7 +4,7 @@
  * @ license: MIT
  * @ version: 2019-12-31 11:47:54
  */
-import { IsNotEmpty, IsIn } from "koatty";
+import { IsNotEmpty, IsIn } from "koatty_validation";
 
 export class RoleDTO {
     /**

@@ -4,16 +4,30 @@
   "description": "application created by koatty",
   "scripts": {
     "build": "del-cli --force dist && tsc",
-    "dev": "supervisor -w src -x ts-node -q ./src/App.ts",
+    "dev": "nodemon ./src/App.ts",
     "doc": "apidoc -i src/controller/ -o static/doc/",
     "start": "npm run build && node ./dist/App.js",
     "test": "tslint 'src/**/*.ts'"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "docs/*"
+    ],
+    "watch": [
+      "src"
+    ],
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "legacyWatch": true,
+    "delay": "1000"
   },
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
     "bluebird-retry": "^0.11.0",
-    "koatty": "^3.1.0",
+    "koatty": "^3.2.1",
     "koatty_apollo": "^2.1.2",
     "mysql2": "^2.2.5",
     "think_jwt": "^2.0.1",
@@ -31,8 +45,8 @@
     "apidoc-plugin-class-validator": "^0.0.3",
     "del-cli": "^3.0.1",
     "eslint": "^7.12.0",
+    "nodemon": "^2.0.6",
     "reflect-metadata": "^0.1.13",
-    "supervisor": "^0.12.0",
     "ts-node": "^9.0.0",
     "tslint": "^6.1.3",
     "tslint-config-alloy": "^0.2.1",

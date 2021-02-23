@@ -4,7 +4,7 @@
  * @ license: MIT
  * @ version: 2019-12-31 11:32:33
  */
-import { IsNotEmpty, IsPhoneNumber, IsEmail, IsIn } from "koatty";
+import { IsNotEmpty, IsPhoneNumber, IsEmail, IsIn } from "koatty_validation";
 
 export class GroupDTO {
 

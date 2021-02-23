@@ -6,7 +6,8 @@
  */
 // tslint:disable-next-line: no-implicit-dependencies
 import * as globby from 'globby';
-import { Controller, GetMapping, Get, Autowired, Post, PostMapping, Valid, Helper, Validated } from "koatty";
+import { Controller, GetMapping, Get, Autowired, Post, PostMapping, Helper } from "koatty";
+import { Valid, Validated } from 'koatty_validation';
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import { DataService } from "../../service/Admin/DataService";

@@ -4,7 +4,8 @@
  * @ license: Apache License 2.0
  * @ version: 2020-05-11 23:55:30
  */
-import { Controller, BaseController, GetMapping, Autowired, Get, PostMapping, Post, Helper, Validated } from "koatty";
+import { Controller, BaseController, GetMapping, Autowired, Get, PostMapping, Post, Helper } from "koatty";
+import { Valid, Validated } from 'koatty_validation';
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
 import * as groupType from "../../config/groupType.json";

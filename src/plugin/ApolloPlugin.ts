@@ -6,7 +6,7 @@
  */
 import { Plugin, IPlugin, Helper } from "koatty";
 import { App } from '../App';
-import { PluginApollo } from "think_apollo";
+import { PluginApollo } from "koatty_apollo";
 
 @Plugin()
 export class ApolloPlugin implements IPlugin {

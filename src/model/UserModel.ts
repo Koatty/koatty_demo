@@ -5,7 +5,8 @@
  * @ version: 2020-01-16 19:38:15
  */
 import { BaseModel, Entity, PrimaryColumn, Column, TimestampColumn } from "thinkorm";
-import { Component, Value, Helper, Logger, IsIn } from 'koatty';
+import { Component, Value, Helper, Logger } from 'koatty';
+import { IsIn } from 'koatty_validation';
 import { App } from '../App';
 
 @Component()

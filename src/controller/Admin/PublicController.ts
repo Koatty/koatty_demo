@@ -4,7 +4,8 @@
  * @ license: Apache License 2.0
  * @ version: 2020-05-12 17:23:30
  */
-import { Controller, BaseController, GetMapping, Post, Autowired, Helper, Value, PostMapping, Get, Valid, PutMapping, RequestBody, PathVariable } from "koatty";
+import { Controller, BaseController, GetMapping, Post, Autowired, Helper, Value, PostMapping, Get, PutMapping, RequestBody, PathVariable } from "koatty";
+import { Valid, Validated } from 'koatty_validation';
 import { App } from '../../App';
 const jwt = require('jsonwebtoken');
 import { PassportService } from "../../service/Admin/PassportService";
@@ -18,7 +19,6 @@ export class PublicController extends BaseController {
 
     @Autowired()
     private passportService: PassportService;
-
     cache: any;
 
     init() {

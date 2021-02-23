@@ -24,6 +24,8 @@ export class IndexController extends AdminController {
             'appKeywords': this.app.config('app_keywords'),
             'appDescription': this.app.config('app_description')
         };
+
+
         return this.ok('Hello, Koatty!');
     }
 }

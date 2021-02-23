@@ -4,7 +4,7 @@
  * @ license: MIT
  * @ version: 2019-12-31 11:19:48
  */
-import { IsNotEmpty, IsIn } from "koatty";
+import { IsNotEmpty, IsIn } from "koatty_validation";
 
 export class DataDTO {
     @IsNotEmpty({ message: "数据模型类名称不能为空" })

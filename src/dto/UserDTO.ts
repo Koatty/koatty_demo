@@ -4,7 +4,7 @@
  * @ license: MIT
  * @ version: 2019-12-31 11:59:28
  */
-import { IsNotEmpty, IsMobile, Min, IsEmail, IsDate, IsIn } from "koatty";
+import { IsNotEmpty, IsMobile, Min, IsEmail, IsDate, IsIn } from "koatty_validation";
 
 export class UserDTO {
 
