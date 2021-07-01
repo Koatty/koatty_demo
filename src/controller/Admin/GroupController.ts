@@ -4,7 +4,7 @@
  * @ license: Apache License 2.0
  * @ version: 2020-05-11 23:55:30
  */
-import { Controller, BaseController, GetMapping, Autowired, Get, PostMapping, Post, Helper } from "koatty";
+import { Controller, BaseController, GetMapping, Autowired, Get, PostMapping, Post, Helper, prevent } from "koatty";
 import { Valid, Validated } from 'koatty_validation';
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
@@ -49,7 +49,7 @@ export class GroupController extends AdminController {
 
         const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
             this.fail(`操作失败! ${err.message || err}`);
-            return this.prevent();
+            return prevent();
         });
         return this.ok("查询成功", pageData);
     }
@@ -101,7 +101,7 @@ export class GroupController extends AdminController {
     async add(@Post() param: any) {
         const res = await this.service.add(param).catch((err: any) => {
             this.fail(`操作失败! ${err.message || err}`);
-            return this.prevent();
+            return prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -134,7 +134,7 @@ export class GroupController extends AdminController {
     async edit(@Post() param: any) {
         const res = await this.service.edit(this.Map, param).catch((err: any) => {
             this.fail(`操作失败! ${err.message || err}`);
-            return this.prevent();
+            return prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -157,7 +157,7 @@ export class GroupController extends AdminController {
     async del(@Post("id") param: number) {
         const res = await this.service.del(this.Map, param).catch((err: any) => {
             this.fail(`操作失败! ${err.message || err}`);
-            return this.prevent();
+            return prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -180,7 +180,7 @@ export class GroupController extends AdminController {
     async view(@Get("id") param: number) {
         const res = await this.service.info(this.Map, param).catch((err: any) => {
             this.fail(`操作失败! ${err.message || err}`);
-            return this.prevent();
+            return prevent();
         });
         return this.ok("操作成功", res);
     }

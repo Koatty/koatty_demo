@@ -4,7 +4,7 @@
  * @ license: Apache License 2.0
  * @ version: 2020-05-12 00:03:30
  */
-import { Controller, BaseController, Autowired, Logger, Helper, RequestParam } from "koatty";
+import { Controller, BaseController, Autowired, Logger, Helper, RequestParam, prevent } from "koatty";
 import { App } from '../App';
 import { CommonService } from '../service/CommonService';
 
@@ -30,7 +30,7 @@ export class AdminController extends BaseController {
         const token = this.ctx.get('x-access-token');
         const uuid = await this.ctx.jwtDecode(token).catch((err: any) => {
             this.fail(err.message, { needLogin: 1 }, 401);
-            return this.prevent();
+            return prevent();
         });
         this.ctx.userid = uuid;
         if (this.app.cacheStore) {
@@ -43,7 +43,7 @@ export class AdminController extends BaseController {
         const map = await this.commonService.authCheck(this.ctx.userid, this.ctx.path, this.Model ? this.Model.modelName : "", this.Map).catch((err) => {
             Logger.Error(err);
             this.fail("无权限访问", "", 403);
-            return this.prevent();
+            return prevent();
         });
         //定义只读属性,属性不能被覆盖删除
         // tslint:disable-next-line: forin

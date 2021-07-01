@@ -4,7 +4,7 @@
  * @ license: Apache License 2.0
  * @ version: 2020-05-12 17:23:30
  */
-import { Controller, BaseController, GetMapping, Post, Autowired, Helper, Value, PostMapping, Get, PutMapping, RequestBody, PathVariable } from "koatty";
+import { Controller, BaseController, GetMapping, Post, Autowired, Helper, Value, PostMapping, Get, PutMapping, RequestBody, PathVariable, prevent } from "koatty";
 import { Valid, Validated } from 'koatty_validation';
 import { App } from '../../App';
 const jwt = require('jsonwebtoken');
@@ -61,7 +61,7 @@ export class PublicController extends BaseController {
         }
         const userData = await this.passportService.getAdminUser(info.username || '', Helper.toString(info.password) || '').catch((err) => {
             this.fail(err.message);
-            return this.prevent();
+            return prevent();
         });
         if (Helper.isEmpty(userData) || Helper.isEmpty(userData.id)) {
             return this.fail("用户名或密码错误");
@@ -117,7 +117,7 @@ export class PublicController extends BaseController {
             this.cache.hdel('ROLE_RULES', this.ctx.roleid)
         ]).catch(() => {
             this.fail("登出失败", { needLogin: 1 });
-            return this.prevent();
+            return prevent();
         });
         return this.ok("登出成功");
     }

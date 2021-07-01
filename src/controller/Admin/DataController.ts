@@ -6,7 +6,7 @@
  */
 // tslint:disable-next-line: no-implicit-dependencies
 import * as globby from 'globby';
-import { Controller, GetMapping, Get, Autowired, Post, PostMapping, Helper } from "koatty";
+import { Controller, GetMapping, Get, Autowired, Post, PostMapping, Helper, prevent } from "koatty";
 import { Valid, Validated } from 'koatty_validation';
 import { App } from '../../App';
 import { AdminController } from "../AdminController";
@@ -50,7 +50,7 @@ export class DataController extends AdminController {
 
         const pageData = await this.service.list(this.Map, this.Mo).catch((err: any) => {
             this.fail(`操作失败! ${err.message || err}`);
-            return this.prevent();
+            return prevent();
         });
         return this.ok("查询成功", pageData);
     }
@@ -108,7 +108,7 @@ export class DataController extends AdminController {
     ) {
         const res = await this.service.add({ name, desc, condition }).catch((err: any) => {
             this.fail(`操作失败! ${err.message || err}`);
-            return this.prevent();
+            return prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -138,7 +138,7 @@ export class DataController extends AdminController {
     ) {
         const res = await this.service.edit(this.Map, { id, name, desc, condition }).catch((err: any) => {
             this.fail(`操作失败! ${err.message || err}`);
-            return this.prevent();
+            return prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -161,7 +161,7 @@ export class DataController extends AdminController {
     async del(@Post("id") @Valid("IsNotEmpty", "规则ID不能为空") param: number) {
         const res = await this.service.del(this.Map, param).catch((err: any) => {
             this.fail(`操作失败! ${err.message || err}`);
-            return this.prevent();
+            return prevent();
         });
         return this.ok("操作成功", res);
     }
@@ -184,7 +184,7 @@ export class DataController extends AdminController {
     async view(@Get("id") @Valid("IsNotEmpty", "规则ID不能为空") param: number) {
         const res = await this.service.info(this.Map, param).catch((err: any) => {
             this.fail(`操作失败! ${err.message || err}`);
-            return this.prevent();
+            return prevent();
         });
         return this.ok("操作成功", res);
     }
