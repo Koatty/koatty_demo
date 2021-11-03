@@ -9,6 +9,7 @@ export default {
     app_port: 3000, // 监听端口
     app_host: '', // Hostname
     encoding: 'utf-8', //输出数据的编码
+    open_trace: true,
 
     // logs_level: "INFO", // Level log is printed to the console, "DEBUG" | "INFO" | "WARN" | "ERROR"
     logs_console: true, // Whether to console logs
