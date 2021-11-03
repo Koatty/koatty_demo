@@ -16,7 +16,7 @@ export class WebIndexController extends BaseController {
         //...
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     index() {
         // this.ctx.status = 201;
         // return this.ctx.render('./html/index.html');

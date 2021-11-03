@@ -22,6 +22,7 @@ import { Koatty, Bootstrap } from "koatty";
 // @ConfiguationScan('./config')
 export class App extends Koatty {
     cacheStore: any;
+    _caches: any;
 
     public init() {
         // this.root_path = path.dirname(__dirname);

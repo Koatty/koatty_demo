@@ -6,11 +6,11 @@
  */
 import { Middleware, Helper, IMiddleware } from "koatty";
 import { App } from '../App';
-const views = require("think_view");
+import { Views } from 'koatty_views';
 
 @Middleware()
 export class ViewMiddleware implements IMiddleware {
     run(options: any, app: App) {
-        return views(options, app);
+        return Views(options, app);
     }
 }
