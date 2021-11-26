@@ -3,14 +3,15 @@
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2021-11-25 13:12:21
+ * @LastEditTime: 2021-11-26 14:25:47
  */
 
-import { KoattyContext, Controller, BaseController, Autowired, GetMapping } from 'koatty';
+import { KoattyContext, Controller, BaseController, Autowired, GetMapping, RequestMapping, RequestBody } from 'koatty';
+import { Valid } from 'koatty_validation';
 import { App } from '../App';
 // import { TestService } from '../service/TestService';
 
-@Controller('/requst')
+@Controller('/request')
 export class RequstController extends BaseController {
   app: App;
   ctx: KoattyContext;
@@ -33,8 +34,11 @@ export class RequstController extends BaseController {
    * @returns
    * @memberof RequstController
    */
-  @GetMapping('/')
-  index(): Promise<any> {
+  @RequestMapping("/get")
+  index(@RequestBody() @Valid("IsEmail") body: string): Promise<any> {
+    this.ctx.websocket.on("test", (name: string) => {
+      console.log(name);
+    });
     return this.ok('Hi Koatty');
   }
 
