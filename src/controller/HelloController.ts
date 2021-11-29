@@ -3,7 +3,7 @@
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2021-11-25 13:11:43
+ * @LastEditTime: 2021-11-29 12:34:52
  */
 
 import { KoattyContext, Controller, BaseController, Autowired, RequestMapping, RequestBody } from 'koatty';
@@ -35,6 +35,7 @@ export class HelloController extends BaseController {
   @RequestMapping('/SayHello') // Consistent with proto.service.method name
   SayHello(@RequestBody() params: SayHelloRequestDto): Promise<SayHelloReplyDto> {
     const res = new SayHelloReplyDto();
+    res.message = params.name;
     return Promise.resolve(res);
   }
 

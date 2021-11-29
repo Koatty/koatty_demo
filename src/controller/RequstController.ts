@@ -3,7 +3,7 @@
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2021-11-26 14:25:47
+ * @LastEditTime: 2021-11-29 12:38:23
  */
 
 import { KoattyContext, Controller, BaseController, Autowired, GetMapping, RequestMapping, RequestBody } from 'koatty';
@@ -39,7 +39,7 @@ export class RequstController extends BaseController {
     this.ctx.websocket.on("test", (name: string) => {
       console.log(name);
     });
-    return this.ok('Hi Koatty');
+    return Promise.resolve(body);
   }
 
 }

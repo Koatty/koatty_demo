@@ -3,7 +3,7 @@
  * @Usage: 项目统一使用koa-router，这里配置路由属性
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2021-11-20 23:56:53
+ * @LastEditTime: 2021-11-26 16:25:43
  */
 
 export default {
@@ -31,6 +31,6 @@ export default {
      *  Other extended configuration
      */
     ext: {
-        protoFile: "", // gRPC proto file
+        protoFile: process.env.APP_PATH + "/proto/Hello.proto", // gRPC proto file
     }
 };
