@@ -3,21 +3,19 @@
  * @Usage: 处理具体业务逻辑
  * @Author: xxx
  * @Date: 2020-12-22 15:59:51
- * @LastEditTime: 2021-11-24 14:32:07
+ * @LastEditTime: 2021-12-02 16:29:52
  */
 
-import { Service, BaseService, Autowired } from 'koatty';
+import { Service, BaseService, Autowired, Logger } from 'koatty';
 import { App } from '../App';
 import { UserDto } from '../dto/UserDto';
 import { Scheduled, SchedulerLock } from "koatty_schedule";
 import { CacheAble, CacheEvict, GetCacheStore } from "koatty_cacheable";
-// import { TestModel } from '../model/TestModel';
+import { UserModel } from '../model/UserModel';
 
 @Service()
 export class TestService extends BaseService {
   app: App;
-  // @Autowired()
-  // protected testModel: TestModel;
 
   /**
    * 登录检测
@@ -36,9 +34,9 @@ export class TestService extends BaseService {
    * @memberof TestService
    */
   // 自动缓存,默认存储在内存,支持存储redis
-  @CacheAble("getUser")
+  @CacheAble("getUser", 30)
   getUser(id: number) {
-    return Promise.resolve({ "id": id, "username": "test" });
+    return UserModel.find({ id });
   }
 
   /**
@@ -49,8 +47,9 @@ export class TestService extends BaseService {
    * @memberof TestService
    */
   addUser(data: UserDto): Promise<any> {
-    // return this.testModel.save(data);
-    return Promise.resolve();
+    const userModel = new UserModel();
+    userModel.name = data.phoneNum;
+    return userModel.save();
   }
 
   /**
@@ -62,6 +61,6 @@ export class TestService extends BaseService {
   //计划任务加锁，默认内存锁，配合redis可以实现分布式锁
   // @SchedulerLock("testCron") 
   testCron() {
-    console.log('cron job');
+    Logger.Info("testCron");
   }
 }

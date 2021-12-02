@@ -3,7 +3,7 @@
  * @Usage: 包括database、redis配置信息
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2021-11-20 23:56:28
+ * @LastEditTime: 2021-12-02 00:01:13
  */
 
 export default {
@@ -11,25 +11,16 @@ export default {
     "DataBase": { // used koatty_typeorm
         //默认配置项
         "type": "mysql", //mysql, mariadb, postgres, sqlite, mssql, oracle, mongodb, cordova
-        replication: {
-            master: {
-                host: "127.0.0.1",
-                port: 3306,
-                username: "test",
-                password: "test",
-                database: "test"
-            },
-            slaves: [{
-                host: "127.0.0.1",
-                port: 3306,
-                username: "test",
-                password: "test",
-                database: "test"
-            }]
-        },
+        host: "${mysql_host}",
+        port: "${mysql_port}",
+        username: "${mysql_user}",
+        password: "${mysql_pass}",
+        database: "${mysql_database}",
+
         "synchronize": false, //true 每次运行应用程序时实体都将与数据库同步
         "logging": true,
-        "entities": [`${process.env.APP_PATH}/model/*`]
+        "entities": [`${process.env.APP_PATH}/model/*`],
+        "entityPrefix": ""
     },
 
     "CacheStore": {

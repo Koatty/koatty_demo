@@ -3,10 +3,10 @@
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:31:17
- * @LastEditTime: 2021-11-25 13:12:16
+ * @LastEditTime: 2021-12-02 00:28:54
  */
 
-import { Controller, Autowired, GetMapping, Post, PostMapping, KoattyContext, Before, HttpController } from 'koatty';
+import { Controller, Autowired, GetMapping, Post, PostMapping, KoattyContext, Before, HttpController, Get } from 'koatty';
 import { Valid, Validated } from "koatty_validation";
 import { App } from '../App';
 import { TestAspect } from '../aspect/TestAspect';
@@ -68,7 +68,7 @@ export class TestController extends HttpController {
    * {"code":0,"message":"错误信息","data":null}
    */
   @GetMapping("/get")
-  async get(@Valid("IsNotEmpty", "id不能为空") id: number): Promise<any> {
+  async get(@Valid("IsNotEmpty", "id不能为空") @Get("id") id: number): Promise<any> {
     const userInfo = await this.TestService.getUser(id);
     return this.ok("success", userInfo);
   }
