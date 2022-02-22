@@ -3,11 +3,12 @@
  * @usage: 配置待加载的插件及加载顺序
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2021-12-01 23:59:12
+ * @LastEditTime: 2022-02-22 11:27:32
  */
 
 export default {
-    list: ["TypeormPlugin"], //加载的插件列表,执行顺序按照数组元素顺序
+    list: [], //加载的插件列表,执行顺序按照数组元素顺序
+    // list: ["TypeormPlugin"], //加载的插件列表,执行顺序按照数组元素顺序
     config: { //插件配置
         // ex:
         // TestPlugin: {
