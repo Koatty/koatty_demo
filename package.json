@@ -1,16 +1,21 @@
 {
-  "name": "koatty_demo",
+  "name": "koatty_demo1",
   "version": "1.0.0",
   "description": "application created by koatty",
-  "main": "dist/index.js",
+  "main": "./dist/App.js",
   "scripts": {
-    "build": "del-cli --force dist && tsc && copyfiles -u 1 ./src/**/*.json ./src/**/*.proto dist/",
+    "build": "npm run clear && tsc && copyfiles -u 1 ./src/**/*.json ./src/**/*.proto dist/",
+    "clear": "del-cli --force dist",
+    "build:images": "npm run build && docker build -t koatty/koatty_demo1:latest -f deploy/Dockerfile .",
     "eslint": "eslint --ext .ts,.js ./",
     "dev": "nodemon ./src/App.ts",
     "doc": "apidoc -i src/controller/ -o static/doc/",
     "start": "npm run build && NODE_ENV=production node ./dist/App.js",
     "test": "npm run eslint && jest --passWithNoTests",
     "test:cov": "jest --collectCoverage --detectOpenHandles"
+  },
+  "engines": {
+    "node": ">12.0.0"
   },
   "nodemonConfig": {
     "ignore": [
@@ -49,7 +54,7 @@
     "del-cli": "^4.x.x",
     "eslint": "^8.x.x",
     "eslint-plugin-jest": "^25.x.x",
-    "husky": "^7.x.x",
+    "husky": "^4.x.x",
     "jest": "^27.x.x",
     "jest-html-reporters": "^2.x.x",
     "standard-version": "^9.x.x",
@@ -58,15 +63,15 @@
     "typescript": "^4.x.x"
   },
   "dependencies": {
-    "koatty": "^3.6.0",
+    "koatty": "^3.6.6",
     "koatty_cacheable": "^1.3.6",
-    "koatty_schedule": "^1.5.4",
+    "koatty_schedule": "^1.5.5",
     "koatty_static": "^1.2.8",
     "koatty_store": "^1.5.4",
     "koatty_typeorm": "^1.1.6",
-    "koatty_validation": "^1.1.0",
     "koatty_views": "^1.0.6",
     "mysql": "^2.18.1",
-    "tslib": "^2.3.1"
+    "tslib": "^2.3.1",
+    "typeorm": "^0.2.44"
   }
 }

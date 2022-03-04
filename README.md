@@ -1,4 +1,4 @@
-# koatty_demo
+# koatty_demo1
 
 Application created by [Koatty](https://github.com/koatty/koatty)
 
@@ -40,7 +40,6 @@ projectName
 ├── test                          # 测试用例
 │   └── index.test.js
 ├── apidoc.json
-├── pm2.json
 ├── package.json
 ├── README.md
 └── tsconfig.json
@@ -93,11 +92,22 @@ npm run doc
 接口文档地址：http://localhost:3000/doc/index.html
 
 
-## pm2 部署
+## 部署
 
-use pm2 to deploy app on production envrioment.
+使用容器化部署, 打包镜像
 
 ```
-pm2 startOrGracefulReload pm2.json
+npm run build:images
 ```
 
+发布镜像:
+
+```
+docker push koatty/koatty_demo1:latest
+```
+
+运行:
+
+```
+docker run -d --network=host --restart=always --name=test koatty/koatty_demo1:latest
+```

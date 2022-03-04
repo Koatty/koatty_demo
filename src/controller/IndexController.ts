@@ -3,7 +3,7 @@
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:31:17
- * @LastEditTime: 2021-12-02 00:28:54
+ * @LastEditTime: 2022-03-03 16:08:30
  */
 
 import { Controller, Autowired, GetMapping, Post, PostMapping, KoattyContext, Before, HttpController, Get } from 'koatty';
@@ -14,7 +14,7 @@ import { UserDto } from '../dto/UserDto';
 import { TestService } from '../service/TestService';
 
 @Controller('/')
-export class TestController extends HttpController {
+export class IndexController extends HttpController {
   app: App;
   ctx: KoattyContext;
 
@@ -49,7 +49,7 @@ export class TestController extends HttpController {
    * @apiErrorExample {json} Error
    * {"code":0,"message":"错误信息","data":null}
    */
-  @GetMapping('/')
+  @GetMapping()
   index(): Promise<any> {
     this.ctx.status = 200;
     return this.ok('Hi Koatty');

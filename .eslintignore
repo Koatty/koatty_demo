@@ -8,3 +8,4 @@ coverage
 test
 demo
 doc
+jest-html-reporters-attach
