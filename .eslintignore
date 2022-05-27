@@ -4,8 +4,10 @@ node_modules
 **/yarn.lock
 **/*.config.js
 dist
+temp
+scripts
 coverage
 test
 demo
-doc
+jest_html_reporters.html
 jest-html-reporters-attach

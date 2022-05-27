@@ -1,0 +1,90 @@
+<!--
+ * @Description: 
+ * @Usage: 
+ * @Author: richen
+ * @Date: 2022-04-26 15:00:17
+ * @LastEditTime: 2022-04-28 13:08:35
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>post demo</title>
+</head>
+
+<body>
+  <div style="text-align: center; padding-top: 50px">
+    <div style="font-size: 16px; color: #44A1F8;padding-bottom: 50px">post demo</div>
+    <input type="file" id="avatar" />
+    <button onclick="to_upload_file()">上传</button>
+    <br>
+    <br>
+    <div
+      style="text-align: left;display: inline-block;width: 300px; height: 20px; border: 1px solid #44A1F8; border-radius: 2px;position: relative">
+      <div id="progress_bar" style="display: inline-block; width: 0px; height: 20px;background-color: #64B587"></div>
+      <div style="text-align: center;width: 300px;position: absolute; top: 0; font-size:16px; color: #413F43">
+        <div id="loading">
+          上传进度0%
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script>
+    // 处理上传进度
+    function progressFunction(e) {
+      var progress_bar = document.getElementById("progress_bar");
+      var loading_dom = document.getElementById("loading");
+      var loading = Math.round(e.loaded / e.total * 100);
+      console.log("loading::", loading);
+
+      if (loading === 100) {
+        loading_dom.innerHTML = "上传成功^_^";
+      } else {
+        loading_dom.innerHTML = "上传进度" + loading + "%"
+      }
+
+      progress_bar.style.width = String(loading * 3) + "px";
+    }
+    // 上传成功
+    function uploadComplete(e) {
+      console.log("上传成功！", e);
+    }
+    // 上传失败
+    function uploadFailed(e) {
+      console.log("上传失败", e);
+    }
+
+    function to_upload_file() {
+      var file_obj = document.getElementById("avatar").files[0]
+      if (file_obj) {
+        var url = "https://ci-source-1303824488.cos.ap-shanghai.myqcloud.com/import/100021543497/lowcode-8g2otfaj6cc29a85/a7c3c720-4728-4d1a-9260-2edcda32dc0c/package.zip?q-sign-algorithm=sha1&q-ak=AKID0c09vTYpsfGdltzdU7TbT6Yop65p4muo&q-sign-time=1651122492%3B1651126092&q-key-time=1651122492%3B1651126092&q-header-list=host&q-url-param-list=&q-signature=b902c50907016bfcb133a4fd8d6596338b691914";
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.onload = uploadComplete; // 添加 上传成功后的回调函数
+        xhr.onerror = uploadFailed; // 添加 上传失败后的回调函数
+        xhr.upload.onprogress = progressFunction; // 添加 监听函数
+        // xhr.open("PUT", url, true);
+        // xhr.setRequestHeader("Content-Type", "application/octet-stream");
+        // xhr.send(form);
+
+        xhr.open('PUT', url, true);
+        xhr.onload = function (e) {
+          console.log('上传成功', xhr.status, xhr.statusText);
+        };
+        xhr.onerror = function (e) {
+          console.log('上传出错', xhr.status, xhr.statusText);
+        };
+        xhr.send(file_obj); // file 是要上传的文件对象
+      } else {
+        alert("请先选择文件后再上传")
+      }
+    }
+  </script>
+</body>
+
+</html>

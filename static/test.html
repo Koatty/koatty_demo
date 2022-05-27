@@ -1,0 +1,37 @@
+<!--
+ * @Description: 
+ * @Usage: 
+ * @Author: richen
+ * @Date: 2022-04-26 12:02:00
+ * @LastEditTime: 2022-04-26 12:02:02
+-->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <a href="javascript:test()">Test CORS</a>
+  <script>
+    function test() {
+      var url = 'https://ci-source-1303824488.cos.ap-shanghai.myqcloud.com/import/100021420285/lowcode-3gll83pbba1e9c48/1b257b3b-dadd-470a-b0b9-108a7f476afd/template.yaml';
+      var xhr = new XMLHttpRequest();
+      xhr.open('HEAD', url);
+      xhr.onload = function () {
+        var headers = xhr.getAllResponseHeaders().replace(/\r\n/g, '\n');
+        alert('request success, CORS allow.\n' +
+          'url: ' + url + '\n' +
+          'status: ' + xhr.status + '\n' +
+          'headers:\n' + headers);
+      };
+      xhr.onerror = function () {
+        alert('request error, maybe CORS error.');
+      };
+      xhr.send();
+    }
+  </script>
+</body>
+
+</html>
