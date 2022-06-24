@@ -53,6 +53,7 @@
     "husky": "^4.x.x",
     "jest": "^28.x.x",
     "jest-html-reporters": "^3.x.x",
+    "nodemon": "^2.x.x",
     "standard-version": "^9.x.x",
     "ts-jest": "^28.x.x",
     "ts-node": "^10.x.x",
