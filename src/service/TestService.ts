@@ -3,7 +3,7 @@
  * @Usage: 处理具体业务逻辑
  * @Author: xxx
  * @Date: 2020-12-22 15:59:51
- * @LastEditTime: 2021-12-02 16:29:52
+ * @LastEditTime: 2022-08-19 15:48:23
  */
 
 import { Service, BaseService, Autowired, Logger } from 'koatty';
@@ -48,7 +48,7 @@ export class TestService extends BaseService {
    */
   addUser(data: UserDto): Promise<any> {
     const userModel = new UserModel();
-    userModel.name = data.phoneNum;
+    userModel.id = data.phoneNum;
     return userModel.save();
   }
 
