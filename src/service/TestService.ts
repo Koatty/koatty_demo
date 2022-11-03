@@ -3,7 +3,7 @@
  * @Usage: 处理具体业务逻辑
  * @Author: xxx
  * @Date: 2020-12-22 15:59:51
- * @LastEditTime: 2022-08-19 15:48:23
+ * @LastEditTime: 2022-11-03 16:04:43
  */
 
 import { Service, BaseService, Autowired, Logger } from 'koatty';
@@ -36,7 +36,7 @@ export class TestService extends BaseService {
   // 自动缓存,默认存储在内存,支持存储redis
   @CacheAble("getUser", 30)
   getUser(id: number) {
-    return UserModel.find({ id });
+    return UserModel.findOneBy({ id });
   }
 
   /**

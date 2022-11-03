@@ -3,10 +3,10 @@
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:31:17
- * @LastEditTime: 2022-03-03 16:08:30
+ * @LastEditTime: 2022-11-03 16:07:49
  */
 
-import { Controller, Autowired, GetMapping, Post, PostMapping, KoattyContext, Before, HttpController, Get } from 'koatty';
+import { Controller, Autowired, GetMapping, Post, PostMapping, KoattyContext, Before, Get, BaseController } from 'koatty';
 import { Valid, Validated } from "koatty_validation";
 import { App } from '../App';
 import { TestAspect } from '../aspect/TestAspect';
@@ -14,7 +14,7 @@ import { UserDto } from '../dto/UserDto';
 import { TestService } from '../service/TestService';
 
 @Controller('/')
-export class IndexController extends HttpController {
+export class IndexController extends BaseController {
   app: App;
   ctx: KoattyContext;
 
@@ -29,7 +29,7 @@ export class IndexController extends HttpController {
    */
   async __before(): Promise<any> {
     // 登录检查
-    const token = this.header("x-access-token");
+    const token = this.ctx.get("x-access-token");
     const isLogin = await this.TestService.checkLogin(token);
     if (isLogin) {
       this.ctx.userId = `${Date.now()}_${String(Math.random()).substring(2)}`;
@@ -102,6 +102,7 @@ export class IndexController extends HttpController {
   @GetMapping('/html')
   html(): Promise<any> {
     this.ctx.state = { title: 'Koatty', content: 'Hello, Koatty!' };
+    // dependent on koatty_views middleware
     return this.ctx.render('index.html');
   }
 }
