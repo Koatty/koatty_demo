@@ -3,7 +3,7 @@
  * @Usage: 处理具体业务逻辑
  * @Author: xxx
  * @Date: 2020-12-22 15:59:51
- * @LastEditTime: 2022-11-03 16:04:43
+ * @LastEditTime: 2023-08-18 11:14:10
  */
 
 import { Service, BaseService, Autowired, Logger } from 'koatty';
@@ -34,22 +34,26 @@ export class TestService extends BaseService {
    * @memberof TestService
    */
   // 自动缓存,默认存储在内存,支持存储redis
-  @CacheAble("getUser", 30)
-  getUser(id: number) {
-    return UserModel.findOneBy({ id });
+  @CacheAble("getUser", {
+    params: ["id"],
+    timeout: 30,
+  })
+  async getUser(id: number) {
+    const user = await UserModel.findOneBy({ id: id })
+    return user;
   }
 
   /**
    * 新增用户
    *
    * @param {UserDto} data
-   * @returns {*}  {Promise<any>}
    * @memberof TestService
    */
-  addUser(data: UserDto): Promise<any> {
-    const userModel = new UserModel();
-    userModel.id = data.phoneNum;
-    return userModel.save();
+  addUser(data: UserDto) {
+    const user = new UserModel();
+    user.phoneNum = data.phoneNum;
+    user.name = data.userName;
+    return UserModel.save(user);
   }
 
   /**
@@ -61,6 +65,6 @@ export class TestService extends BaseService {
   //计划任务加锁，默认内存锁，配合redis可以实现分布式锁
   // @SchedulerLock("testCron") 
   testCron() {
-    Logger.Info("testCron");
+    Logger.Debug('cron job');
   }
 }

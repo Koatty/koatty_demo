@@ -1,4 +1,4 @@
-# koatty_demo1
+# ktdemo
 
 Application created by [Koatty](https://github.com/koatty/koatty)
 
@@ -103,11 +103,11 @@ npm run build:images
 发布镜像:
 
 ```
-docker push koatty/koatty_demo1:latest
+docker push koatty/ktdemo:latest
 ```
 
 运行:
 
 ```
-docker run -d --network=host --restart=always --name=test koatty/koatty_demo1:latest
+docker run -d --network=host --restart=always --name=test koatty/ktdemo:latest
 ```

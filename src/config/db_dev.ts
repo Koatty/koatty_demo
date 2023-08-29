@@ -3,7 +3,7 @@
  * @Usage: 包括database、redis配置信息
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2023-02-19 01:28:53
+ * @LastEditTime: 2023-02-19 01:28:10
  */
 
 export default {
@@ -15,7 +15,7 @@ export default {
     port: "${mysql_port}",
     username: "${mysql_user}",
     password: "${mysql_pass}",
-    database: "${mysql_database}",
+    database: "test",
 
     synchronize: false, //true 每次运行应用程序时实体都将与数据库同步
     logging: true,

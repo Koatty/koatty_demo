@@ -10,7 +10,7 @@ import { Static } from "koatty_static";
 
 @Middleware()
 export class StaticMiddleware implements IMiddleware {
-    run(options: any, app: App) {
-        return Static(options, app);
-    }
+  run(options: any, app: App) {
+    return Static(options, app);
+  }
 }

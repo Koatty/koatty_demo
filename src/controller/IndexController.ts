@@ -1,12 +1,12 @@
 /*
- * @Description: HTTP 控制器
+ * @Description: 业务层
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:31:17
- * @LastEditTime: 2022-11-03 16:07:49
+ * @LastEditTime: 2023-08-18 15:48:10
  */
 
-import { Controller, Autowired, GetMapping, Post, PostMapping, KoattyContext, Before, Get, BaseController } from 'koatty';
+import { Controller, Autowired, GetMapping, Post, PostMapping, KoattyContext, Before, BaseController, Get } from 'koatty';
 import { Valid, Validated } from "koatty_validation";
 import { App } from '../App';
 import { TestAspect } from '../aspect/TestAspect';
@@ -56,7 +56,7 @@ export class IndexController extends BaseController {
   }
 
   /**
-   * @api {get} /get get接口
+   * @api {get} /get?userId= get接口
    * @apiGroup Test
    * 
    * @apiParam {number} id  userId.
@@ -77,7 +77,7 @@ export class IndexController extends BaseController {
    * @api {post} /add add接口
    * @apiGroup Test
    * 
-   * @apiParamClass (src/dto/UserDto.ts) {RoleDTO}
+   * @apiParamClass (src/dto/UserDto.ts) {UserDto}
    * 
    * @apiSuccessExample {json} Success
    * {"code":1,"message":"","data":{}}
@@ -89,12 +89,12 @@ export class IndexController extends BaseController {
   @Validated()
   @Before(TestAspect)
   async add(@Post() data: UserDto): Promise<any> {
-    const userId = await this.TestService.addUser(data);
-    return this.ok('success', { userId });
+    const userInfo = await this.TestService.addUser(data);
+    return this.ok('success', { userInfo });
   }
 
   /**
-   * hello 接口
+   * html 渲染
    *
    * @returns
    * @memberof TestController
@@ -102,7 +102,6 @@ export class IndexController extends BaseController {
   @GetMapping('/html')
   html(): Promise<any> {
     this.ctx.state = { title: 'Koatty', content: 'Hello, Koatty!' };
-    // dependent on koatty_views middleware
     return this.ctx.render('index.html');
   }
 }

@@ -1,15 +1,18 @@
 /*
- * @Description: gRPC 控制器
+ * @Description: 业务层
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2022-03-08 16:04:38
+ * @LastEditTime: 2023-08-18 10:28:55
  */
 
-import { KoattyContext, Controller, BaseController, Autowired, RequestMapping, RequestBody } from 'koatty';
+import { KoattyContext, Controller, BaseController, Autowired, PostMapping, Post } from 'koatty';
 import { App } from '../App';
 import { SayHelloRequestDto } from '../dto/SayHelloRequestDto';
 import { SayHelloReplyDto } from '../dto/SayHelloReplyDto';
+import { SayHelloRequest2Dto } from '../dto/SayHelloRequest2Dto';
+import { SayHelloReply2Dto } from '../dto/SayHelloReply2Dto';
+//_IMPORT_LIST Important! Do not delete this line
 
 @Controller('/Hello') // Consistent with proto.service name
 export class HelloController extends BaseController {
@@ -27,18 +30,27 @@ export class HelloController extends BaseController {
 
   /**
    * SayHello 接口
-   * 访问路径  grpc://127.0.0.1/Hello/SayHello
    *
-   * @param {SayHelloRequestDto} data
+   * @param {SayHelloRequestDto} params
    * @returns
    */
-  @RequestMapping('/SayHello') // Consistent with proto.service.method name
-  SayHello(@RequestBody() params: SayHelloRequestDto): Promise<SayHelloReplyDto> {
-    console.log(this.ctx.headers);
-
+  @PostMapping('/SayHello') // Consistent with proto.service.method name
+  SayHello(@Post() params: SayHelloRequestDto): Promise<SayHelloReplyDto> {
     const res = new SayHelloReplyDto();
-    res.message = params.name;
     return Promise.resolve(res);
   }
+
+  /**
+   * SayHello2 接口
+   *
+   * @param {SayHelloRequest2Dto} params
+   * @returns
+   */
+  @PostMapping('/SayHello2') // Consistent with proto.service.method name
+  SayHello2(@Post() params: SayHelloRequest2Dto): Promise<SayHelloReply2Dto> {
+    const res = new SayHelloReply2Dto();
+    return Promise.resolve(res);
+  }
+  //_METHOD_LIST Important! Do not delete this line
 
 }

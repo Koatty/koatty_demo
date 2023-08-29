@@ -3,18 +3,17 @@
  * @Usage: 
  * @Author: richen
  * @Date: 2022-02-14 11:26:20
- * @LastEditTime: 2022-11-01 16:24:00
+ * @LastEditTime: 2023-08-15 14:35:51
  */
 
-import { KoattyContext } from "koatty_core";
-import { Exception, ExceptionHandler } from "koatty_exception";
+import { KoattyContext, Exception, ExceptionHandler } from "koatty";
 
 @ExceptionHandler()
 export class BussinessException extends Exception {
   async handler(ctx: KoattyContext): Promise<any> {
     ctx.status = this.status;
     ctx.type = "application/json";
-    const body = ctx.body ? JSON.stringify(ctx.body) : (ctx.body || null);
+    const body: any = ctx.body ? JSON.stringify(ctx.body) : (ctx.body || null);
     switch (ctx.protocol) {
       case "ws":
       case "wss":

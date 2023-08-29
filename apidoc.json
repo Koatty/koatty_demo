@@ -1,0 +1,9 @@
+{
+  "version": "1.0.0",
+  "description": "apiDoc",
+  "apidoc": {
+    "title": "API文档",
+    "url": "https://127.0.0.1:3000",
+    "sampleUrl": "http://127.0.0.1:3000"
+  }
+}
