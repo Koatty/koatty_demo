@@ -3,14 +3,14 @@
  * @Usage: 处理具体业务逻辑
  * @Author: xxx
  * @Date: 2020-12-22 15:59:51
- * @LastEditTime: 2023-08-18 11:14:10
+ * @LastEditTime: 2023-09-10 11:12:20
  */
 
-import { Service, BaseService, Autowired, Logger } from 'koatty';
+import { Service, BaseService, Logger } from 'koatty';
 import { App } from '../App';
 import { UserDto } from '../dto/UserDto';
-import { Scheduled, SchedulerLock } from "koatty_schedule";
-import { CacheAble, CacheEvict, GetCacheStore } from "koatty_cacheable";
+import { Scheduled } from "koatty_schedule";
+import { CacheAble } from "koatty_cacheable";
 import { UserModel } from '../model/UserModel';
 
 @Service()

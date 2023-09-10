@@ -3,10 +3,10 @@
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2023-08-18 10:28:55
+ * @LastEditTime: 2023-09-10 11:14:07
  */
 
-import { KoattyContext, Controller, BaseController, Autowired, PostMapping, Post } from 'koatty';
+import { KoattyContext, Controller, BaseController, PostMapping, Post, Logger } from 'koatty';
 import { App } from '../App';
 import { SayHelloRequestDto } from '../dto/SayHelloRequestDto';
 import { SayHelloReplyDto } from '../dto/SayHelloReplyDto';
@@ -36,6 +36,7 @@ export class HelloController extends BaseController {
    */
   @PostMapping('/SayHello') // Consistent with proto.service.method name
   SayHello(@Post() params: SayHelloRequestDto): Promise<SayHelloReplyDto> {
+    Logger.Debug(params);
     const res = new SayHelloReplyDto();
     return Promise.resolve(res);
   }
@@ -48,6 +49,7 @@ export class HelloController extends BaseController {
    */
   @PostMapping('/SayHello2') // Consistent with proto.service.method name
   SayHello2(@Post() params: SayHelloRequest2Dto): Promise<SayHelloReply2Dto> {
+    Logger.Debug(params);
     const res = new SayHelloReply2Dto();
     return Promise.resolve(res);
   }
