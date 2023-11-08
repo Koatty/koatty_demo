@@ -14,9 +14,8 @@
                 "ts-node/register"
             ],
             "sourceMaps": true,
-            "envFile": "${env:GOPATH}/.env",
+            "envFile": "${env:WORKSPACE}/.env",
             "cwd": "${workspaceRoot}",
-            "protocol": "inspector",
             "outputCapture": "std",
             "internalConsoleOptions": "neverOpen"
         },
