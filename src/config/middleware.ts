@@ -3,11 +3,11 @@
  * @usage: 配置待加载的中间件及加载顺序
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2023-08-22 11:06:30
+ * @LastEditTime: 2023-11-08 15:35:20
  */
 
 export default {
-  list: ["StaticMiddleware", "ViewMiddleware", "OidcMiddleware"], //加载的中间件列表
+  list: ["StaticMiddleware", "ViewMiddleware"], //加载的中间件列表
   config: { //中间件配置
     // 静态服务器中间件默认未开启
     // StaticMiddleware: false,
