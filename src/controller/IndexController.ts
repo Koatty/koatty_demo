@@ -3,13 +3,12 @@
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:31:17
- * @LastEditTime: 2023-08-18 15:48:10
+ * @LastEditTime: 2023-11-11 10:56:07
  */
 
-import { Controller, Autowired, GetMapping, Post, PostMapping, KoattyContext, Before, BaseController, Get } from 'koatty';
+import { Controller, Autowired, GetMapping, Post, PostMapping, KoattyContext, Before, BaseController, PathVariable, Header } from 'koatty';
 import { Valid, Validated } from "koatty_validation";
 import { App } from '../App';
-import { TestAspect } from '../aspect/TestAspect';
 import { UserDto } from '../dto/UserDto';
 import { TestService } from '../service/TestService';
 
@@ -20,23 +19,6 @@ export class IndexController extends BaseController {
 
   @Autowired()
   protected TestService: TestService;
-
-  /**
-   * 前置登录检查
-   * AOP前置切面方法，等同于@BeforeEach()
-   * @returns {*}  {Promise<any>}
-   * @memberof TestController
-   */
-  async __before(): Promise<any> {
-    // 登录检查
-    const token = this.ctx.get("x-access-token");
-    const isLogin = await this.TestService.checkLogin(token);
-    if (isLogin) {
-      this.ctx.userId = `${Date.now()}_${String(Math.random()).substring(2)}`;
-    } else {
-      return this.fail('no login', { needLogin: 1 });
-    }
-  }
 
   /**
    * @api {get} / index接口
@@ -67,8 +49,11 @@ export class IndexController extends BaseController {
    * @apiErrorExample {json} Error
    * {"code":0,"message":"错误信息","data":null}
    */
-  @GetMapping("/get")
-  async get(@Valid("IsNotEmpty", "id不能为空") @Get("id") id: number): Promise<any> {
+  @GetMapping("/get/:id")
+  @Before("AuthAspect")
+  async get(
+    @Header("x-access-token") token: string,
+    @Valid("IsNotEmpty", "id不能为空") @PathVariable("id") id: number): Promise<any> {
     const userInfo = await this.TestService.getUser(id);
     return this.ok("success", userInfo);
   }
@@ -87,8 +72,10 @@ export class IndexController extends BaseController {
    */
   @PostMapping('/add')
   @Validated()
-  @Before(TestAspect)
-  async add(@Post() data: UserDto): Promise<any> {
+  @Before("AuthAspect")
+  async add(
+    @Header("x-access-token") token: string,
+    @Post() data: UserDto): Promise<any> {
     const userInfo = await this.TestService.addUser(data);
     return this.ok('success', { userInfo });
   }

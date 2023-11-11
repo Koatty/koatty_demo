@@ -3,7 +3,7 @@
  * @Usage: Test插件实现
  * @Author: xxx
  * @Date: 2020-12-22 16:00:49
- * @LastEditTime: 2022-03-15 10:41:29
+ * @LastEditTime: 2023-11-11 10:33:05
  */
 
 import { Plugin, IPlugin, Logger } from 'koatty';
@@ -12,6 +12,7 @@ import { App } from '../App';
 
 @Plugin()
 export class TestPlugin implements IPlugin {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   run(options: any, app: App) {
     // return TestPlugin(options, app);
     // or
