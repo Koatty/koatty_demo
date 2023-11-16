@@ -3,11 +3,11 @@
  * @Usage: 
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2023-08-17 11:46:39
+ * @LastEditTime: 2023-11-15 02:21:59
  */
 
 import { Component } from "koatty";
-import { IsNotEmpty, IsDefined } from "koatty_validation";
+import { IsDefined } from "koatty_validation";
 import { PhoneType } from "./PhoneType";
 //_ENUM_IMPORT
 
