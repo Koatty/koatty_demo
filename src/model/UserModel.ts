@@ -3,29 +3,90 @@
  * @Usage: 
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2023-08-18 11:24:16
+ * @LastEditTime: 2023-12-06 10:03:20
  */
-import { Entity, PrimaryGeneratedColumn, CreateDateColumn, Column, UpdateDateColumn, BaseEntity } from "typeorm";
 import { Component } from 'koatty';
 import { App } from '../App';
+import { UserEntity } from './UserEntity';
+import { FindOptionsWhere, OrderByCondition, SaveOptions } from 'typeorm';
 
 @Component()
-@Entity('user')
-export class UserModel extends BaseEntity {
+export class UserModel {
   app: App;
+  /**
+   * Find
+   * @param where 
+   * @returns 
+   */
+  Find(where: FindOptionsWhere<UserEntity>) {
+    return UserEntity.findOneBy(where);
+  }
 
-  @PrimaryGeneratedColumn()
-  id: number;
+  /**
+   * FindAll
+   * @param where 
+   * @returns 
+   */
+  FindAll(where: FindOptionsWhere<UserEntity>) {
+    return UserEntity.findBy(where);
+  }
+  /**
+   * Pagination
+   * @param where 
+   * @param pageNo 
+   * @param pageSize 
+   * @param orderBy 
+   * @returns 
+   */
+  async Pagination(where: UserEntity,
+    pageNo: number = 1, pageSize: number = 10, orderBy?: OrderByCondition) {
+    const builder = await UserEntity.createQueryBuilder().where(where);
+    const count = await builder.getCount();
+    const skip = ((pageNo > 0 ? pageNo : 1) - 1) * pageSize;
+    const lastPage = (count % pageSize) === 0 ? count / pageSize : Math.trunc(count / pageSize) + 1;
+    const res = await builder
+      .orderBy(orderBy)
+      .skip(skip)
+      .take(pageSize)
+      .getMany();
+    return {
+      pageNo: pageNo,
+      pageSize: pageSize,
+      prevPage: pageNo > 1 ? (pageNo - 1) : 1,
+      nextPage: count > (skip + pageSize) ? pageNo + 1 : pageNo,
+      lastPage: lastPage,
+      from: skip <= count ? skip + 1 : 0,
+      to: (count > skip + pageSize) ? skip + pageSize : count,
+      total: count,
+      data: res || []
+    }
+  }
 
-  @Column({ default: "" })
-  name: string;
+  /**
+   * Add
+   * @param entity 
+   * @returns 
+   */
+  Add(entity: UserEntity | UserEntity[]) {
+    return UserEntity.insert(entity)
+  }
 
-  @Column()
-  phoneNum: string;
+  /**
+   * Save
+   * @param entities 
+   * @param options 
+   * @returns 
+   */
+  Save(entities: UserEntity[], options?: SaveOptions) {
+    return UserEntity.save(entities, options);
+  }
 
-  @CreateDateColumn()
-  createdDate: Date;
-
-  @UpdateDateColumn()
-  updatedDate: Date;
+  /**
+   * Delete
+   * @param where 
+   * @returns 
+   */
+  Delete(where: FindOptionsWhere<UserEntity>) {
+    return UserEntity.delete(where);
+  }
 }

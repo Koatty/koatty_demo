@@ -3,19 +3,22 @@
  * @Usage: 处理具体业务逻辑
  * @Author: xxx
  * @Date: 2020-12-22 15:59:51
- * @LastEditTime: 2023-09-10 11:12:20
+ * @LastEditTime: 2023-12-06 21:54:28
  */
 
-import { Service, BaseService, Logger } from 'koatty';
+import { Service, BaseService, Logger, Autowired } from 'koatty';
 import { App } from '../App';
 import { UserDto } from '../dto/UserDto';
 import { Scheduled } from "koatty_schedule";
 import { CacheAble } from "koatty_cacheable";
 import { UserModel } from '../model/UserModel';
+import { UserEntity } from '../model/UserEntity';
 
 @Service()
 export class TestService extends BaseService {
   app: App;
+  @Autowired()
+  private userModel: UserModel;
 
   /**
    * 登录检测
@@ -38,9 +41,8 @@ export class TestService extends BaseService {
     params: ["id"],
     timeout: 30,
   })
-  async getUser(id: number) {
-    const user = await UserModel.findOneBy({ id: id })
-    return user;
+  getUser(id: number) {
+    return this.userModel.Find({ id })
   }
 
   /**
@@ -50,10 +52,10 @@ export class TestService extends BaseService {
    * @memberof TestService
    */
   addUser(data: UserDto) {
-    const user = new UserModel();
+    const user = new UserEntity();
     user.phoneNum = data.phoneNum;
     user.name = data.userName;
-    return UserModel.save(user);
+    return this.userModel.Add(user);
   }
 
   /**
