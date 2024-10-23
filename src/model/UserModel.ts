@@ -8,7 +8,7 @@
 import { Component } from 'koatty';
 import { App } from '../App';
 import { UserEntity } from './UserEntity';
-import { FindOptionsWhere, OrderByCondition, SaveOptions } from 'typeorm';
+import { FindOptionsWhere, SaveOptions } from 'typeorm';
 
 @Component()
 export class UserModel {
@@ -39,13 +39,15 @@ export class UserModel {
    * @returns 
    */
   async Pagination(where: UserEntity,
-    pageNo: number = 1, pageSize: number = 10, orderBy?: OrderByCondition) {
+    pageNo: number = 1, pageSize: number = 10, orderBy?: {
+      sort: string, order?: "ASC" | "DESC", nulls?: "NULLS FIRST" | "NULLS LAST"
+    }) {
     const builder = await UserEntity.createQueryBuilder().where(where);
     const count = await builder.getCount();
     const skip = ((pageNo > 0 ? pageNo : 1) - 1) * pageSize;
     const lastPage = (count % pageSize) === 0 ? count / pageSize : Math.trunc(count / pageSize) + 1;
     const res = await builder
-      .orderBy(orderBy)
+      .orderBy(orderBy.sort, orderBy.order, orderBy.nulls)
       .skip(skip)
       .take(pageSize)
       .getMany();
