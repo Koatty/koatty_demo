@@ -8,8 +8,8 @@
 		"clear": "del-cli --force dist",
 		"build:images": "npm run build && docker build -t koatty/ktdemo:latest -f deploy/Dockerfile .",
 		"eslint": "eslint --ext .ts,.js ./",
-		"dev": "nodemon ./src/App.ts",
-		"doc": "apidoc -i src/ -o static/doc/",
+		"dev": "npx nodemon ./src/App.ts",
+		"doc": "npx apidoc -i src/ -o static/doc/",
 		"prerelease": "npm test && npm run build",
 		"release": "standard-version",
 		"prepublishOnly": "npm run prerelease",
@@ -47,6 +47,8 @@
 		"@typescript-eslint/eslint-plugin": "^6.x.x",
 		"@typescript-eslint/parser": "^6.x.x",
 		"conventional-changelog-cli": "^3.x.x",
+		"apidoc": "^1.x.x",
+		"apidoc-plugin-class": "^0.0.4",
 		"copyfiles": "^2.x.x",
 		"del-cli": "^5.x.x",
 		"eslint": "^8.x.x",
@@ -62,7 +64,7 @@
 		"typescript": "^5.x.x"
 	},
 	"dependencies": {
-		"koatty": "^3.10.4-3",
+		"koatty": "^3.11.8",
 		"koatty_cacheable": "^1.4.2",
 		"koatty_schedule": "^1.6.0",
 		"koatty_static": "^1.3.0",

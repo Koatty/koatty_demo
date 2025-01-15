@@ -1,10 +1,3 @@
-/*
- * @Description: 
- * @Usage: 
- * @Author: richen
- * @Date: 2022-05-27 12:00:05
- * @LastEditTime: 2023-11-11 11:15:46
- */
 /**
  * 
  */
@@ -29,7 +22,7 @@ module.exports = {
   },
   rules: {
     "@typescript-eslint/no-explicit-any": "off",
-    // "@typescript-eslint/no-require-imports": "off",
+    "@typescript-eslint/no-require-imports": "warn",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/member-ordering": "off",
     "@typescript-eslint/consistent-type-assertions": "off",
@@ -37,14 +30,7 @@ module.exports = {
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/ban-types": ["error",
-      {
-        "types": {
-          "Object": false,
-          "Function": false,
-        },
-        "extendDefaults": true
-      }
-    ],
+    // "@typescript-eslint/no-unsafe-function-type": "warn",
+    '@typescript-eslint/no-unused-vars': "warn"
   },
 };

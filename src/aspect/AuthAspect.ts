@@ -3,7 +3,7 @@
  * @Usage: 
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2023-11-11 10:30:01
+ * @LastEditTime: 2024-10-29 15:49:33
  */
 
 import { Aspect, Exception, IAspect, Logger } from "koatty";
@@ -14,7 +14,7 @@ export class AuthAspect implements IAspect {
   app: App;
 
   async run(token: string) {
-    Logger.Debug(token);
+    Logger.Debug("token:" + token);
     const isLogin = await this.checkLogin(token);
     if (isLogin) {
       return Promise.resolve();

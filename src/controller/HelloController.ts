@@ -6,25 +6,25 @@
  * @LastEditTime: 2023-09-10 11:14:07
  */
 
-import { KoattyContext, Controller, BaseController, PostMapping, Post, Logger } from 'koatty';
+import { Controller, KoattyContext, Logger, Post, PostMapping } from 'koatty';
 import { App } from '../App';
-import { SayHelloRequestDto } from '../dto/SayHelloRequestDto';
+import { SayHelloReply2Dto } from '../dto/SayHelloReply2Dto';
 import { SayHelloReplyDto } from '../dto/SayHelloReplyDto';
 import { SayHelloRequest2Dto } from '../dto/SayHelloRequest2Dto';
-import { SayHelloReply2Dto } from '../dto/SayHelloReply2Dto';
+import { SayHelloRequestDto } from '../dto/SayHelloRequestDto';
 //_IMPORT_LIST Important! Do not delete this line
 
 @Controller('/Hello') // Consistent with proto.service name
-export class HelloController extends BaseController {
+export class HelloController {
   app: App;
   ctx: KoattyContext;
 
   /**
-   * Custom constructor
+   * constructor
    *
    */
-  init() {
-    //todo
+  constructor(ctx: KoattyContext) {
+    this.ctx = ctx;
   }
 
 

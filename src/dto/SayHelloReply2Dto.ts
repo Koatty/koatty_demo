@@ -7,7 +7,7 @@
  */
 
 import { Component } from "koatty";
-import { IsNotEmpty, IsDefined } from "koatty_validation";
+import { IsDefined } from "koatty_validation";
 //_ENUM_IMPORT
 
 @Component()
@@ -22,6 +22,6 @@ export class SayHelloReply2Dto {
   // @IsDefined() 
   // memo: string;
 
-      @IsDefined()
-    message: string;
+  @IsDefined()
+  message: string;
 }

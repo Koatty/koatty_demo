@@ -3,19 +3,19 @@
  * @Usage: 处理具体业务逻辑
  * @Author: xxx
  * @Date: 2020-12-22 15:59:51
- * @LastEditTime: 2023-12-06 21:54:28
+ * @LastEditTime: 2025-01-14 16:34:27
  */
 
-import { Service, BaseService, Logger, Autowired } from 'koatty';
+import { Autowired, Logger, Service } from 'koatty';
+import { CacheAble } from "koatty_cacheable";
+import { Scheduled } from "koatty_schedule";
 import { App } from '../App';
 import { UserDto } from '../dto/UserDto';
-import { Scheduled } from "koatty_schedule";
-import { CacheAble } from "koatty_cacheable";
 import { UserModel } from '../model/UserModel';
-import { UserEntity } from '../model/UserEntity';
+import { UserEntity } from '../model/entity/UserEntity';
 
 @Service()
-export class TestService extends BaseService {
+export class TestService {
   app: App;
   @Autowired()
   private userModel: UserModel;

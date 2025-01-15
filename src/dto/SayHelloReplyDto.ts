@@ -3,11 +3,11 @@
  * @Usage: 
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2023-02-18 15:02:11
+ * @LastEditTime: 2025-01-14 15:10:28
  */
 
 import { Component } from "koatty";
-import { IsNotEmpty, IsDefined } from "koatty_validation";
+import { IsDefined } from "koatty_validation";
 //_ENUM_IMPORT
 
 @Component()

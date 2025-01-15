@@ -3,12 +3,20 @@
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:31:17
- * @LastEditTime: 2023-12-19 20:08:19
+ * @LastEditTime: 2025-01-14 15:21:55
  */
 
 import {
-  Controller, Autowired, GetMapping, Post, PostMapping, KoattyContext,
-  Before, BaseController, PathVariable, Header
+  Autowired,
+  Before,
+  Controller,
+  GetMapping,
+  Header,
+  KoattyContext,
+  Logger,
+  Output,
+  PathVariable,
+  Post, PostMapping
 } from 'koatty';
 import { Valid, Validated } from "koatty_validation";
 import { App } from '../App';
@@ -16,12 +24,20 @@ import { UserDto } from '../dto/UserDto';
 import { TestService } from '../service/TestService';
 
 @Controller('/')
-export class IndexController extends BaseController {
+export class IndexController {
   app: App;
   ctx: KoattyContext;
 
   @Autowired()
   protected TestService: TestService;
+
+  /**
+   * constructor
+   *
+   */
+  constructor(ctx: KoattyContext) {
+    this.ctx = ctx;
+  }
 
   /**
    * @api {get} / index接口
@@ -35,9 +51,9 @@ export class IndexController extends BaseController {
    * {"code":0,"message":"错误信息","data":null}
    */
   @GetMapping()
-  index(): Promise<any> {
+  index() {
     this.ctx.status = 200;
-    return this.ok('Hi Koatty');
+    return Output.ok('Hi Koatty');
   }
 
   /**
@@ -58,7 +74,7 @@ export class IndexController extends BaseController {
     @Header("x-access-token") token: string,
     @Valid("IsNotEmpty", "id不能为空") @PathVariable("id") id: number): Promise<any> {
     const userInfo = await this.TestService.getUser(id);
-    return this.ok("success", userInfo);
+    return Output.ok("success", userInfo);
   }
 
   /**
@@ -80,7 +96,7 @@ export class IndexController extends BaseController {
     @Header("x-access-token") token: string,
     @Post() data: UserDto): Promise<any> {
     const userInfo = await this.TestService.addUser(data);
-    return this.ok('success', { userInfo });
+    return Output.ok('success', { userInfo });
   }
 
   /**
@@ -91,6 +107,7 @@ export class IndexController extends BaseController {
    */
   @GetMapping('/html')
   html(): Promise<any> {
+    Logger.Debug("X-Request-Id:" + this.ctx.get("X-Request-Id"))
     this.ctx.state = { title: 'Koatty', content: 'Hello, Koatty!' };
     return this.ctx.render('index.html');
   }

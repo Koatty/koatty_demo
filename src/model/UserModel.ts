@@ -3,11 +3,11 @@
  * @Usage: 
  * @Author: xxx
  * @Date: 2020-12-22 15:24:25
- * @LastEditTime: 2023-12-06 10:03:20
+ * @LastEditTime: 2024-12-10 14:55:41
  */
 import { Component } from 'koatty';
 import { App } from '../App';
-import { UserEntity } from './UserEntity';
+import { UserEntity } from './entity/UserEntity';
 import { FindOptionsWhere, SaveOptions } from 'typeorm';
 
 @Component()
@@ -16,7 +16,7 @@ export class UserModel {
   /**
    * Find
    * @param where 
-   * @returns 
+   * @returns  
    */
   Find(where: FindOptionsWhere<UserEntity>) {
     return UserEntity.findOneBy(where);
@@ -38,7 +38,7 @@ export class UserModel {
    * @param orderBy 
    * @returns 
    */
-  async Pagination(where: UserEntity,
+  async Pagination(where: FindOptionsWhere<UserEntity>,
     pageNo: number = 1, pageSize: number = 10, orderBy?: {
       sort: string, order?: "ASC" | "DESC", nulls?: "NULLS FIRST" | "NULLS LAST"
     }) {
@@ -74,13 +74,13 @@ export class UserModel {
   }
 
   /**
-   * Save
-   * @param entities 
-   * @param options 
-   * @returns 
+   * @description: Update           
+   * @param {UserEntity} entity
+   * @param {FindOptionsWhere} where
+   * @return {*}
    */
-  Save(entities: UserEntity[], options?: SaveOptions) {
-    return UserEntity.save(entities, options);
+  Update(entity: UserEntity, where: FindOptionsWhere<UserEntity>) {
+    return UserEntity.update(where, entity);
   }
 
   /**
