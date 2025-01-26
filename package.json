@@ -48,7 +48,7 @@
 		"@typescript-eslint/parser": "^6.x.x",
 		"conventional-changelog-cli": "^3.x.x",
 		"apidoc": "^1.x.x",
-		"apidoc-plugin-class": "^0.0.4",
+		"apidoc-plugin-class": "^0.0.5",
 		"copyfiles": "^2.x.x",
 		"del-cli": "^5.x.x",
 		"eslint": "^8.x.x",

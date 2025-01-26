@@ -3,7 +3,7 @@
  * @Usage: 接收处理路由参数
  * @Author: xxx
  * @Date: 2020-12-22 15:31:17
- * @LastEditTime: 2025-01-14 15:21:55
+ * @LastEditTime: 2025-01-26 11:28:59
  */
 
 import {
@@ -81,6 +81,7 @@ export class IndexController {
    * @api {post} /add add接口
    * @apiGroup Test
    * 
+   * @apiHeader {String} x-access-token Users unique access-key.
    * @apiParamClass (src/dto/UserDto.ts) {UserDto}
    * 
    * @apiSuccessExample {json} Success

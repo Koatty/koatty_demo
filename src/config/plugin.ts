@@ -7,7 +7,7 @@
  */
 
 export default {
-  list: ["TypeormPlugin"], //加载的插件列表,执行顺序按照数组元素顺序
+  list: [], //加载的插件列表,执行顺序按照数组元素顺序
   config: { //插件配置
     // ex:
     TypeormPlugin: {
